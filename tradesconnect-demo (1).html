@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TradesConnect — Michigan Pilot Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #1a5fd4;
+    --blue-light: #e8f0fd;
+    --blue-mid: #3b7de8;
+    --amber: #e8860a;
+    --amber-light: #fef3e2;
+    --green: #1a8a4a;
+    --green-light: #e4f5ec;
+    --purple: #6b3fcc;
+    --purple-light: #f0ebff;
+    --teal: #0e8080;
+    --teal-light: #e3f5f5;
+    --coral: #d44040;
+    --coral-light: #fdeaea;
+    --bg: #f5f4f1;
+    --surface: #ffffff;
+    --border: rgba(0,0,0,0.09);
+    --border-strong: rgba(0,0,0,0.15);
+    --text: #111111;
+    --text-2: #555555;
+    --text-3: #888888;
+    --radius: 14px;
+    --radius-sm: 8px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+  }
+
+  /* ── HERO BANNER ── */
+  .hero {
+    width: 100%;
+    background: var(--text);
+    color: white;
+    padding: 48px 24px 40px;
+    text-align: center;
+  }
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 12px;
+    font-family: 'DM Mono', monospace;
+  }
+  .hero-logo {
+    font-size: 38px;
+    font-weight: 600;
+    letter-spacing: -1px;
+    margin-bottom: 10px;
+  }
+  .hero-logo span { color: #5b9eff; }
+  .hero-sub {
+    font-size: 15px;
+    color: rgba(255,255,255,0.6);
+    max-width: 360px;
+    margin: 0 auto 20px;
+    line-height: 1.6;
+  }
+  .hero-pills {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .hero-pill {
+    font-size: 11px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.7);
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    width: 100%;
+    background: var(--blue);
+    padding: 16px 24px;
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    overflow-x: auto;
+  }
+  .stat-item {
+    text-align: center;
+    padding: 0 24px;
+    border-right: 1px solid rgba(255,255,255,0.2);
+    flex-shrink: 0;
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-val {
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+    display: block;
+  }
+  .stat-lbl {
+    font-size: 10px;
+    color: rgba(255,255,255,0.65);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* ── PHONE FRAME ── */
+  .demo-wrap {
+    padding: 32px 16px 48px;
+    width: 100%;
+    max-width: 480px;
+  }
+  .demo-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-3);
+    text-align: center;
+    margin-bottom: 16px;
+    font-family: 'DM Mono', monospace;
+  }
+  .phone {
+    background: #1a1a1a;
+    border-radius: 40px;
+    padding: 14px;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.25), 0 8px 24px rgba(0,0,0,0.15);
+    position: relative;
+  }
+  .phone-notch {
+    width: 100px;
+    height: 28px;
+    background: #1a1a1a;
+    border-radius: 0 0 18px 18px;
+    margin: 0 auto 6px;
+    position: relative;
+    z-index: 10;
+  }
+  .phone-screen {
+    background: var(--bg);
+    border-radius: 28px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 680px;
+    position: relative;
+    scroll-behavior: smooth;
+  }
+  .phone-screen::-webkit-scrollbar { width: 3px; }
+  .phone-screen::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 2px; }
+  .phone-screen::-webkit-scrollbar-track { background: transparent; }
+
+  /* ── APP CHROME ── */
+  .app-bar {
+    background: var(--surface);
+    padding: 14px 18px 0;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 5;
+  }
+  .app-logo {
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+  }
+  .app-logo span { color: var(--blue); }
+  .app-location {
+    font-size: 10px;
+    color: var(--text-3);
+    margin-top: 1px;
+    font-family: 'DM Mono', monospace;
+  }
+  .app-nav {
+    display: flex;
+    margin-top: 10px;
+    gap: 0;
+  }
+  .app-nav button {
+    flex: 1;
+    padding: 8px 4px;
+    font-size: 12px;
+    font-weight: 500;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    color: var(--text-3);
+    font-family: 'DM Sans', sans-serif;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .app-nav button.active {
+    color: var(--blue);
+    border-bottom-color: var(--blue);
+  }
+
+  /* ── BODY ── */
+  .app-body { padding: 14px; }
+
+  /* ── CHIPS ── */
+  .chips {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 14px;
+    overflow-x: auto;
+    padding-bottom: 2px;
+    scrollbar-width: none;
+  }
+  .chips::-webkit-scrollbar { display: none; }
+  .chip {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 500;
+    border: 1px solid var(--border-strong);
+    background: var(--surface);
+    cursor: pointer;
+    color: var(--text-2);
+    white-space: nowrap;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.15s;
+  }
+  .chip.active {
+    background: var(--blue);
+    border-color: var(--blue);
+    color: white;
+  }
+
+  /* ── PROGRAM CARD ── */
+  .prog-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    padding: 14px;
+    margin-bottom: 10px;
+    transition: box-shadow 0.15s;
+  }
+  .prog-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+  .prog-top {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 10px;
+  }
+  .prog-icon {
+    width: 42px; height: 42px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .prog-name { font-size: 13px; font-weight: 600; line-height: 1.3; margin-bottom: 2px; }
+  .prog-city { font-size: 11px; color: var(--text-3); }
+  .badges { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 9px; }
+  .badge {
+    font-size: 10px;
+    font-weight: 500;
+    padding: 3px 8px;
+    border-radius: 5px;
+  }
+  .wage { font-size: 12px; color: var(--text-2); margin-bottom: 8px; }
+  .wage strong { color: var(--text); font-weight: 600; }
+  .roadmap {
+    display: flex; align-items: center;
+    gap: 3px; flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+  .road-lbl { font-size: 10px; color: var(--text-3); margin-right: 2px; }
+  .road-step { font-size: 10px; color: var(--text-2); font-weight: 500; }
+  .road-arrow { font-size: 10px; color: var(--border-strong); }
+  .interest-btn {
+    width: 100%;
+    padding: 10px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    background: var(--blue);
+    color: white;
+    border: none;
+    transition: background 0.15s, transform 0.1s;
+    letter-spacing: -0.2px;
+  }
+  .interest-btn:hover { background: #1448b0; }
+  .interest-btn:active { transform: scale(0.98); }
+
+  /* ── NETWORK FEED ── */
+  .feed-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+  .feed-header { padding: 12px 14px; display: flex; align-items: center; gap: 10px; }
+  .feed-avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 600;
+    flex-shrink: 0;
+  }
+  .feed-name { font-size: 13px; font-weight: 600; }
+  .feed-meta { font-size: 11px; color: var(--text-3); }
+  .feed-img {
+    width: 100%; height: 140px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 500;
+  }
+  .feed-body { padding: 10px 14px; }
+  .feed-caption { font-size: 13px; line-height: 1.5; margin-bottom: 8px; color: var(--text-2); }
+  .feed-skills { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 8px; }
+  .feed-skill {
+    font-size: 10px; padding: 2px 8px;
+    border-radius: 4px;
+    background: var(--bg);
+    color: var(--text-2);
+    font-weight: 500;
+  }
+  .feed-actions { display: flex; gap: 6px; }
+  .feed-action {
+    font-size: 11px; color: var(--text-3); cursor: pointer;
+    padding: 5px 10px; border-radius: 6px;
+    border: 1px solid var(--border);
+    background: none;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.15s;
+  }
+  .feed-action:hover { background: var(--bg); }
+
+  /* ── INBOX ── */
+  .inbox-header {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-3);
+    font-family: 'DM Mono', monospace;
+    margin-bottom: 8px;
+    margin-top: 4px;
+  }
+  .inbox-prog-label {
+    font-size: 11px; color: var(--text-2);
+    padding: 6px 10px;
+    background: var(--blue-light);
+    border-radius: 6px;
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+  .inbox-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    padding: 13px;
+    margin-bottom: 8px;
+  }
+  .inbox-top { display: flex; justify-content: space-between; margin-bottom: 4px; }
+  .inbox-name { font-size: 13px; font-weight: 600; }
+  .inbox-time { font-size: 10px; color: var(--text-3); font-family: 'DM Mono', monospace; }
+  .inbox-detail { font-size: 11px; color: var(--text-2); line-height: 1.5; margin-bottom: 10px; }
+  .inbox-actions { display: flex; gap: 7px; }
+  .inbox-btn {
+    flex: 1; padding: 7px; border-radius: 7px;
+    font-size: 12px; font-weight: 500; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; text-align: center;
+    transition: all 0.15s;
+  }
+  .inbox-btn.msg { background: var(--blue); color: white; border: none; }
+  .inbox-btn.msg:hover { background: #1448b0; }
+  .inbox-btn.inv { background: none; border: 1px solid var(--border-strong); color: var(--text); }
+  .inbox-btn.inv:hover { background: var(--bg); }
+  .new-dot {
+    width: 7px; height: 7px;
+    background: var(--blue); border-radius: 50%;
+    display: inline-block; margin-right: 5px;
+  }
+
+  /* ── INTEREST SHEET ── */
+  .sheet-overlay {
+    display: none;
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 20;
+  }
+  .sheet-bg {
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,0.5);
+    border-radius: 28px;
+  }
+  .sheet {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: var(--surface);
+    border-radius: 20px 20px 0 0;
+    padding: 18px 20px 24px;
+  }
+  .sheet-handle {
+    width: 36px; height: 4px;
+    background: var(--border-strong);
+    border-radius: 2px;
+    margin: 0 auto 16px;
+  }
+  .sheet-title { font-size: 15px; font-weight: 600; margin-bottom: 2px; }
+  .sheet-sub { font-size: 12px; color: var(--text-3); margin-bottom: 16px; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
+  .form-row { margin-bottom: 10px; }
+  label { font-size: 11px; color: var(--text-2); display: block; margin-bottom: 4px; font-weight: 500; }
+  input, textarea, select {
+    width: 100%;
+    padding: 9px 11px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-strong);
+    font-size: 13px;
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  input:focus, textarea:focus { border-color: var(--blue); background: var(--surface); }
+  .send-btn {
+    width: 100%; padding: 11px;
+    border-radius: var(--radius-sm);
+    font-size: 14px; font-weight: 600;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    background: var(--blue); color: white; border: none;
+    transition: background 0.15s;
+    margin-top: 4px;
+    letter-spacing: -0.2px;
+  }
+  .send-btn:hover { background: #1448b0; }
+  .cancel-lnk {
+    display: block; text-align: center;
+    font-size: 12px; color: var(--text-3);
+    margin-top: 10px; cursor: pointer;
+  }
+  .success-view { text-align: center; padding: 10px 0; }
+  .success-icon { font-size: 36px; margin-bottom: 10px; }
+  .success-title { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+  .success-sub { font-size: 12px; color: var(--text-2); line-height: 1.6; margin-bottom: 18px; }
+
+  /* ── PROFILE ── */
+  .profile-cover {
+    height: 90px;
+    background: linear-gradient(135deg, #1a5fd4, #3b7de8);
+    position: relative;
+  }
+  .profile-avatar-wrap {
+    position: absolute;
+    bottom: -28px;
+    left: 18px;
+  }
+  .profile-avatar {
+    width: 58px; height: 58px;
+    border-radius: 50%;
+    background: #dbeafe;
+    color: #1e40af;
+    font-size: 20px;
+    font-weight: 600;
+    display: flex; align-items: center; justify-content: center;
+    border: 3px solid white;
+  }
+  .profile-info { padding: 36px 18px 14px; }
+  .profile-name { font-size: 17px; font-weight: 600; margin-bottom: 2px; }
+  .profile-title { font-size: 12px; color: var(--text-3); margin-bottom: 10px; }
+  .profile-avail {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 11px; font-weight: 500;
+    padding: 4px 10px; border-radius: 20px;
+    background: #dcfce7; color: #166534;
+    margin-bottom: 12px;
+  }
+  .profile-avail-dot { width: 6px; height: 6px; border-radius: 50%; background: #16a34a; }
+  .profile-section { margin-bottom: 14px; }
+  .profile-section-title {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--text-3); font-family: 'DM Mono', monospace;
+    margin-bottom: 8px;
+  }
+  .profile-trades { display: flex; gap: 6px; flex-wrap: wrap; }
+  .profile-trade {
+    font-size: 12px; font-weight: 500;
+    padding: 5px 12px; border-radius: 20px;
+    background: #dbeafe; color: #1e40af;
+  }
+  .profile-bio {
+    font-size: 13px; color: var(--text-2);
+    line-height: 1.6;
+  }
+  .profile-certs { display: flex; gap: 6px; flex-wrap: wrap; }
+  .profile-cert {
+    font-size: 11px; font-weight: 500;
+    padding: 4px 10px; border-radius: 5px;
+    background: #fef3e2; color: #92400e;
+    display: flex; align-items: center; gap: 4px;
+  }
+  .profile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .profile-photo {
+    border-radius: 10px; height: 90px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 500;
+  }
+  .profile-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; text-align: center; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 14px; }
+  .pstat { padding: 10px 6px; background: var(--surface); }
+  .pstat:not(:last-child) { border-right: 1px solid var(--border); }
+  .pstat-val { font-size: 16px; font-weight: 600; display: block; }
+  .pstat-lbl { font-size: 10px; color: var(--text-3); }
+  .footer {
+    width: 100%;
+    background: var(--text);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 24px;
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.3px;
+  }
+  .footer strong { color: rgba(255,255,255,0.85); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .prog-card { animation: slideUp 0.3s ease both; }
+  .prog-card:nth-child(1) { animation-delay: 0.05s; }
+  .prog-card:nth-child(2) { animation-delay: 0.1s; }
+  .prog-card:nth-child(3) { animation-delay: 0.15s; }
+  .prog-card:nth-child(4) { animation-delay: 0.2s; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Investor Demo · Michigan Pilot</div>
+  <div class="hero-logo">Trades<span>Connect</span></div>
+  <div class="hero-sub">One tap. Built for Gen Z entering the skilled trades — discover local programs, show your interest, get hired.</div>
+  <div class="hero-pills">
+    <span class="hero-pill">Detroit</span>
+    <span class="hero-pill">Grand Rapids</span>
+    <span class="hero-pill">Electricians · Welders · HVAC · Plumbers · Carpenters</span>
+  </div>
+</div>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <span class="stat-val">520k+</span>
+    <span class="stat-lbl">MI trades jobs by 2030</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-val">38%</span>
+    <span class="stat-lbl">HS grads skip college</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-val">20,600</span>
+    <span class="stat-lbl">Active MI apprentices</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-val">6.7%</span>
+    <span class="stat-lbl">Trades workers under 25</span>
+  </div>
+</div>
+
+<!-- PHONE DEMO -->
+<div class="demo-wrap">
+  <div class="demo-label">Scroll & interact below</div>
+  <div class="phone">
+    <div class="phone-notch"></div>
+    <div class="phone-screen">
+
+      <div class="app-bar">
+        <div class="app-logo">Trades<span>Connect</span></div>
+        <div class="app-location">📍 Detroit &amp; Grand Rapids, MI</div>
+        <div class="app-nav">
+          <button class="active" onclick="showTab('market',this)">Marketplace</button>
+          <button onclick="showTab('network',this)">Network</button>
+          <button onclick="showTab('inbox',this)">Inbox</button>
+          <button onclick="showTab('profile',this)">Profile</button>
+        </div>
+      </div>
+
+      <div class="app-body">
+
+        <!-- MARKETPLACE TAB -->
+        <div id="tab-market">
+          <div class="chips">
+            <button class="chip active" onclick="filterTrade('all',this)">All trades</button>
+            <button class="chip" onclick="filterTrade('Electrician',this)">⚡ Electrician</button>
+            <button class="chip" onclick="filterTrade('Welder',this)">🔥 Welder</button>
+            <button class="chip" onclick="filterTrade('HVAC',this)">❄️ HVAC</button>
+            <button class="chip" onclick="filterTrade('Plumber',this)">🔧 Plumber</button>
+            <button class="chip" onclick="filterTrade('Carpenter',this)">🪵 Carpenter</button>
+          </div>
+          <div id="prog-list"></div>
+        </div>
+
+        <!-- NETWORK TAB -->
+        <div id="tab-network" style="display:none;">
+          <div class="feed-card">
+            <div class="feed-header">
+              <div class="feed-avatar" style="background:#dbeafe;color:#1e40af;">JM</div>
+              <div><div class="feed-name">Jake M.</div><div class="feed-meta">Apprentice Welder · Grand Rapids</div></div>
+            </div>
+            <div class="feed-img" style="background:linear-gradient(135deg,#fef3e2,#fcd34d);color:#92400e;">📷 Steel bracket fabrication</div>
+            <div class="feed-body">
+              <div class="feed-caption">First fab project at GRCC — steel bracket assembly, all measurements within spec.</div>
+              <div class="feed-skills"><span class="feed-skill">MIG welding</span><span class="feed-skill">Steel fab</span><span class="feed-skill">OSHA-10</span></div>
+              <div class="feed-actions">
+                <button class="feed-action" onclick="this.style.color='#1a5fd4';this.textContent='👍 Endorsed (1)'">👍 Endorse</button>
+                <button class="feed-action">💬 Comment</button>
+              </div>
+            </div>
+          </div>
+          <div class="feed-card">
+            <div class="feed-header">
+              <div class="feed-avatar" style="background:#dcfce7;color:#166534;">ST</div>
+              <div><div class="feed-name">Sara T.</div><div class="feed-meta">Electrical Apprentice · Detroit</div></div>
+            </div>
+            <div class="feed-img" style="background:linear-gradient(135deg,#dbeafe,#93c5fd);color:#1e3a8a;">📷 200-amp residential panel install</div>
+            <div class="feed-body">
+              <div class="feed-caption">Finished my first residential panel — 200-amp service upgrade on the east side.</div>
+              <div class="feed-skills"><span class="feed-skill">Panel wiring</span><span class="feed-skill">OSHA-10</span><span class="feed-skill">NEC code</span></div>
+              <div class="feed-actions">
+                <button class="feed-action" onclick="this.style.color='#1a5fd4';this.textContent='👍 Endorsed (3)'">👍 Endorse</button>
+                <button class="feed-action">💬 Comment</button>
+              </div>
+            </div>
+          </div>
+          <div class="feed-card">
+            <div class="feed-header">
+              <div class="feed-avatar" style="background:#f0fdf4;color:#166534;">DR</div>
+              <div><div class="feed-name">Devon R.</div><div class="feed-meta">HVAC Apprentice · Detroit</div></div>
+            </div>
+            <div class="feed-img" style="background:linear-gradient(135deg,#d1fae5,#6ee7b7);color:#064e3b;">📷 Rooftop unit replacement — commercial</div>
+            <div class="feed-body">
+              <div class="feed-caption">Helped swap a 5-ton rooftop unit in Midtown. Great hands-on time with refrigerant handling.</div>
+              <div class="feed-skills"><span class="feed-skill">Refrigerants</span><span class="feed-skill">Sheet metal</span><span class="feed-skill">EPA 608</span></div>
+              <div class="feed-actions">
+                <button class="feed-action" onclick="this.style.color='#1a5fd4';this.textContent='👍 Endorsed (2)'">👍 Endorse</button>
+                <button class="feed-action">💬 Comment</button>
+              </div>
+            </div>
+          </div>
+          <div class="feed-card">
+            <div class="feed-header">
+              <div class="feed-avatar" style="background:#f3e8ff;color:#7e22ce;">LP</div>
+              <div><div class="feed-name">Luis P.</div><div class="feed-meta">Carpenter Apprentice · Grand Rapids</div></div>
+            </div>
+            <div class="feed-img" style="background:linear-gradient(135deg,#fce7f3,#f9a8d4);color:#831843;">📷 Custom kitchen cabinet install</div>
+            <div class="feed-body">
+              <div class="feed-caption">Full kitchen cabinet set in Ada Township. Learning a ton about finish work and tolerances.</div>
+              <div class="feed-skills"><span class="feed-skill">Cabinetry</span><span class="feed-skill">Finish carpentry</span><span class="feed-skill">Blueprints</span></div>
+              <div class="feed-actions">
+                <button class="feed-action" onclick="this.style.color='#1a5fd4';this.textContent='👍 Endorsed (1)'">👍 Endorse</button>
+                <button class="feed-action">💬 Comment</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- INBOX TAB -->
+        <div id="tab-inbox" style="display:none;">
+          <div class="inbox-prog-label">Viewing as: Detroit Electrical Industry Training Center</div>
+          <div class="inbox-header">New leads — 3</div>
+          <div class="inbox-card">
+            <div class="inbox-top"><div class="inbox-name"><span class="new-dot"></span>Alex Rodriguez</div><div class="inbox-time">2 min ago</div></div>
+            <div class="inbox-detail">Age 18 · Detroit, MI · Electrician<br>"Ready June 2026. No experience but motivated and reliable."</div>
+            <div class="inbox-actions">
+              <button class="inbox-btn msg" onclick="this.textContent='Sent ✓'">Message</button>
+              <button class="inbox-btn inv" onclick="this.textContent='Invited ✓'">Invite to apply</button>
+            </div>
+          </div>
+          <div class="inbox-card">
+            <div class="inbox-top"><div class="inbox-name"><span class="new-dot"></span>Marcus Lee</div><div class="inbox-time">14 min ago</div></div>
+            <div class="inbox-detail">Age 17 · Dearborn, MI · Electrician<br>"Graduating May 2026. Took electrical fundamentals in CTE."</div>
+            <div class="inbox-actions">
+              <button class="inbox-btn msg" onclick="this.textContent='Sent ✓'">Message</button>
+              <button class="inbox-btn inv" onclick="this.textContent='Invited ✓'">Invite to apply</button>
+            </div>
+          </div>
+          <div class="inbox-card">
+            <div class="inbox-top"><div class="inbox-name"><span class="new-dot"></span>Jordan Ellis</div><div class="inbox-time">31 min ago</div></div>
+            <div class="inbox-detail">Age 19 · Pontiac, MI · Electrician<br>"Switching careers. Available immediately. Own transportation."</div>
+            <div class="inbox-actions">
+              <button class="inbox-btn msg" onclick="this.textContent='Sent ✓'">Message</button>
+              <button class="inbox-btn inv" onclick="this.textContent='Invited ✓'">Invite to apply</button>
+            </div>
+          </div>
+          <div class="inbox-header" style="margin-top:14px;">Earlier — 2</div>
+          <div class="inbox-card" style="opacity:0.65;">
+            <div class="inbox-top"><div class="inbox-name">Jamie Kim</div><div class="inbox-time">1 hr ago</div></div>
+            <div class="inbox-detail">Age 19 · Grand Rapids, MI · Electrician<br>"Available immediately. Looking for paid apprenticeship."</div>
+            <div class="inbox-actions">
+              <button class="inbox-btn msg" onclick="this.textContent='Sent ✓'">Message</button>
+              <button class="inbox-btn inv" onclick="this.textContent='Invited ✓'">Invite to apply</button>
+            </div>
+          </div>
+          <div class="inbox-card" style="opacity:0.65;">
+            <div class="inbox-top"><div class="inbox-name">Taylor Brooks</div><div class="inbox-time">3 hr ago</div></div>
+            <div class="inbox-detail">Age 18 · Livonia, MI · Electrician<br>"Just graduated. Shop class all 4 years. Ready to work."</div>
+            <div class="inbox-actions">
+              <button class="inbox-btn msg" onclick="this.textContent='Sent ✓'">Message</button>
+              <button class="inbox-btn inv" onclick="this.textContent='Invited ✓'">Invite to apply</button>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /app-body -->
+
+        <!-- PROFILE TAB -->
+        <div id="tab-profile" style="display:none;">
+          <div class="profile-cover">
+            <div class="profile-avatar-wrap">
+              <div class="profile-avatar">AR</div>
+            </div>
+          </div>
+          <div class="profile-info">
+            <div class="profile-name">Alex Rodriguez</div>
+            <div class="profile-title">Detroit, MI · High school senior, graduating May 2026</div>
+            <div class="profile-avail"><span class="profile-avail-dot"></span>Available June 2026</div>
+
+            <div class="profile-stats">
+              <div class="pstat"><span class="pstat-val">3</span><span class="pstat-lbl">Interests sent</span></div>
+              <div class="pstat"><span class="pstat-val">2</span><span class="pstat-lbl">Responses</span></div>
+              <div class="pstat"><span class="pstat-val">4</span><span class="pstat-lbl">Endorsements</span></div>
+            </div>
+
+            <div class="profile-section">
+              <div class="profile-section-title">Interested trades</div>
+              <div class="profile-trades">
+                <span class="profile-trade">⚡ Electrician</span>
+                <span class="profile-trade">🔥 Welder</span>
+              </div>
+            </div>
+
+            <div class="profile-section">
+              <div class="profile-section-title">About</div>
+              <div class="profile-bio">Graduating May 2026. Took shop and electrical fundamentals all four years. Looking for a paid apprenticeship where I can learn on the job and build a real career. Reliable, punctual, and ready to work.</div>
+            </div>
+
+            <div class="profile-section">
+              <div class="profile-section-title">Certifications</div>
+              <div class="profile-certs">
+                <span class="profile-cert">✓ OSHA-10</span>
+                <span class="profile-cert">✓ Construction Safety</span>
+                <span class="profile-cert">✓ Electrical Fundamentals</span>
+              </div>
+            </div>
+
+            <div class="profile-section">
+              <div class="profile-section-title">Project portfolio</div>
+              <div class="profile-grid">
+                <div class="profile-photo" style="background:linear-gradient(135deg,#dbeafe,#93c5fd);color:#1e3a8a;">📷 Wiring project</div>
+                <div class="profile-photo" style="background:linear-gradient(135deg,#fef3e2,#fcd34d);color:#92400e;">📷 Shop class fab</div>
+                <div class="profile-photo" style="background:linear-gradient(135deg,#d1fae5,#6ee7b7);color:#064e3b;">📷 Panel work</div>
+                <div class="profile-photo" style="background:linear-gradient(135deg,#f3e8ff,#c4b5fd);color:#4c1d95;">📷 CTE project</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      <!-- INTEREST SHEET -->
+      <div class="sheet-overlay" id="modal">
+        <div class="sheet-bg" onclick="closeModal()"></div>
+        <div class="sheet">
+          <div class="sheet-handle"></div>
+          <div id="form-view">
+            <div class="sheet-title" id="modal-prog-name"></div>
+            <div class="sheet-sub">No resume needed — express your interest in seconds</div>
+            <div class="form-grid">
+              <div><label>First name</label><input placeholder="Alex" id="f-name"></div>
+              <div><label>Age</label><input placeholder="18" type="number" id="f-age"></div>
+            </div>
+            <div class="form-row"><label>City or zip code</label><input placeholder="Detroit, MI" id="f-city"></div>
+            <div class="form-row"><label>Available to start</label><input placeholder="e.g. June 2026" id="f-start"></div>
+            <div class="form-row"><label>Short note (optional)</label><input placeholder="I'm motivated and ready to learn..." id="f-note"></div>
+            <button class="send-btn" onclick="submitInterest()">Send interest →</button>
+            <span class="cancel-lnk" onclick="closeModal()">Cancel</span>
+          </div>
+          <div id="success-view" class="success-view" style="display:none;">
+            <div class="success-icon">✅</div>
+            <div class="success-title">Interest sent!</div>
+            <div class="success-sub">The program received your profile. They may reach out to schedule a call — no formal application required yet.</div>
+            <button class="send-btn" onclick="closeModal()">Back to marketplace</button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /phone-screen -->
+  </div><!-- /phone -->
+</div><!-- /demo-wrap -->
+
+<!-- FOOTER -->
+<div class="footer">
+  <strong>TradesConnect</strong> · Michigan Pilot · Detroit + Grand Rapids · 2026<br>
+  Investor demo — concept stage. All program data representative.
+</div>
+
+<script>
+const programs = [
+  {id:1,name:"Detroit Electrical Industry Training Center",city:"Detroit",trade:"Electrician",bg:"#dbeafe",em:"⚡",wage:"$62k–$70k",badges:[{l:"Union",bg:"#dbeafe",c:"#1e40af"},{l:"Paid apprenticeship",bg:"#dcfce7",c:"#166534"}],road:["Helper","Apprentice","Journeyman","Master"]},
+  {id:2,name:"IBEW Local 58 Apprenticeship",city:"Detroit",trade:"Electrician",bg:"#dbeafe",em:"⚡",wage:"$60k–$68k",badges:[{l:"Union",bg:"#dbeafe",c:"#1e40af"},{l:"No experience needed",bg:"#f3e8ff",c:"#7e22ce"}],road:["Apprentice","Journeyman","Master"]},
+  {id:3,name:"Henry Ford College — Electrical Tech",city:"Dearborn",trade:"Electrician",bg:"#dbeafe",em:"⚡",wage:"$55k–$65k",badges:[{l:"College program",bg:"#fef3e2",c:"#92400e"},{l:"No experience needed",bg:"#f3e8ff",c:"#7e22ce"}],road:["Student","Apprentice","Journeyman"]},
+  {id:4,name:"GRCC Welding Technology",city:"Grand Rapids",trade:"Welder",bg:"#fef3e2",em:"🔥",wage:"$48k–$58k",badges:[{l:"College program",bg:"#fef3e2",c:"#92400e"},{l:"No experience needed",bg:"#f3e8ff",c:"#7e22ce"}],road:["Student","Fabricator","Specialist"]},
+  {id:5,name:"UAW-Ford Joint Training Center",city:"Detroit",trade:"Welder",bg:"#fef3e2",em:"🔥",wage:"$52k–$62k",badges:[{l:"Union",bg:"#dbeafe",c:"#1e40af"},{l:"Paid apprenticeship",bg:"#dcfce7",c:"#166534"}],road:["Trainee","Welder","Lead welder"]},
+  {id:6,name:"West Michigan Construction Institute",city:"Grand Rapids",trade:"Welder",bg:"#fef3e2",em:"🔥",wage:"$50k–$60k",badges:[{l:"Union",bg:"#dbeafe",c:"#1e40af"},{l:"No experience needed",bg:"#f3e8ff",c:"#7e22ce"}],road:["Apprentice","Journeyman","Foreman"]},
+  {id:7,name:"Michigan HVAC Apprenticeship Program",city:"Detroit",trade:"HVAC",bg:"#d1fae5",em:"❄️",wage:"$52k–$62k",badges:[{l:"Union",bg:"#dbeafe",c:"#1e40af"},{l:"Paid apprenticeship",bg:"#dcfce7",c:"#166534"}],road:["Helper","Apprentice","Journeyman","Master"]},
+  {id:8,name:"GRCC HVAC Technology Program",city:"Grand Rapids",trade:"HVAC",bg:"#d1fae5",em:"❄️",wage:"$50k–$60k",badges:[{l:"College program",bg:"#fef3e2",c:"#92400e"},{l:"No experience needed",bg:"#f3e8ff",c:"#7e22ce"}],road:["Student","Technician","Lead tech"]},
+  {id:9,name:"UA Local 98 Plumbing Apprenticeship",city:"Detroit",trade:"Plumber",bg:"#ede9fe",em:"🔧",wage:"$65k–$78k",badges:[{l:"Union",bg:"#dbeafe",c:"#1e40af"},{l:"Paid apprenticeship",bg:"#dcfce7",c:"#166534"}],road:["Apprentice","Journeyman","Master"]},
+  {id:10,name:"Plumbers & Pipefitters Local 174",city:"Grand Rapids",trade:"Plumber",bg:"#ede9fe",em:"🔧",wage:"$62k–$75k",badges:[{l:"Union",bg:"#dbeafe",c:"#1e40af"},{l:"No experience needed",bg:"#f3e8ff",c:"#7e22ce"}],road:["Apprentice","Journeyman","Master"]},
+  {id:11,name:"UBC Carpenters Local 687",city:"Detroit",trade:"Carpenter",bg:"#fce7f3",em:"🪵",wage:"$55k–$68k",badges:[{l:"Union",bg:"#dbeafe",c:"#1e40af"},{l:"Paid apprenticeship",bg:"#dcfce7",c:"#166534"}],road:["Apprentice","Journeyman","Foreman"]},
+  {id:12,name:"GRCC Construction Trades Program",city:"Grand Rapids",trade:"Carpenter",bg:"#fce7f3",em:"🪵",wage:"$48k–$60k",badges:[{l:"College program",bg:"#fef3e2",c:"#92400e"},{l:"No experience needed",bg:"#f3e8ff",c:"#7e22ce"}],road:["Student","Carpenter","Lead carpenter"]},
+];
+
+let currentFilter = "all";
+
+function renderPrograms() {
+  const list = document.getElementById("prog-list");
+  const filtered = currentFilter === "all" ? programs : programs.filter(p => p.trade === currentFilter);
+  list.innerHTML = filtered.map((p,i) => `
+    <div class="prog-card" style="animation-delay:${i*0.05}s">
+      <div class="prog-top">
+        <div class="prog-icon" style="background:${p.bg};">${p.em}</div>
+        <div>
+          <div class="prog-name">${p.name}</div>
+          <div class="prog-city">${p.city}, MI · ${p.trade}</div>
+        </div>
+      </div>
+      <div class="badges">${p.badges.map(b=>`<span class="badge" style="background:${b.bg};color:${b.c};">${b.l}</span>`).join("")}</div>
+      <div class="wage">Avg wage: <strong>${p.wage}</strong></div>
+      <div class="roadmap">
+        <span class="road-lbl">Path:</span>
+        ${p.road.map((s,i,a)=>`<span class="road-step">${s}</span>${i<a.length-1?'<span class="road-arrow"> › </span>':''}`).join("")}
+      </div>
+      <button class="interest-btn" onclick="openModal(${p.id})">I'm interested</button>
+    </div>
+  `).join("");
+}
+
+function filterTrade(trade, el) {
+  currentFilter = trade;
+  document.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
+  el.classList.add("active");
+  renderPrograms();
+}
+
+function showTab(tab, el) {
+  document.querySelectorAll(".app-nav button").forEach(b => b.classList.remove("active"));
+  el.classList.add("active");
+  ["market","network","inbox","profile"].forEach(t => {
+    document.getElementById("tab-"+t).style.display = t === tab ? "block" : "none";
+  });
+}
+
+function openModal(id) {
+  const p = programs.find(x => x.id === id);
+  document.getElementById("modal-prog-name").textContent = p.name;
+  document.getElementById("form-view").style.display = "block";
+  document.getElementById("success-view").style.display = "none";
+  document.getElementById("modal").style.display = "block";
+}
+
+function closeModal() {
+  document.getElementById("modal").style.display = "none";
+}
+
+function submitInterest() {
+  document.getElementById("form-view").style.display = "none";
+  document.getElementById("success-view").style.display = "block";
+}
+
+renderPrograms();
+</script>
+</body>
+</html>
