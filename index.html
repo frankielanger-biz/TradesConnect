@@ -38,7 +38,7 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
 .switch-btn{font-size:12px;color:#4a607a;cursor:pointer;background:none;border:none;font-family:'Inter',sans-serif;text-decoration:underline;}
 .org-sub{font-size:13px;color:#4d8ef0;padding:10px 32px;border-bottom:1px solid #1a2333;background:#080c14;}
 .page-content{padding:32px;max-width:960px;margin:0 auto;width:100%;}
-.filter-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;}
+.filter-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;justify-content:center;}
 .ftag{padding:8px 18px;border-radius:8px;font-size:13px;font-weight:500;border:1px solid #1a2333;background:transparent;cursor:pointer;color:#6a8098;font-family:'Inter',sans-serif;transition:all .15s;}
 .ftag.on{background:#112240;border-color:#4d8ef0;color:#4d8ef0;}
 .prog-card{background:#0d1321;border-radius:14px;border:1px solid #1a2333;padding:24px;margin-bottom:14px;transition:border-color .15s;}
@@ -257,7 +257,7 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
           <button class="settings-btn">Edit</button>
         </div>
         <div class="settings-row">
-          <div><div class="settings-label">Email</div><div class="settings-desc">alex.r@email.com</div></div>
+          <div><div class="settings-label">Email</div><div class="settings-desc"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cbaaa7aeb3e5b98baea6aaa2a7e5a8a4a6">[email&#160;protected]</a></div></div>
           <button class="settings-btn">Edit</button>
         </div>
         <div class="settings-row">
@@ -419,7 +419,7 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
           <button class="settings-btn">Edit</button>
         </div>
         <div class="settings-row">
-          <div><div class="settings-label">Contact email</div><div class="settings-desc">admin@detc.org</div></div>
+          <div><div class="settings-label">Contact email</div><div class="settings-desc"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d8b9bcb5b1b698bcbdacbbf6b7aabf">[email&#160;protected]</a></div></div>
           <button class="settings-btn">Edit</button>
         </div>
         <div class="settings-row">
@@ -486,7 +486,7 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const programs=[
   {id:1,name:"Detroit Electrical Industry Training Center",city:"Detroit",trade:"Electrician",icon:"⚡",spots:8,rate:"$18–22/hr",duration:"4-year apprenticeship",tags:[{l:"IBEW Local 58",c:"pt-blue"},{l:"Paid training",c:"pt-green"},{l:"Benefits included",c:"pt-green"}],desc:"Michigan's largest JATC. Top-rated by apprentices. Hands-on from day one."},
   {id:2,name:"ABC West Michigan Electrician",city:"Grand Rapids",trade:"Electrician",icon:"⚡",spots:6,rate:"$17–22/hr",duration:"4-year apprenticeship",tags:[{l:"Non-union",c:"pt-purple"},{l:"Flexible schedule",c:"pt-blue"},{l:"Earn while you learn",c:"pt-green"}],desc:"Associated Builders & Contractors apprenticeship. Non-union option with strong employer network."},
@@ -565,6 +565,16 @@ function goLanding(){
   document.getElementById("screen-landing").style.display="flex";
   document.getElementById("screen-prospect").style.display="none";
   document.getElementById("screen-org").style.display="none";
+  // reset prospect tabs
+  document.getElementById("pt-discover").style.display="block";
+  document.getElementById("pt-profile").style.display="none";
+  document.getElementById("pt-settings").style.display="none";
+  document.querySelectorAll("#screen-prospect .nav-tab").forEach((b,i)=>{b.classList.toggle("on",i===0);});
+  // reset org tabs
+  document.getElementById("ot-dashboard").style.display="block";
+  document.getElementById("ot-candidates").style.display="none";
+  document.getElementById("ot-settings").style.display="none";
+  document.querySelectorAll("#screen-org .nav-tab").forEach((b,i)=>{b.classList.toggle("on",i===0);});
 }
 
 function openModal(id){
@@ -575,13 +585,4 @@ function openModal(id){
   document.getElementById("modal").classList.add("open");
 }
 
-function closeModal(){document.getElementById("modal").classList.remove("open");}
-function submitInterest(){
-  document.getElementById("modal-form").style.display="none";
-  document.getElementById("modal-success").style.display="block";
-}
-
-document.getElementById("modal").addEventListener("click",function(e){if(e.target===this)closeModal();});
-</script>
-</body>
-</html>
+function closeModal(){docume
