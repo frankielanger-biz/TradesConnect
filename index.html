@@ -8,19 +8,12 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:100vh;}
-
 #screen-landing{display:flex;flex-direction:column;align-items:center;min-height:100vh;}
 .hero{text-align:center;padding:80px 24px 60px;width:100%;}
 .hero-eyebrow{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:#3a5070;margin-bottom:20px;font-weight:500;}
 .hero-logo{font-size:52px;font-weight:700;letter-spacing:-1.5px;color:#fff;margin-bottom:16px;}
 .hero-logo em{color:#4d8ef0;font-style:normal;}
 .hero-sub{font-size:17px;color:#6a8098;max-width:420px;margin:0 auto 40px;line-height:1.7;}
-.stats-bar{width:100%;background:#4d8ef0;padding:20px 0;display:flex;justify-content:center;}
-.stats-inner{display:flex;max-width:900px;width:100%;}
-.stat-item{flex:1;text-align:center;border-right:1px solid rgba(255,255,255,0.2);padding:4px 0;}
-.stat-item:last-child{border-right:none;}
-.stat-val{font-size:22px;font-weight:700;color:#fff;display:block;}
-.stat-lbl{font-size:10px;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:1px;margin-top:3px;display:block;}
 .role-section{padding:48px 24px;text-align:center;width:100%;}
 .role-label{font-size:14px;color:#4a607a;margin-bottom:24px;}
 .role-cards{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
@@ -30,12 +23,11 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
 .role-title{font-size:16px;font-weight:600;color:#e8edf4;margin-bottom:6px;}
 .role-desc{font-size:13px;color:#4a607a;line-height:1.55;}
 .landing-foot{padding:24px;font-size:12px;color:#2a3f5a;text-align:center;}
-
 #screen-prospect{display:none;}
 #screen-org{display:none;}
-
 .topnav{background:#0c1220;border-bottom:1px solid #1a2333;padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:58px;}
-.nav-logo{font-size:18px;font-weight:700;letter-spacing:-0.4px;color:#fff;}
+.nav-logo{font-size:18px;font-weight:700;letter-spacing:-0.4px;color:#fff;cursor:pointer;transition:opacity .15s;}
+.nav-logo:hover{opacity:.8;}
 .nav-logo em{color:#4d8ef0;font-style:normal;}
 .nav-tabs{display:flex;height:58px;}
 .nav-tab{padding:0 24px;font-size:14px;font-weight:500;background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;color:#4a607a;font-family:'Inter',sans-serif;height:100%;transition:all .15s;white-space:nowrap;}
@@ -45,13 +37,10 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
 .role-badge-org{background:#150d2e;color:#a78bfa;border-color:#2a1f50;}
 .switch-btn{font-size:12px;color:#4a607a;cursor:pointer;background:none;border:none;font-family:'Inter',sans-serif;text-decoration:underline;}
 .org-sub{font-size:13px;color:#4d8ef0;padding:10px 32px;border-bottom:1px solid #1a2333;background:#080c14;}
-
 .page-content{padding:32px;max-width:960px;margin:0 auto;width:100%;}
-
 .filter-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;}
 .ftag{padding:8px 18px;border-radius:8px;font-size:13px;font-weight:500;border:1px solid #1a2333;background:transparent;cursor:pointer;color:#6a8098;font-family:'Inter',sans-serif;transition:all .15s;}
 .ftag.on{background:#112240;border-color:#4d8ef0;color:#4d8ef0;}
-
 .prog-card{background:#0d1321;border-radius:14px;border:1px solid #1a2333;padding:24px;margin-bottom:14px;transition:border-color .15s;}
 .prog-card:hover{border-color:#2a3f5a;}
 .prog-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px;gap:16px;}
@@ -68,7 +57,6 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
 .prog-desc{font-size:14px;color:#8099b4;line-height:1.65;margin-bottom:18px;}
 .express-btn{width:100%;padding:13px;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;background:#4d8ef0;color:#fff;border:none;font-family:'Inter',sans-serif;transition:background .15s;}
 .express-btn:hover{background:#3a7de0;}
-
 .profile-wrap{background:#0d1321;border-radius:14px;border:1px solid #1a2333;overflow:hidden;}
 .profile-cover{height:120px;background:#112240;}
 .profile-body{padding:0 28px 32px;}
@@ -91,7 +79,6 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
 .cert-pill{font-size:13px;font-weight:500;padding:5px 14px;border-radius:6px;background:#0d1f3a;color:#4d8ef0;border:1px solid #1a3a6a;}
 .photo-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
 .photo-tile{border-radius:10px;height:100px;display:flex;align-items:flex-end;padding:10px;font-size:12px;color:#3a5070;border:1px solid #1a2333;}
-
 .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px;}
 .metric{background:#0d1321;border-radius:12px;border:1px solid #1a2333;padding:22px 24px;}
 .metric-val{font-size:34px;font-weight:700;margin-bottom:4px;}
@@ -118,7 +105,6 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
 .lead-time{font-size:12px;color:#2a3f5a;white-space:nowrap;}
 .invite-btn{padding:8px 20px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;background:#4d8ef0;color:#fff;border:none;font-family:'Inter',sans-serif;margin-left:12px;white-space:nowrap;transition:background .15s;}
 .invite-btn:hover{background:#3a7de0;}
-
 .cand-card{background:#0d1321;border-radius:14px;border:1px solid #1a2333;padding:22px 24px;margin-bottom:12px;display:flex;align-items:flex-start;gap:18px;transition:border-color .15s;}
 .cand-card:hover{border-color:#2a3f5a;}
 .cand-av{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;flex-shrink:0;}
@@ -131,6 +117,24 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
 .cand-btns{display:flex;flex-direction:column;gap:8px;flex-shrink:0;}
 .btn-msg{padding:9px 18px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;background:#4d8ef0;color:#fff;border:none;font-family:'Inter',sans-serif;white-space:nowrap;}
 .btn-inv{padding:9px 18px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;background:transparent;color:#8099b4;border:1px solid #1a2333;font-family:'Inter',sans-serif;white-space:nowrap;}
+
+/* SETTINGS */
+.settings-section{margin-bottom:28px;}
+.settings-section-title{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#3a5070;margin-bottom:14px;}
+.settings-row{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;background:#0d1321;border-radius:10px;border:1px solid #1a2333;margin-bottom:8px;}
+.settings-row:hover{border-color:#2a3f5a;}
+.settings-label{font-size:15px;font-weight:500;color:#e8edf4;margin-bottom:3px;}
+.settings-desc{font-size:13px;color:#4a607a;}
+.toggle{width:44px;height:24px;border-radius:12px;background:#1a2333;border:none;cursor:pointer;position:relative;flex-shrink:0;transition:background .2s;}
+.toggle.on{background:#4d8ef0;}
+.toggle-knob{width:18px;height:18px;border-radius:50%;background:#fff;position:absolute;top:3px;left:3px;transition:left .2s;}
+.toggle.on .toggle-knob{left:23px;}
+.settings-btn{padding:8px 18px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;background:transparent;border:1px solid #1a2333;color:#8099b4;font-family:'Inter',sans-serif;transition:all .15s;}
+.settings-btn:hover{border-color:#4d8ef0;color:#4d8ef0;}
+.settings-btn.danger{border-color:#2a1010;color:#f07070;}
+.settings-btn.danger:hover{background:#1a0808;border-color:#f07070;}
+.settings-input{padding:8px 12px;border-radius:8px;border:1px solid #1a2333;font-family:'Inter',sans-serif;font-size:14px;background:#060a10;color:#e8edf4;outline:none;width:200px;}
+.settings-input:focus{border-color:#4d8ef0;}
 
 .modal-overlay{display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,0.8);align-items:flex-end;justify-content:center;}
 .modal-overlay.open{display:flex;}
@@ -160,7 +164,6 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
     <div class="hero-logo">Trades<em>Connect</em></div>
     <div class="hero-sub">One tap. Built for Gen Z entering the skilled trades — discover local programs, show your interest, get hired.</div>
   </div>
-
   <div class="role-section">
     <div class="role-label">Choose how you're using TradesConnect</div>
     <div class="role-cards">
@@ -179,12 +182,14 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
   <div class="landing-foot">Detroit · Grand Rapids · 2026</div>
 </div>
 
+<!-- PROSPECT -->
 <div id="screen-prospect">
   <div class="topnav">
-    <div class="nav-logo">Trades<em>Connect</em></div>
+    <div class="nav-logo" onclick="goLanding()">Trades<em>Connect</em></div>
     <div class="nav-tabs">
       <button class="nav-tab on" onclick="prospectTab('discover',this)">Discover</button>
       <button class="nav-tab" onclick="prospectTab('profile',this)">My profile</button>
+      <button class="nav-tab" onclick="prospectTab('settings',this)">Settings</button>
     </div>
     <div class="nav-right">
       <span class="role-badge">Prospect</span>
@@ -203,6 +208,7 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
       </div>
       <div id="prog-list"></div>
     </div>
+
     <div id="pt-profile" style="display:none;">
       <div class="profile-wrap">
         <div class="profile-cover"></div>
@@ -242,15 +248,87 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
         </div>
       </div>
     </div>
+
+    <div id="pt-settings" style="display:none;">
+      <div class="settings-section">
+        <div class="settings-section-title">Account</div>
+        <div class="settings-row">
+          <div><div class="settings-label">Name</div><div class="settings-desc">Alex Rodriguez</div></div>
+          <button class="settings-btn">Edit</button>
+        </div>
+        <div class="settings-row">
+          <div><div class="settings-label">Email</div><div class="settings-desc">alex.r@email.com</div></div>
+          <button class="settings-btn">Edit</button>
+        </div>
+        <div class="settings-row">
+          <div><div class="settings-label">Location</div><div class="settings-desc">Detroit, MI</div></div>
+          <button class="settings-btn">Edit</button>
+        </div>
+        <div class="settings-row">
+          <div><div class="settings-label">Availability</div><div class="settings-desc">Available June 2026</div></div>
+          <button class="settings-btn">Edit</button>
+        </div>
+      </div>
+
+      <div class="settings-section">
+        <div class="settings-section-title">Notifications</div>
+        <div class="settings-row">
+          <div><div class="settings-label">Program responses</div><div class="settings-desc">Get notified when a program responds to your interest</div></div>
+          <button class="toggle on" onclick="this.classList.toggle('on')"><div class="toggle-knob"></div></button>
+        </div>
+        <div class="settings-row">
+          <div><div class="settings-label">New programs nearby</div><div class="settings-desc">Alert when new programs open in your area</div></div>
+          <button class="toggle on" onclick="this.classList.toggle('on')"><div class="toggle-knob"></div></button>
+        </div>
+        <div class="settings-row">
+          <div><div class="settings-label">Messages</div><div class="settings-desc">Notify me of new messages from organizations</div></div>
+          <button class="toggle on" onclick="this.classList.toggle('on')"><div class="toggle-knob"></div></button>
+        </div>
+        <div class="settings-row">
+          <div><div class="settings-label">Weekly digest</div><div class="settings-desc">Weekly summary of new programs and activity</div></div>
+          <button class="toggle" onclick="this.classList.toggle('on')"><div class="toggle-knob"></div></button>
+        </div>
+      </div>
+
+      <div class="settings-section">
+        <div class="settings-section-title">Privacy</div>
+        <div class="settings-row">
+          <div><div class="settings-label">Profile visibility</div><div class="settings-desc">Allow organizations to find and view your profile</div></div>
+          <button class="toggle on" onclick="this.classList.toggle('on')"><div class="toggle-knob"></div></button>
+        </div>
+        <div class="settings-row">
+          <div><div class="settings-label">Show availability status</div><div class="settings-desc">Display your availability to organizations</div></div>
+          <button class="toggle on" onclick="this.classList.toggle('on')"><div class="toggle-knob"></div></button>
+        </div>
+      </div>
+
+      <div class="settings-section">
+        <div class="settings-section-title">Account actions</div>
+        <div class="settings-row">
+          <div><div class="settings-label">Switch role</div><div class="settings-desc">Go back and choose Prospect or Organization</div></div>
+          <button class="settings-btn" onclick="goLanding()">Switch</button>
+        </div>
+        <div class="settings-row">
+          <div><div class="settings-label">Sign out</div><div class="settings-desc">Sign out of your TradesConnect account</div></div>
+          <button class="settings-btn">Sign out</button>
+        </div>
+        <div class="settings-row">
+          <div><div class="settings-label">Delete account</div><div class="settings-desc">Permanently delete your profile and data</div></div>
+          <button class="settings-btn danger">Delete</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
+<!-- ORG -->
 <div id="screen-org">
   <div class="topnav">
-    <div class="nav-logo">Trades<em>Connect</em></div>
+    <div class="nav-logo" onclick="goLanding()">Trades<em>Connect</em></div>
     <div class="nav-tabs">
       <button class="nav-tab on" onclick="orgTab('dashboard',this)">Dashboard</button>
       <button class="nav-tab" onclick="orgTab('candidates',this)">Browse candidates</button>
+      <button class="nav-tab" onclick="orgTab('settings',this)">Settings</button>
     </div>
     <div class="nav-right">
       <span class="role-badge role-badge-org">Organization</span>
@@ -302,6 +380,7 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
         </div>
       </div>
     </div>
+
     <div id="ot-candidates" style="display:none;">
       <div class="filter-row">
         <button class="ftag on">All trades</button>
@@ -329,6 +408,54 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
         <div class="cand-av" style="background:#0d1a2e;color:#4d8ef0;">ST</div>
         <div class="cand-info"><div class="cand-name">Sara T.</div><div class="cand-meta">Age 18 · Detroit, MI · Available June 2026</div><div class="cand-bio">Completed first residential panel install during CTE practicum. OSHA-10 certified. Seeking union electrical apprenticeship.</div><div class="cand-tags"><span class="cand-tag">Electrician</span><span class="cand-tag">OSHA-10</span><span class="cand-tag">NEC code</span></div></div>
         <div class="cand-btns"><button class="btn-msg" onclick="this.textContent='Sent ✓'">Message</button><button class="btn-inv" onclick="this.textContent='Invited ✓'">Invite</button></div>
+      </div>
+    </div>
+
+    <div id="ot-settings" style="display:none;">
+      <div class="settings-section">
+        <div class="settings-section-title">Organization</div>
+        <div class="settings-row">
+          <div><div class="settings-label">Organization name</div><div class="settings-desc">Detroit Electrical Industry Training Center</div></div>
+          <button class="settings-btn">Edit</button>
+        </div>
+        <div class="settings-row">
+          <div><div class="settings-label">Contact email</div><div class="settings-desc">admin@detc.org</div></div>
+          <button class="settings-btn">Edit</button>
+        </div>
+        <div class="settings-row">
+          <div><div class="settings-label">Location</div><div class="settings-desc">Detroit, MI</div></div>
+          <button class="settings-btn">Edit</button>
+        </div>
+        <div class="settings-row">
+          <div><div class="settings-label">Trade focus</div><div class="settings-desc">Electrician</div></div>
+          <button class="settings-btn">Edit</button>
+        </div>
+      </div>
+      <div class="settings-section">
+        <div class="settings-section-title">Notifications</div>
+        <div class="settings-row">
+          <div><div class="settings-label">New candidate leads</div><div class="settings-desc">Notify when a prospect expresses interest</div></div>
+          <button class="toggle on" onclick="this.classList.toggle('on')"><div class="toggle-knob"></div></button>
+        </div>
+        <div class="settings-row">
+          <div><div class="settings-label">Daily lead digest</div><div class="settings-desc">Morning summary of new leads</div></div>
+          <button class="toggle on" onclick="this.classList.toggle('on')"><div class="toggle-knob"></div></button>
+        </div>
+        <div class="settings-row">
+          <div><div class="settings-label">Interview reminders</div><div class="settings-desc">Reminders before scheduled interviews</div></div>
+          <button class="toggle" onclick="this.classList.toggle('on')"><div class="toggle-knob"></div></button>
+        </div>
+      </div>
+      <div class="settings-section">
+        <div class="settings-section-title">Account actions</div>
+        <div class="settings-row">
+          <div><div class="settings-label">Switch role</div><div class="settings-desc">Go back and choose Prospect or Organization</div></div>
+          <button class="settings-btn" onclick="goLanding()">Switch</button>
+        </div>
+        <div class="settings-row">
+          <div><div class="settings-label">Sign out</div><div class="settings-desc">Sign out of your TradesConnect account</div></div>
+          <button class="settings-btn">Sign out</button>
+        </div>
       </div>
     </div>
   </div>
@@ -412,6 +539,7 @@ function prospectTab(tab,el){
   el.classList.add("on");
   document.getElementById("pt-discover").style.display=tab==="discover"?"block":"none";
   document.getElementById("pt-profile").style.display=tab==="profile"?"block":"none";
+  document.getElementById("pt-settings").style.display=tab==="settings"?"block":"none";
 }
 
 function orgTab(tab,el){
@@ -419,6 +547,7 @@ function orgTab(tab,el){
   el.classList.add("on");
   document.getElementById("ot-dashboard").style.display=tab==="dashboard"?"block":"none";
   document.getElementById("ot-candidates").style.display=tab==="candidates"?"block":"none";
+  document.getElementById("ot-settings").style.display=tab==="settings"?"block":"none";
 }
 
 function goProspect(){
