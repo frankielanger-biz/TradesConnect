@@ -585,4 +585,12 @@ function openModal(id){
   document.getElementById("modal").classList.add("open");
 }
 
-function closeModal(){docume
+function closeModal(){document.getElementById("modal").classList.remove("open");}
+function submitInterest(){
+  document.getElementById("modal-form").style.display="none";
+  document.getElementById("modal-success").style.display="block";
+}
+document.getElementById("modal").addEventListener("click",function(e){if(e.target===this)closeModal();});
+</script>
+</body>
+</html>
