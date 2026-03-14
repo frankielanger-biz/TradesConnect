@@ -1,199 +1,422 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TradesConnect</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TradesConnect — Michigan Pilot</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --tc-black:#141210;--tc-dark:#1C1814;--tc-card:#242018;--tc-card2:#2C2620;
+      --tc-blue:#3B82F6;--tc-blue-dim:#1D4ED8;
+      --tc-orange:#E8520A;--tc-orange-light:rgba(232,82,10,0.15);
+      --tc-green:#22C55E;--tc-green-dim:#15803D;--tc-green-bg:rgba(34,197,94,0.12);
+      --tc-border:rgba(255,255,255,0.08);--tc-border2:rgba(255,255,255,0.14);
+      --tc-text:#F5F0EA;--tc-muted:#9B8E84;--tc-subtle:#6B5F57;
+    }
+    html,body{height:100%;background:var(--tc-black);color:var(--tc-text);font-family:'DM Sans',sans-serif}
+    .screen{display:none}.screen.active{display:block}
+    .brand{font-weight:600;font-size:1.25rem;letter-spacing:-0.3px}
+    .brand span{color:var(--tc-blue)}
 
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    /* LANDING */
+    .landing-hero{background:var(--tc-black);padding:3rem 1.5rem 2rem;text-align:center}
+    .landing-eyebrow{font-size:0.68rem;letter-spacing:0.12em;color:var(--tc-muted);text-transform:uppercase;margin-bottom:1rem}
+    .landing-title{font-size:2.8rem;font-weight:700;line-height:1.1;margin-bottom:1rem;letter-spacing:-1px}
+    .landing-title span{color:var(--tc-blue)}
+    .landing-sub{font-size:0.95rem;color:var(--tc-muted);max-width:320px;margin:0 auto 2rem;line-height:1.7}
+    .stats-bar{background:var(--tc-blue-dim);padding:1.1rem 1.5rem;display:grid;grid-template-columns:repeat(4,1fr);gap:0.75rem}
+    @media(max-width:600px){.stats-bar{grid-template-columns:repeat(2,1fr)}}
+    .stat-item{text-align:center}
+    .stat-item .snum{font-size:1.3rem;font-weight:600;color:#fff}
+    .stat-item .slbl{font-size:0.62rem;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.65);margin-top:2px}
+    .role-section{padding:1.5rem;max-width:560px;margin:0 auto}
+    .role-prompt{text-align:center;font-size:0.8rem;color:var(--tc-muted);margin-bottom:1rem}
+    .role-cards{display:grid;grid-template-columns:1fr 1fr;gap:0.85rem}
+    .role-card{border:1px solid var(--tc-border2);border-radius:12px;padding:1.75rem 1rem;cursor:pointer;transition:all 0.18s;text-align:center;background:var(--tc-card)}
+    .role-card:hover{border-color:var(--tc-blue);background:rgba(59,130,246,0.08)}
+    .role-card .rc-icon{font-size:2rem;margin-bottom:0.6rem}
+    .role-card .rc-title{font-size:0.95rem;font-weight:600;color:var(--tc-text);margin-bottom:0.25rem}
+    .role-card .rc-sub{font-size:0.78rem;color:var(--tc-muted);line-height:1.5}
+    .pilot-note{text-align:center;font-size:0.72rem;color:var(--tc-subtle);padding:1.25rem 0 2rem}
 
-<style>
+    /* TOPBAR */
+    .topbar{display:flex;align-items:center;justify-content:space-between;padding:0.85rem 1.25rem;border-bottom:1px solid var(--tc-border);background:var(--tc-black);position:sticky;top:0;z-index:10}
+    .topbar-role-badge{font-size:0.7rem;font-weight:500;padding:3px 9px;border-radius:20px}
+    .topbar-role-badge.prospect{background:rgba(59,130,246,0.18);color:var(--tc-blue);border:0.5px solid rgba(59,130,246,0.3)}
+    .topbar-role-badge.org{background:var(--tc-orange-light);color:#F97316;border:0.5px solid rgba(232,82,10,0.3)}
+    .switch-btn{font-size:0.72rem;color:var(--tc-muted);cursor:pointer;border:none;background:none;text-decoration:underline;font-family:'DM Sans',sans-serif}
+    .org-banner{padding:0.55rem 1.25rem;background:rgba(59,130,246,0.1);border-bottom:1px solid rgba(59,130,246,0.2)}
+    .org-banner-text{font-size:0.75rem;font-weight:500;color:var(--tc-blue)}
 
-body{
-background:#111;
-color:white;
-font-family:"DM Sans",sans-serif;
-margin:0;
-}
+    /* TABS */
+    .tab-bar{display:flex;border-bottom:1px solid var(--tc-border);background:var(--tc-black);position:sticky;top:52px;z-index:9}
+    .tab{flex:1;padding:0.75rem 0.5rem;text-align:center;font-size:0.8rem;font-weight:500;color:var(--tc-muted);cursor:pointer;border-bottom:2px solid transparent;transition:all 0.15s}
+    .tab.active{color:var(--tc-blue);border-bottom-color:var(--tc-blue)}
+    .tab-content{display:none;padding:1.25rem;background:var(--tc-black)}
+    .tab-content.active{display:block}
 
-.container{
-max-width:900px;
-margin:auto;
-padding:40px 20px;
-}
+    /* CHIPS */
+    .filter-strip{display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:1.25rem}
+    .chip{font-size:0.74rem;padding:5px 13px;border-radius:20px;border:1px solid var(--tc-border2);cursor:pointer;color:var(--tc-muted);background:var(--tc-card);transition:all 0.12s;font-family:'DM Sans',sans-serif}
+    .chip.active{background:var(--tc-blue);color:#fff;border-color:var(--tc-blue)}
 
-.title{
-font-size:48px;
-font-weight:700;
-}
+    /* PROGRAM CARDS */
+    .prog-card{border:1px solid var(--tc-border);border-radius:12px;padding:1rem 1.1rem;margin-bottom:0.85rem;background:var(--tc-card)}
+    .prog-card-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:0.5rem;gap:0.5rem}
+    .prog-name{font-weight:500;font-size:0.93rem;color:var(--tc-text)}
+    .prog-badge{font-size:0.68rem;padding:3px 8px;border-radius:20px;white-space:nowrap;flex-shrink:0;background:rgba(255,255,255,0.07);color:var(--tc-muted)}
+    .prog-badge.hiring{background:rgba(59,130,246,0.18);color:var(--tc-blue)}
+    .prog-meta{font-size:0.77rem;color:var(--tc-muted);margin-bottom:0.6rem;line-height:1.6}
+    .prog-tags{display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:0.75rem}
+    .tag{font-size:0.68rem;padding:2px 8px;border-radius:6px;background:rgba(255,255,255,0.06);color:var(--tc-muted)}
+    .prog-desc{font-size:0.8rem;color:var(--tc-muted);margin-bottom:0.75rem;line-height:1.55}
+    .interest-btn{width:100%;padding:0.58rem;border-radius:8px;border:1px solid var(--tc-blue);background:transparent;color:var(--tc-blue);font-size:0.83rem;font-weight:500;cursor:pointer;transition:all 0.15s;font-family:'DM Sans',sans-serif}
+    .interest-btn:hover{background:var(--tc-blue);color:#fff}
+    .interest-btn.sent{background:var(--tc-green-bg);border-color:var(--tc-green-dim);color:var(--tc-green);cursor:default}
 
-.title span{
-color:#3b82f6;
-}
+    /* PROFILE */
+    .profile-hero{display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem}
+    .avatar-lg{width:62px;height:62px;border-radius:50%;background:var(--tc-blue-dim);display:flex;align-items:center;justify-content:center;font-size:1.2rem;font-weight:600;color:#fff;flex-shrink:0}
+    .profile-name{font-weight:600;font-size:1.05rem;color:var(--tc-text)}
+    .profile-sub{font-size:0.78rem;color:var(--tc-muted);line-height:1.5}
+    .avail-dot{display:inline-flex;align-items:center;gap:4px;font-size:0.73rem;color:var(--tc-green);margin-top:3px}
+    .avail-dot::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--tc-green)}
+    .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:0.5rem;margin-bottom:1.25rem}
+    .stat-box{background:var(--tc-card);border:1px solid var(--tc-border);border-radius:10px;padding:0.75rem;text-align:center}
+    .stat-num{font-size:1.25rem;font-weight:600;color:var(--tc-blue)}
+    .stat-lbl{font-size:0.68rem;color:var(--tc-muted);margin-top:2px}
+    .section-label{font-size:0.67rem;font-weight:500;color:var(--tc-subtle);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.75rem}
+    .cert-list{display:flex;flex-direction:column;gap:0.45rem;margin-bottom:1.25rem}
+    .cert-item{display:flex;align-items:center;gap:0.6rem;font-size:0.83rem;color:var(--tc-text)}
+    .cert-check{font-size:0.75rem;color:var(--tc-green)}
+    .portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.5rem;margin-bottom:1.25rem}
+    .port-tile{aspect-ratio:1;border-radius:8px;background:var(--tc-card2);display:flex;align-items:center;justify-content:center;border:1px solid var(--tc-border);cursor:pointer;font-size:0.65rem;color:var(--tc-muted);text-align:center;padding:0.3rem}
+    .add-tile{border-style:dashed;font-size:1.5rem;color:var(--tc-blue)}
+    .about-box{background:var(--tc-card);border:1px solid var(--tc-border);border-radius:10px;padding:1rem;margin-bottom:1.25rem;font-size:0.83rem;color:var(--tc-muted);line-height:1.65}
+    .edit-field{width:100%;padding:0.6rem 0.8rem;border-radius:8px;border:1px solid var(--tc-border2);background:var(--tc-card);font-family:'DM Sans',sans-serif;font-size:0.83rem;color:var(--tc-text);margin-bottom:0.75rem;resize:none}
+    .edit-field:focus{outline:none;border-color:var(--tc-blue)}
+    .outline-btn{padding:0.55rem 1rem;border-radius:8px;border:1px solid var(--tc-border2);background:transparent;color:var(--tc-muted);font-size:0.82rem;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif}
+    .primary-btn{padding:0.55rem 1.2rem;border-radius:8px;background:var(--tc-blue);color:#fff;border:none;font-size:0.82rem;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif}
 
-.subtitle{
-color:#999;
-margin-top:10px;
-margin-bottom:40px;
-}
+    /* ORG DASHBOARD */
+    .dash-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0.6rem;margin-bottom:1.5rem}
+    .dash-stat{background:var(--tc-card);border:1px solid var(--tc-border);border-radius:10px;padding:0.85rem 1rem}
+    .dash-stat-num{font-size:1.5rem;font-weight:600;color:var(--tc-blue)}
+    .dash-stat-lbl{font-size:0.68rem;color:var(--tc-muted);margin-top:2px}
+    .pipeline-stage{margin-bottom:0.85rem}
+    .stage-label{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.35rem}
+    .stage-name{font-size:0.78rem;color:var(--tc-muted)}
+    .stage-count{font-size:0.75rem;font-weight:500;color:var(--tc-text)}
+    .stage-bar{height:5px;border-radius:3px;background:rgba(255,255,255,0.07)}
+    .stage-fill{height:100%;border-radius:3px}
+    .lead-card{display:flex;align-items:center;gap:0.75rem;padding:0.85rem 0;border-bottom:1px solid var(--tc-border)}
+    .lead-card:last-child{border-bottom:none}
+    .avatar-sm{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:600;flex-shrink:0}
+    .lead-info{flex:1}
+    .lead-name{font-size:0.86rem;font-weight:500;color:var(--tc-text)}
+    .lead-meta{font-size:0.73rem;color:var(--tc-muted);line-height:1.5}
+    .act-btn{font-size:0.7rem;padding:4px 10px;border-radius:6px;border:1px solid var(--tc-border2);background:transparent;cursor:pointer;color:var(--tc-muted);font-family:'DM Sans',sans-serif;white-space:nowrap}
+    .act-btn.primary{background:var(--tc-blue);border-color:var(--tc-blue);color:#fff}
+    .act-btn.done{background:var(--tc-green-bg);border-color:var(--tc-green-dim);color:var(--tc-green)}
 
-.role-select{
-display:flex;
-gap:20px;
-}
-
-.card{
-flex:1;
-background:#1c1c1c;
-border:1px solid #333;
-padding:30px;
-border-radius:12px;
-cursor:pointer;
-transition:.2s;
-}
-
-.card:hover{
-border-color:#3b82f6;
-}
-
-.nav{
-background:#000;
-padding:15px 20px;
-display:flex;
-justify-content:space-between;
-border-bottom:1px solid #222;
-}
-
-.hidden{
-display:none;
-}
-
-.button{
-background:#3b82f6;
-border:none;
-color:white;
-padding:10px 18px;
-border-radius:8px;
-cursor:pointer;
-}
-
-.list-card{
-background:#1c1c1c;
-border:1px solid #333;
-padding:20px;
-border-radius:10px;
-margin-bottom:15px;
-}
-
-</style>
+    /* ORG SEARCH */
+    .search-bar{display:flex;gap:0.5rem;margin-bottom:1rem}
+    .search-input{flex:1;padding:0.6rem 0.85rem;border-radius:8px;border:1px solid var(--tc-border2);background:var(--tc-card);font-size:0.83rem;font-family:'DM Sans',sans-serif;color:var(--tc-text)}
+    .search-input::placeholder{color:var(--tc-subtle)}
+    .search-input:focus{outline:none;border-color:var(--tc-blue)}
+    .sort-row{display:flex;align-items:center;gap:0.4rem;margin-bottom:0.85rem;flex-wrap:wrap}
+    .sort-label{font-size:0.75rem;color:var(--tc-muted)}
+    .sort-chip{font-size:0.72rem;padding:4px 10px;border-radius:20px;border:1px solid var(--tc-border2);cursor:pointer;background:var(--tc-card);color:var(--tc-muted);font-family:'DM Sans',sans-serif}
+    .sort-chip.active{background:var(--tc-text);color:var(--tc-black)}
+    .cand-card{border:1px solid var(--tc-border);border-radius:12px;padding:1rem 1.1rem;margin-bottom:0.85rem;background:var(--tc-card)}
+    .cand-header{display:flex;align-items:center;gap:0.75rem;margin-bottom:0.6rem}
+    .cand-name{font-weight:500;font-size:0.92rem;color:var(--tc-text)}
+    .cand-sub{font-size:0.74rem;color:var(--tc-muted)}
+    .avail-badge{font-size:0.68rem;padding:2px 8px;border-radius:6px;font-weight:500}
+    .avail-badge.now{background:var(--tc-green-bg);color:var(--tc-green)}
+    .avail-badge.soon{background:var(--tc-orange-light);color:#F97316}
+    .cand-note{font-size:0.78rem;color:var(--tc-muted);font-style:italic;margin-bottom:0.7rem;line-height:1.55}
+    .cand-actions{display:flex;gap:0.5rem}
+    .cand-btn{flex:1;padding:0.5rem;border-radius:8px;font-size:0.76rem;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;border:1px solid var(--tc-border2);background:transparent;color:var(--tc-muted);transition:all 0.12s}
+    .cand-btn.invite{border-color:var(--tc-blue);color:var(--tc-blue)}
+    .cand-btn.invite:hover{background:var(--tc-blue);color:#fff}
+    .cand-btn.invited{background:var(--tc-green-bg);border-color:var(--tc-green-dim);color:var(--tc-green);cursor:default}
+  </style>
 </head>
-
 <body>
 
-<div id="landing" class="container">
-
-<div class="title">Trades<span>Connect</span></div>
-<div class="subtitle">Discover trade apprenticeships or recruit the next generation of skilled workers.</div>
-
-<div class="role-select">
-
-<div class="card" onclick="enterProspect()">
-<h3>🎓 Prospect</h3>
-<p>Find apprenticeships and skilled trade programs near you.</p>
+<!-- LANDING -->
+<div id="screen-landing" class="screen active">
+  <div class="landing-hero">
+    <div class="landing-eyebrow">Michigan Pilot</div>
+    <div class="landing-title">Trades<span>Connect</span></div>
+    <p class="landing-sub">Built for Gen Z entering the skilled trades — discover local programs, show your interest, get hired.</p>
+  </div>
+  <div class="stats-bar">
+    <div class="stat-item"><div class="snum">520k+</div><div class="slbl">MI trades jobs by 2030</div></div>
+    <div class="stat-item"><div class="snum">38%</div><div class="slbl">HS grads skip college</div></div>
+    <div class="stat-item"><div class="snum">20,600</div><div class="slbl">Active MI apprentices</div></div>
+    <div class="stat-item"><div class="snum">6.7%</div><div class="slbl">Trades workers under 25</div></div>
+  </div>
+  <div class="role-section">
+    <p class="role-prompt">Choose how you're using TradesConnect</p>
+    <div class="role-cards">
+      <div class="role-card" onclick="enterAs('prospect')">
+        <div class="rc-icon">🎓</div>
+        <div class="rc-title">I'm a prospect</div>
+        <div class="rc-sub">Find programs and trade jobs near you</div>
+      </div>
+      <div class="role-card" onclick="enterAs('org')">
+        <div class="rc-icon">🏗️</div>
+        <div class="rc-title">I'm an organization</div>
+        <div class="rc-sub">Browse candidates and manage your pipeline</div>
+      </div>
+    </div>
+    <p class="pilot-note">Detroit · Grand Rapids · 2026</p>
+  </div>
 </div>
 
-<div class="card" onclick="enterOrg()">
-<h3>🏗 Organization</h3>
-<p>Recruit candidates and manage your apprenticeship pipeline.</p>
+<!-- PROSPECT -->
+<div id="screen-prospect" class="screen">
+  <div class="topbar">
+    <div class="brand">Trades<span>Connect</span></div>
+    <div style="display:flex;align-items:center;gap:0.75rem">
+      <span class="topbar-role-badge prospect">Prospect</span>
+      <button class="switch-btn" onclick="goLanding()">switch role</button>
+    </div>
+  </div>
+  <div class="tab-bar">
+    <div class="tab active" onclick="switchTab('prospect','discover',this)">Discover</div>
+    <div class="tab" onclick="switchTab('prospect','profile',this)">My profile</div>
+  </div>
+  <div id="prospect-discover" class="tab-content active">
+    <div class="filter-strip">
+      <div class="chip active" onclick="filterTrade(this,'all')">All trades</div>
+      <div class="chip" onclick="filterTrade(this,'electrician')">⚡ Electrician</div>
+      <div class="chip" onclick="filterTrade(this,'welder')">🔥 Welder</div>
+      <div class="chip" onclick="filterTrade(this,'hvac')">❄️ HVAC</div>
+      <div class="chip" onclick="filterTrade(this,'plumber')">🔧 Plumber</div>
+    </div>
+    <div id="programs-list"></div>
+  </div>
+  <div id="prospect-profile" class="tab-content">
+    <div class="profile-hero">
+      <div class="avatar-lg">AR</div>
+      <div>
+        <div class="profile-name">Alex Rodriguez</div>
+        <div class="profile-sub">Detroit, MI · HS Senior, graduating May 2026</div>
+        <div class="avail-dot">Available June 2026</div>
+      </div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-box"><div class="stat-num">3</div><div class="stat-lbl">Interests sent</div></div>
+      <div class="stat-box"><div class="stat-num">2</div><div class="stat-lbl">Responses</div></div>
+      <div class="stat-box"><div class="stat-num">4</div><div class="stat-lbl">Endorsements</div></div>
+    </div>
+    <div class="section-label">Interested trades</div>
+    <div class="filter-strip" style="margin-bottom:1.25rem">
+      <div class="chip active">⚡ Electrician</div>
+      <div class="chip active">🔥 Welder</div>
+    </div>
+    <div class="section-label">About</div>
+    <div class="about-box" id="about-display">Graduating May 2026. Took shop and electrical fundamentals all four years. Looking for a paid apprenticeship where I can learn on the job and build a real career. Reliable, punctual, and ready to work.</div>
+    <div id="about-edit" style="display:none">
+      <textarea class="edit-field" id="about-text" rows="4">Graduating May 2026. Took shop and electrical fundamentals all four years. Looking for a paid apprenticeship where I can learn on the job and build a real career. Reliable, punctual, and ready to work.</textarea>
+    </div>
+    <div style="display:flex;gap:0.5rem;margin-bottom:1.25rem">
+      <button class="outline-btn" id="edit-toggle-btn" onclick="toggleEdit()">Edit about</button>
+      <button class="primary-btn" id="save-btn" onclick="saveAbout()" style="display:none">Save</button>
+    </div>
+    <div class="section-label">Certifications</div>
+    <div class="cert-list">
+      <div class="cert-item"><span class="cert-check">✓</span> OSHA-10</div>
+      <div class="cert-item"><span class="cert-check">✓</span> Construction Safety</div>
+      <div class="cert-item"><span class="cert-check">✓</span> Electrical Fundamentals</div>
+    </div>
+    <div class="section-label">Portfolio</div>
+    <div class="portfolio-grid">
+      <div class="port-tile">Wiring project</div>
+      <div class="port-tile">Shop class fab</div>
+      <div class="port-tile">Panel work</div>
+      <div class="port-tile add-tile">+</div>
+    </div>
+  </div>
 </div>
 
-</div>
-
-</div>
-
-<div id="prospect" class="hidden">
-
-<div class="nav">
-<div>Trades<span style="color:#3b82f6;">Connect</span></div>
-<button onclick="goHome()">Switch role</button>
-</div>
-
-<div class="container">
-
-<h2>Discover Programs</h2>
-
-<div class="list-card">
-<h3>Detroit Electrical Training Center</h3>
-<p>Electrician Apprenticeship</p>
-<button class="button">Express Interest</button>
-</div>
-
-<div class="list-card">
-<h3>GRCC Welding Program</h3>
-<p>Grand Rapids Community College</p>
-<button class="button">Express Interest</button>
-</div>
-
-<div class="list-card">
-<h3>Michigan HVAC Apprenticeship</h3>
-<p>Paid training + certification</p>
-<button class="button">Express Interest</button>
-</div>
-
-</div>
-
-</div>
-
-<div id="org" class="hidden">
-
-<div class="nav">
-<div>Trades<span style="color:#3b82f6;">Connect</span></div>
-<button onclick="goHome()">Switch role</button>
-</div>
-
-<div class="container">
-
-<h2>Candidate Pipeline</h2>
-
-<div class="list-card">
-<h3>Alex Rodriguez</h3>
-<p>Interested in Electrician Apprenticeship</p>
-<button class="button">Invite to Apply</button>
-</div>
-
-<div class="list-card">
-<h3>Marcus Lee</h3>
-<p>Electrical Fundamentals Certification</p>
-<button class="button">Invite to Apply</button>
-</div>
-
-<div class="list-card">
-<h3>Jake Morales</h3>
-<p>Welding Certificate in Progress</p>
-<button class="button">Invite to Apply</button>
-</div>
-
-</div>
-
+<!-- ORG -->
+<div id="screen-org" class="screen">
+  <div class="topbar">
+    <div class="brand">Trades<span>Connect</span></div>
+    <div style="display:flex;align-items:center;gap:0.75rem">
+      <span class="topbar-role-badge org">Organization</span>
+      <button class="switch-btn" onclick="goLanding()">switch role</button>
+    </div>
+  </div>
+  <div class="org-banner"><div class="org-banner-text">Detroit Electrical Industry Training Center</div></div>
+  <div class="tab-bar">
+    <div class="tab active" onclick="switchTab('org','dashboard',this)">Dashboard</div>
+    <div class="tab" onclick="switchTab('org','search',this)">Browse candidates</div>
+  </div>
+  <div id="org-dashboard" class="tab-content active">
+    <div class="dash-grid">
+      <div class="dash-stat"><div class="dash-stat-num">47</div><div class="dash-stat-lbl">Leads this month</div></div>
+      <div class="dash-stat"><div class="dash-stat-num" style="color:var(--tc-green)">12</div><div class="dash-stat-lbl">Invited to apply</div></div>
+      <div class="dash-stat"><div class="dash-stat-num">5</div><div class="dash-stat-lbl">Interviews scheduled</div></div>
+      <div class="dash-stat"><div class="dash-stat-num" style="color:#A78BFA">3</div><div class="dash-stat-lbl">Offers extended</div></div>
+    </div>
+    <div class="section-label">Pipeline</div>
+    <div class="pipeline-stage">
+      <div class="stage-label"><span class="stage-name">New leads</span><span class="stage-count">18</span></div>
+      <div class="stage-bar"><div class="stage-fill" style="width:100%;background:var(--tc-blue)"></div></div>
+    </div>
+    <div class="pipeline-stage">
+      <div class="stage-label"><span class="stage-name">Messaged</span><span class="stage-count">12</span></div>
+      <div class="stage-bar"><div class="stage-fill" style="width:66%;background:#60A5FA"></div></div>
+    </div>
+    <div class="pipeline-stage">
+      <div class="stage-label"><span class="stage-name">Invited to apply</span><span class="stage-count">9</span></div>
+      <div class="stage-bar"><div class="stage-fill" style="width:50%;background:#A78BFA"></div></div>
+    </div>
+    <div class="pipeline-stage">
+      <div class="stage-label"><span class="stage-name">Interviews</span><span class="stage-count">5</span></div>
+      <div class="stage-bar"><div class="stage-fill" style="width:28%;background:var(--tc-green)"></div></div>
+    </div>
+    <div class="pipeline-stage">
+      <div class="stage-label"><span class="stage-name">Offers</span><span class="stage-count">3</span></div>
+      <div class="stage-bar"><div class="stage-fill" style="width:16%;background:#4ADE80"></div></div>
+    </div>
+    <div class="section-label" style="margin-top:1.5rem">Recent leads</div>
+    <div id="leads-list"></div>
+  </div>
+  <div id="org-search" class="tab-content">
+    <div class="search-bar">
+      <input class="search-input" id="cand-search" placeholder="Search by trade, city, skill..." oninput="filterCandidates()">
+    </div>
+    <div class="sort-row">
+      <span class="sort-label">Sort:</span>
+      <div class="sort-chip active" onclick="setSort(this)">Newest</div>
+      <div class="sort-chip" onclick="setSort(this)">Available now</div>
+      <div class="sort-chip" onclick="setSort(this)">Most certs</div>
+    </div>
+    <div class="filter-strip">
+      <div class="chip active" onclick="filterOrgTrade(this,'all')">All trades</div>
+      <div class="chip" onclick="filterOrgTrade(this,'electrician')">⚡ Electrician</div>
+      <div class="chip" onclick="filterOrgTrade(this,'welder')">🔥 Welder</div>
+      <div class="chip" onclick="filterOrgTrade(this,'hvac')">❄️ HVAC</div>
+      <div class="chip" onclick="filterOrgTrade(this,'plumber')">🔧 Plumber</div>
+    </div>
+    <div id="candidates-list"></div>
+  </div>
 </div>
 
 <script>
+const programs=[
+  {id:1,name:"Detroit Electrical Industry Training Center",trade:"electrician",location:"Detroit, MI",badge:"Accepting now",badgeClass:"hiring",spots:8,pay:"$18–22/hr",duration:"4-year apprenticeship",tags:["IBEW Local 58","Paid training","Benefits included"],desc:"Michigan's largest JATC. Top-rated by apprentices. Hands-on from day one."},
+  {id:2,name:"GRCC Welding Technology Program",trade:"welder",location:"Grand Rapids, MI",badge:"Open enrollment",badgeClass:"",spots:14,pay:"$16–20/hr",duration:"2-year certificate",tags:["Community college credit","AWS certified","Evening options"],desc:"Accredited welding program at GRCC. AWS certification track included."},
+  {id:3,name:"Michigan HVAC Apprenticeship",trade:"hvac",location:"Detroit, MI",badge:"Accepting now",badgeClass:"hiring",spots:5,pay:"$17–21/hr",duration:"5-year apprenticeship",tags:["EPA 608 prep","Commercial & residential","Paid from day 1"],desc:"Sheet Metal Workers Local 80 apprenticeship. Among the best-paid trades in Michigan."},
+  {id:4,name:"UA Local 190 Plumbers",trade:"plumber",location:"Ann Arbor, MI",badge:"Spring cohort",badgeClass:"",spots:10,pay:"$19–24/hr",duration:"5-year apprenticeship",tags:["Union benefits","Pension","Michigan statewide"],desc:"United Association apprenticeship. Pension, benefits, and strong union support from day one."},
+  {id:5,name:"ABC West Michigan Electrician",trade:"electrician",location:"Grand Rapids, MI",badge:"Accepting now",badgeClass:"hiring",spots:6,pay:"$17–22/hr",duration:"4-year apprenticeship",tags:["Non-union","Flexible schedule","Earn while you learn"],desc:"Associated Builders & Contractors apprenticeship. Non-union option with strong employer network."},
+];
+const leads=[
+  {initials:"AR",bg:"#1e3260",fg:"#60A5FA",name:"Alex Rodriguez",age:18,city:"Detroit, MI",trade:"Electrician",note:"Ready June 2026. No experience but motivated.",time:"2 min ago"},
+  {initials:"ML",bg:"#14432a",fg:"#4ADE80",name:"Marcus Lee",age:17,city:"Dearborn, MI",trade:"Electrician",note:"Graduating May 2026. Took electrical fundamentals in CTE.",time:"14 min ago"},
+  {initials:"JE",bg:"#3d1f0a",fg:"#FB923C",name:"Jordan Ellis",age:19,city:"Pontiac, MI",trade:"Electrician",note:"Switching careers. Available immediately. Own transportation.",time:"31 min ago"},
+  {initials:"JK",bg:"#2e1a4a",fg:"#C084FC",name:"Jamie Kim",age:19,city:"Grand Rapids, MI",trade:"Electrician",note:"Available immediately. Looking for paid apprenticeship.",time:"1 hr ago"},
+];
+const candidates=[
+  {initials:"AR",bg:"#1e3260",fg:"#60A5FA",name:"Alex Rodriguez",age:18,city:"Detroit",trade:"electrician",avail:"soon",availLabel:"June 2026",certs:3,note:"Shop class all 4 years. Took electrical fundamentals. OSHA-10 certified."},
+  {initials:"ML",bg:"#14432a",fg:"#4ADE80",name:"Marcus Lee",age:17,city:"Dearborn",trade:"electrician",avail:"soon",availLabel:"May 2026",certs:2,note:"Graduating May 2026. Electrical fundamentals in CTE. Reliable, great attendance."},
+  {initials:"JE",bg:"#3d1f0a",fg:"#FB923C",name:"Jordan Ellis",age:19,city:"Pontiac",trade:"electrician",avail:"now",availLabel:"Now",certs:1,note:"Career changer. Available immediately. Own transportation. Motivated."},
+  {initials:"JM",bg:"#2e1a4a",fg:"#C084FC",name:"Jake Morales",age:20,city:"Grand Rapids",trade:"welder",avail:"now",availLabel:"Now",certs:3,note:"GRCC Welding cert in progress. MIG & TIG. OSHA-10. Fabrication portfolio."},
+  {initials:"ST",bg:"#1e3260",fg:"#60A5FA",name:"Sara Torres",age:18,city:"Detroit",trade:"electrician",avail:"soon",availLabel:"June 2026",certs:2,note:"200-amp panel install for CTE project. NEC code training. Strong references."},
+  {initials:"DR",bg:"#14432a",fg:"#4ADE80",name:"Devon Reynolds",age:19,city:"Detroit",trade:"hvac",avail:"now",availLabel:"Now",certs:2,note:"Helped with 5-ton rooftop unit swap. EPA 608 study underway. Sheet metal basics."},
+  {initials:"LP",bg:"#3d1f0a",fg:"#FB923C",name:"Luis Pacheco",age:20,city:"Grand Rapids",trade:"plumber",avail:"now",availLabel:"Now",certs:1,note:"Finish carpentry background. Pivoting to plumbing. Fast learner, strong references."},
+];
 
-function enterProspect(){
-document.getElementById("landing").style.display="none"
-document.getElementById("prospect").style.display="block"
+let activeTrade='all',activeOrgTrade='all',invitedP={},invitedL={},invitedC={};
+
+function renderPrograms(){
+  const el=document.getElementById('programs-list');
+  const list=activeTrade==='all'?programs:programs.filter(p=>p.trade===activeTrade);
+  el.innerHTML=list.map(p=>`<div class="prog-card">
+    <div class="prog-card-header"><div class="prog-name">${p.name}</div><div class="prog-badge ${p.badgeClass}">${p.badge}</div></div>
+    <div class="prog-meta">📍 ${p.location} &nbsp;·&nbsp; ${p.spots} spots &nbsp;·&nbsp; ${p.pay} &nbsp;·&nbsp; ${p.duration}</div>
+    <div class="prog-tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+    <p class="prog-desc">${p.desc}</p>
+    <button class="interest-btn${invitedP[p.id]?' sent':''}" onclick="sendInterest(${p.id})">${invitedP[p.id]?'Interest sent ✓':'Express interest'}</button>
+  </div>`).join('');
 }
+function sendInterest(id){invitedP[id]=true;renderPrograms();}
+function filterTrade(el,t){document.querySelectorAll('#prospect-discover .chip').forEach(c=>c.classList.remove('active'));el.classList.add('active');activeTrade=t;renderPrograms();}
 
-function enterOrg(){
-document.getElementById("landing").style.display="none"
-document.getElementById("org").style.display="block"
+function renderLeads(){
+  document.getElementById('leads-list').innerHTML=leads.map((l,i)=>`<div class="lead-card">
+    <div class="avatar-sm" style="background:${l.bg};color:${l.fg}">${l.initials}</div>
+    <div class="lead-info"><div class="lead-name">${l.name}</div><div class="lead-meta">Age ${l.age} · ${l.city} · ${l.trade}<br>"${l.note}"</div></div>
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+      <span style="font-size:0.67rem;color:var(--tc-subtle)">${l.time}</span>
+      <button class="act-btn ${invitedL[i]?'done':'primary'}" onclick="inviteLead(${i},this)">${invitedL[i]?'Invited ✓':'Invite'}</button>
+    </div>
+  </div>`).join('');
 }
+function inviteLead(i,btn){invitedL[i]=true;btn.className='act-btn done';btn.textContent='Invited ✓';}
 
-function goHome(){
-location.reload()
+function renderCandidates(){
+  const q=document.getElementById('cand-search').value.toLowerCase();
+  let list=candidates;
+  if(activeOrgTrade!=='all') list=list.filter(c=>c.trade===activeOrgTrade);
+  if(q) list=list.filter(c=>c.name.toLowerCase().includes(q)||c.city.toLowerCase().includes(q)||c.trade.includes(q)||c.note.toLowerCase().includes(q));
+  document.getElementById('candidates-list').innerHTML=list.map((c,i)=>`<div class="cand-card">
+    <div class="cand-header">
+      <div class="avatar-sm" style="background:${c.bg};color:${c.fg}">${c.initials}</div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;gap:0.5rem"><div class="cand-name">${c.name}</div><span class="avail-badge ${c.avail}">${c.availLabel}</span></div>
+        <div class="cand-sub">Age ${c.age} · ${c.city}, MI · ${c.certs} cert${c.certs!==1?'s':''}</div>
+      </div>
+    </div>
+    <div class="cand-note">"${c.note}"</div>
+    <div class="cand-actions">
+      <button class="cand-btn">Message</button>
+      <button class="cand-btn invite${invitedC[i]?' invited':''}" onclick="inviteCand(${i})">${invitedC[i]?'Invited ✓':'Invite to apply'}</button>
+    </div>
+  </div>`).join('');
 }
+function inviteCand(i){invitedC[i]=true;renderCandidates();}
+function filterCandidates(){renderCandidates();}
+function filterOrgTrade(el,t){document.querySelectorAll('#org-search .chip').forEach(c=>c.classList.remove('active'));el.classList.add('active');activeOrgTrade=t;renderCandidates();}
+function setSort(el){document.querySelectorAll('.sort-chip').forEach(c=>c.classList.remove('active'));el.classList.add('active');}
 
+function enterAs(role){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('screen-'+role).classList.add('active');
+  if(role==='prospect') renderPrograms();
+  if(role==='org'){renderLeads();renderCandidates();}
+}
+function goLanding(){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('screen-landing').classList.add('active');
+}
+function switchTab(screen,tab,el){
+  document.querySelectorAll(`#screen-${screen} .tab`).forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll(`#screen-${screen} .tab-content`).forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(`${screen}-${tab}`).classList.add('active');
+}
+function toggleEdit(){
+  const d=document.getElementById('about-display'),e=document.getElementById('about-edit');
+  const eb=document.getElementById('edit-toggle-btn'),sb=document.getElementById('save-btn');
+  const editing=e.style.display!=='none';
+  d.style.display=editing?'block':'none';
+  e.style.display=editing?'none':'block';
+  eb.textContent=editing?'Edit about':'Cancel';
+  sb.style.display=editing?'none':'block';
+}
+function saveAbout(){
+  document.getElementById('about-display').textContent=document.getElementById('about-text').value;
+  toggleEdit();
+}
 </script>
-
 </body>
 </html>
