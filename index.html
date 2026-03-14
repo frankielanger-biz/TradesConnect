@@ -187,6 +187,7 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
   <div class="topnav">
     <div class="nav-logo" onclick="goLanding()">Trades<em>Connect</em></div>
     <div class="nav-tabs">
+      <button class="nav-tab" onclick="prospectTab('about',this)">About</button>
       <button class="nav-tab on" onclick="prospectTab('discover',this)">Discover</button>
       <button class="nav-tab" onclick="prospectTab('profile',this)">My profile</button>
       <button class="nav-tab" onclick="prospectTab('settings',this)">Settings</button>
@@ -197,6 +198,68 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
     </div>
   </div>
   <div class="page-content">
+    <div id="pt-about" style="display:none;max-width:680px;margin:0 auto;">
+
+      <div style="text-align:center;padding:40px 0 32px;">
+        <div style="font-size:36px;font-weight:700;letter-spacing:-1px;color:#fff;margin-bottom:10px;">Trades<em style="color:#4d8ef0;font-style:normal;">Connect</em></div>
+        <div style="font-size:17px;color:#6a8098;line-height:1.7;max-width:460px;margin:0 auto;">The fastest way for young people to connect with skilled trades programs in Michigan — no resume, no forms, one tap.</div>
+      </div>
+
+      <div style="background:#0d1321;border-radius:14px;border:1px solid #1a2333;padding:28px 32px;margin-bottom:14px;">
+        <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1.2px;color:#3a5070;margin-bottom:16px;">Who we are</div>
+        <div style="font-size:15px;color:#a0b8d0;line-height:1.75;">TradesConnect is a Michigan-built platform connecting high school seniors, recent grads, and career changers to local trade programs and apprenticeships. We exist because the application process for trades is broken — most young people never apply because the hoops are too high. We fix that.</div>
+      </div>
+
+      <div style="background:#0d1321;border-radius:14px;border:1px solid #1a2333;padding:28px 32px;margin-bottom:14px;">
+        <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1.2px;color:#3a5070;margin-bottom:20px;">How it works</div>
+        <div style="display:flex;flex-direction:column;gap:18px;">
+          <div style="display:flex;align-items:flex-start;gap:16px;">
+            <div style="width:32px;height:32px;border-radius:8px;background:#112240;color:#4d8ef0;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">1</div>
+            <div><div style="font-size:15px;font-weight:600;color:#e8edf4;margin-bottom:4px;">Create your profile</div><div style="font-size:14px;color:#6a8098;line-height:1.6;">Name, location, trades you're interested in. Takes 60 seconds. No resume needed.</div></div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:16px;">
+            <div style="width:32px;height:32px;border-radius:8px;background:#112240;color:#4d8ef0;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">2</div>
+            <div><div style="font-size:15px;font-weight:600;color:#e8edf4;margin-bottom:4px;">Browse local programs</div><div style="font-size:14px;color:#6a8098;line-height:1.6;">See verified apprenticeships, training centers, and programs across Detroit and Grand Rapids.</div></div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:16px;">
+            <div style="width:32px;height:32px;border-radius:8px;background:#112240;color:#4d8ef0;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">3</div>
+            <div><div style="font-size:15px;font-weight:600;color:#e8edf4;margin-bottom:4px;">Express interest in one tap</div><div style="font-size:14px;color:#6a8098;line-height:1.6;">Hit the button. Your profile goes straight to the program. They reach out — no formal application yet.</div></div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:16px;">
+            <div style="width:32px;height:32px;border-radius:8px;background:#112240;color:#4d8ef0;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">4</div>
+            <div><div style="font-size:15px;font-weight:600;color:#e8edf4;margin-bottom:4px;">Get hired</div><div style="font-size:14px;color:#6a8098;line-height:1.6;">Connect directly with the program. Start earning while you learn.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:#0d1321;border-radius:14px;border:1px solid #1a2333;padding:28px 32px;margin-bottom:14px;">
+        <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1.2px;color:#3a5070;margin-bottom:16px;">Michigan by the numbers</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div style="background:#0c1220;border-radius:10px;padding:16px;text-align:center;">
+            <div style="font-size:26px;font-weight:700;color:#4d8ef0;margin-bottom:4px;">520k+</div>
+            <div style="font-size:12px;color:#4a607a;">trades jobs projected by 2030</div>
+          </div>
+          <div style="background:#0c1220;border-radius:10px;padding:16px;text-align:center;">
+            <div style="font-size:26px;font-weight:700;color:#3dd68c;margin-bottom:4px;">38%</div>
+            <div style="font-size:12px;color:#4a607a;">of HS grads skip college</div>
+          </div>
+          <div style="background:#0c1220;border-radius:10px;padding:16px;text-align:center;">
+            <div style="font-size:26px;font-weight:700;color:#a78bfa;margin-bottom:4px;">20,600</div>
+            <div style="font-size:12px;color:#4a607a;">active MI apprentices</div>
+          </div>
+          <div style="background:#0c1220;border-radius:10px;padding:16px;text-align:center;">
+            <div style="font-size:26px;font-weight:700;color:#fbbf24;margin-bottom:4px;">$61k</div>
+            <div style="font-size:12px;color:#4a607a;">avg trades wage in Michigan</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:center;padding:24px 0 8px;">
+        <button onclick="prospectTab('discover', document.querySelector('#screen-prospect .nav-tab:nth-child(2)'))" style="padding:13px 32px;border-radius:10px;background:#4d8ef0;color:#fff;border:none;font-family:'Inter',sans-serif;font-size:15px;font-weight:600;cursor:pointer;">Browse programs</button>
+      </div>
+
+    </div>
+
     <div id="pt-discover">
       <div class="filter-row">
         <button class="ftag on" onclick="filterProgs('all',this)">All trades</button>
@@ -267,7 +330,7 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
           <button class="settings-btn">Edit</button>
         </div>
         <div class="settings-row">
-          <div><div class="settings-label">Email</div><div class="settings-desc"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="087d7b6d7a486d70696578646d266b6765">[email&#160;protected]</a></div></div>
+          <div><div class="settings-label">Email</div><div class="settings-desc">user@tradesconnect.com</div></div>
           <button class="settings-btn">Edit</button>
         </div>
         <div class="settings-row">
@@ -429,7 +492,7 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
           <button class="settings-btn">Edit</button>
         </div>
         <div class="settings-row">
-          <div><div class="settings-label">Contact email</div><div class="settings-desc"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3f4a4c5a4d7f5a475e524f535a115c5052">[email&#160;protected]</a></div></div>
+          <div><div class="settings-label">Contact email</div><div class="settings-desc">user@tradesconnect.com</div></div>
           <button class="settings-btn">Edit</button>
         </div>
         <div class="settings-row">
@@ -547,6 +610,7 @@ function filterProgs(trade,el){
 function prospectTab(tab,el){
   document.querySelectorAll("#screen-prospect .nav-tab").forEach(b=>b.classList.remove("on"));
   el.classList.add("on");
+  document.getElementById("pt-about").style.display=tab==="about"?"block":"none";
   document.getElementById("pt-discover").style.display=tab==="discover"?"block":"none";
   document.getElementById("pt-profile").style.display=tab==="profile"?"block":"none";
   document.getElementById("pt-settings").style.display=tab==="settings"?"block":"none";
@@ -576,6 +640,7 @@ function goLanding(){
   document.getElementById("screen-prospect").style.display="none";
   document.getElementById("screen-org").style.display="none";
   // reset prospect tabs
+  document.getElementById("pt-about").style.display="none";
   document.getElementById("pt-discover").style.display="block";
   document.getElementById("pt-profile").style.display="none";
   document.getElementById("pt-settings").style.display="none";
