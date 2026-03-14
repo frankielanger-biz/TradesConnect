@@ -223,8 +223,12 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
             <div class="pstat"><span class="pstat-v">4</span><span class="pstat-l">Endorsements</span></div>
           </div>
           <div class="psec">
-            <div class="psec-title">Trades</div>
-            <div class="trade-pills"><span class="trade-pill">⚡ Electrician</span><span class="trade-pill">🔥 Welder</span></div>
+            <div class="psec-title">Trades &amp; skills</div>
+            <div class="trade-pills" id="skills-list"><span class="trade-pill">⚡ Electrician</span><span class="trade-pill">🔥 Welder</span></div>
+            <div style="margin-top:10px;display:flex;gap:8px;align-items:center;">
+              <input id="skill-input" placeholder="Add a skill..." style="padding:7px 12px;border-radius:8px;border:1px solid #1a2333;background:#060a10;color:#e8edf4;font-family:'Inter',sans-serif;font-size:13px;outline:none;width:180px;">
+              <button onclick="addSkill()" style="padding:7px 14px;border-radius:8px;background:#4d8ef0;color:#fff;border:none;font-family:'Inter',sans-serif;font-size:13px;font-weight:500;cursor:pointer;">+ Add</button>
+            </div>
           </div>
           <div class="psec">
             <div class="psec-title">About</div>
@@ -236,13 +240,19 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
           </div>
           <div class="psec">
             <div class="psec-title">Project portfolio</div>
-            <div class="photo-grid">
+            <div class="photo-grid" id="photo-grid">
               <div class="photo-tile" style="background:#0d1833;">Wiring project</div>
               <div class="photo-tile" style="background:#0d1a2e;">Shop class fab</div>
               <div class="photo-tile" style="background:#0a1a10;">Panel work</div>
               <div class="photo-tile" style="background:#150d2e;">CTE project</div>
               <div class="photo-tile" style="background:#1a0d10;">Lab exercise</div>
               <div class="photo-tile" style="background:#0d1520;">Blueprint reading</div>
+            </div>
+            <div style="margin-top:10px;">
+              <label for="photo-upload" style="display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:8px;border:1px solid #1a2333;color:#8099b4;font-family:'Inter',sans-serif;font-size:13px;font-weight:500;cursor:pointer;background:transparent;">
+                + Upload photo
+              </label>
+              <input type="file" id="photo-upload" accept="image/*" style="display:none;" onchange="addPhoto(this)">
             </div>
           </div>
         </div>
@@ -257,7 +267,7 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
           <button class="settings-btn">Edit</button>
         </div>
         <div class="settings-row">
-          <div><div class="settings-label">Email</div><div class="settings-desc">user@example.com</div></div>
+          <div><div class="settings-label">Email</div><div class="settings-desc"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="087d7b6d7a486d70696578646d266b6765">[email&#160;protected]</a></div></div>
           <button class="settings-btn">Edit</button>
         </div>
         <div class="settings-row">
@@ -419,7 +429,7 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
           <button class="settings-btn">Edit</button>
         </div>
         <div class="settings-row">
-          <div><div class="settings-label">Contact email</div><div class="settings-desc">user@example.com</div></div>
+          <div><div class="settings-label">Contact email</div><div class="settings-desc"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3f4a4c5a4d7f5a475e524f535a115c5052">[email&#160;protected]</a></div></div>
           <button class="settings-btn">Edit</button>
         </div>
         <div class="settings-row">
@@ -589,6 +599,28 @@ function closeModal(){document.getElementById("modal").classList.remove("open");
 function submitInterest(){
   document.getElementById("modal-form").style.display="none";
   document.getElementById("modal-success").style.display="block";
+}
+function addSkill(){
+  const input=document.getElementById("skill-input");
+  const val=input.value.trim();
+  if(!val)return;
+  const pill=document.createElement("span");
+  pill.className="trade-pill";
+  pill.textContent=val;
+  document.getElementById("skills-list").appendChild(pill);
+  input.value="";
+}
+document.getElementById("skill-input").addEventListener("keydown",function(e){if(e.key==="Enter")addSkill();});
+function addPhoto(input){
+  if(!input.files||!input.files[0])return;
+  const reader=new FileReader();
+  reader.onload=function(e){
+    const tile=document.createElement("div");
+    tile.className="photo-tile";
+    tile.style.cssText="background-image:url("+e.target.result+");background-size:cover;background-position:center;";
+    document.getElementById("photo-grid").appendChild(tile);
+  };
+  reader.readAsDataURL(input.files[0]);
 }
 document.getElementById("modal").addEventListener("click",function(e){if(e.target===this)closeModal();});
 </script>
