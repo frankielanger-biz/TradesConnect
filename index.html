@@ -9,12 +9,12 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:100vh;overflow-y:scroll;}
 #screen-landing{display:flex;flex-direction:column;align-items:center;min-height:100vh;}
-.hero{text-align:center;padding:48px 24px 32px;width:100%;}
+.hero{text-align:center;padding:80px 24px 48px;width:100%;}
 .hero-eyebrow{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:#3a5070;margin-bottom:20px;font-weight:500;}
 .hero-logo{font-size:52px;font-weight:700;letter-spacing:-1.5px;color:#fff;margin-bottom:16px;}
 .hero-logo em{color:#4d8ef0;font-style:normal;}
 .hero-sub{font-size:17px;color:#6a8098;max-width:420px;margin:0 auto 40px;line-height:1.7;}
-.role-section{padding:24px 24px;text-align:center;width:100%;}
+.role-section{padding:24px 24px 48px;text-align:center;width:100%;}
 .role-label{font-size:14px;color:#4a607a;margin-bottom:24px;}
 .role-cards{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
 .role-card{background:#0d1321;border:1px solid #1a2333;border-radius:16px;padding:32px 28px;width:220px;cursor:pointer;transition:all .2s;text-align:center;}
@@ -23,23 +23,32 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
 .role-title{font-size:16px;font-weight:600;color:#e8edf4;margin-bottom:6px;}
 .role-desc{font-size:13px;color:#4a607a;line-height:1.55;}
 .landing-foot{padding:24px;font-size:12px;color:#2a3f5a;text-align:center;}
+.landing-auth{display:flex;gap:10px;justify-content:center;margin-top:20px;}
+.btn-login{padding:9px 22px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;background:transparent;border:1px solid #1e3a6a;color:#4d8ef0;font-family:'Inter',sans-serif;transition:all .15s;}
+.btn-login:hover{background:#0d1f3a;}
+.btn-signup{padding:9px 22px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;background:#4d8ef0;border:none;color:#fff;font-family:'Inter',sans-serif;transition:all .15s;}
+.btn-signup:hover{background:#3a7de0;}
 #screen-prospect{display:none;}
 #screen-org{display:none;}
 .topnav{background:#0c1220;border-bottom:1px solid #1a2333;padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:58px;position:sticky;top:0;z-index:50;}
-.nav-logo{font-size:18px;font-weight:700;letter-spacing:-0.4px;color:#fff;cursor:pointer;transition:opacity .15s;}
+.nav-logo{font-size:18px;font-weight:700;letter-spacing:-0.4px;color:#fff;cursor:pointer;}
 .nav-logo:hover{opacity:.8;}
 .nav-logo em{color:#4d8ef0;font-style:normal;}
 .nav-tabs{display:flex;height:58px;}
-.nav-tab{padding:0 24px;font-size:14px;font-weight:500;background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;color:#4a607a;font-family:'Inter',sans-serif;height:100%;transition:all .15s;white-space:nowrap;}
+.nav-tab{padding:0 22px;font-size:14px;font-weight:500;background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;color:#4a607a;font-family:'Inter',sans-serif;height:100%;transition:all .15s;white-space:nowrap;}
 .nav-tab.on{color:#4d8ef0;border-bottom-color:#4d8ef0;}
-.nav-right{display:flex;align-items:center;gap:12px;}
+.nav-right{display:flex;align-items:center;gap:10px;}
 .role-badge{font-size:11px;font-weight:600;padding:4px 12px;border-radius:20px;background:#112240;color:#4d8ef0;border:1px solid #1a3a6a;}
 .role-badge-org{background:#150d2e;color:#a78bfa;border-color:#2a1f50;}
 .switch-btn{font-size:12px;color:#4a607a;cursor:pointer;background:none;border:none;font-family:'Inter',sans-serif;text-decoration:underline;}
-.org-sub{font-size:13px;color:#4d8ef0;padding:10px 32px;border-bottom:1px solid #1a2333;background:#080c14;}
+.nav-login{padding:7px 16px;border-radius:7px;font-size:13px;font-weight:500;cursor:pointer;background:transparent;border:1px solid #1e3a6a;color:#4d8ef0;font-family:'Inter',sans-serif;}
+.nav-login:hover{background:#0d1f3a;}
+.nav-signup{padding:7px 16px;border-radius:7px;font-size:13px;font-weight:600;cursor:pointer;background:#4d8ef0;border:none;color:#fff;font-family:'Inter',sans-serif;}
+.nav-signup:hover{background:#3a7de0;}
+.org-sub{font-size:13px;color:#4d8ef0;padding:10px 32px;border-bottom:1px solid #1a2333;background:#080c14;font-weight:500;}
 .page-content{padding:32px;max-width:960px;margin:0 auto;width:100%;}
 .filter-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;justify-content:center;}
-.ftag{padding:8px 18px;border-radius:8px;font-size:13px;font-weight:500;border:1px solid #1a2333;background:transparent;cursor:pointer;color:#6a8098;font-family:'Inter',sans-serif;transition:all .15s;}
+.ftag{padding:8px 18px;border-radius:50px;font-size:13px;font-weight:500;border:1px solid #1a2333;background:transparent;cursor:pointer;color:#6a8098;font-family:'Inter',sans-serif;transition:all .15s;}
 .ftag.on{background:#112240;border-color:#4d8ef0;color:#4d8ef0;}
 .prog-card{background:#0d1321;border-radius:14px;border:1px solid #1a2333;padding:24px;margin-bottom:14px;transition:border-color .15s;}
 .prog-card:hover{border-color:#2a3f5a;}
@@ -48,7 +57,7 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
 .prog-icon{width:50px;height:50px;border-radius:12px;background:#112240;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
 .prog-name{font-size:17px;font-weight:600;color:#e8edf4;margin-bottom:5px;}
 .prog-meta{font-size:13px;color:#4a607a;display:flex;gap:12px;flex-wrap:wrap;}
-.accepting{font-size:11px;font-weight:600;padding:5px 12px;border-radius:6px;background:#0a1f14;color:#3dd68c;border:1px solid #1a4030;white-space:nowrap;flex-shrink:0;}
+.accepting{font-size:11px;font-weight:600;padding:5px 12px;border-radius:20px;background:#0a1f14;color:#3dd68c;border:1px solid #1a4030;white-space:nowrap;flex-shrink:0;}
 .prog-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
 .ptag{font-size:12px;font-weight:500;padding:4px 12px;border-radius:6px;}
 .pt-blue{background:#0d1f3a;color:#4d8ef0;border:1px solid #1a3a6a;}
@@ -58,7 +67,9 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
 .express-btn{width:100%;padding:13px;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;background:#4d8ef0;color:#fff;border:none;font-family:'Inter',sans-serif;transition:background .15s;}
 .express-btn:hover{background:#3a7de0;}
 .profile-wrap{background:#0d1321;border-radius:14px;border:1px solid #1a2333;overflow:hidden;}
-.profile-cover{height:120px;background:#112240;}
+.profile-cover{height:120px;background:#112240;position:relative;}
+.edit-profile-btn{position:absolute;top:12px;right:14px;padding:6px 14px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;background:rgba(13,31,58,0.85);border:1px solid #1a3a6a;color:#4d8ef0;font-family:'Inter',sans-serif;transition:all .15s;}
+.edit-profile-btn:hover{background:#0d1f3a;}
 .profile-body{padding:0 28px 32px;}
 .profile-av{width:72px;height:72px;border-radius:50%;background:#0d1f3a;color:#4d8ef0;font-size:22px;font-weight:700;display:flex;align-items:center;justify-content:center;border:3px solid #0d1321;margin-top:-36px;margin-bottom:16px;}
 .profile-name{font-size:22px;font-weight:700;color:#e8edf4;margin-bottom:4px;}
@@ -72,11 +83,18 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
 .pstat-l{font-size:12px;color:#4a607a;margin-top:3px;}
 .psec{margin-bottom:22px;}
 .psec-title{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1.2px;color:#2a3f5a;margin-bottom:10px;}
-.trade-pills{display:flex;gap:8px;flex-wrap:wrap;}
-.trade-pill{font-size:13px;font-weight:500;padding:6px 16px;border-radius:20px;background:#112240;color:#4d8ef0;border:1px solid #1a3a6a;}
+.pills-editable{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+.pill-item{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:500;padding:5px 12px;border-radius:20px;}
+.pill-item.trade{background:#112240;color:#4d8ef0;border:1px solid #1a3a6a;}
+.pill-item.cert{background:#0d1f3a;color:#4d8ef0;border:1px solid #1a3a6a;}
+.pill-del{cursor:pointer;font-size:14px;color:#4a607a;line-height:1;transition:color .15s;}
+.pill-del:hover{color:#f07070;}
+.add-row{display:flex;gap:8px;align-items:center;margin-top:10px;}
+.add-input{padding:7px 12px;border-radius:8px;border:1px solid #1a2333;background:#060a10;color:#e8edf4;font-family:'Inter',sans-serif;font-size:13px;outline:none;width:180px;}
+.add-input:focus{border-color:#4d8ef0;}
+.add-btn{padding:7px 14px;border-radius:8px;background:#4d8ef0;color:#fff;border:none;font-family:'Inter',sans-serif;font-size:13px;font-weight:500;cursor:pointer;}
+.add-btn:hover{background:#3a7de0;}
 .profile-bio{font-size:15px;color:#8099b4;line-height:1.7;}
-.cert-pills{display:flex;gap:8px;flex-wrap:wrap;}
-.cert-pill{font-size:13px;font-weight:500;padding:5px 14px;border-radius:6px;background:#0d1f3a;color:#4d8ef0;border:1px solid #1a3a6a;}
 .photo-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
 .photo-tile{border-radius:10px;height:100px;display:flex;align-items:flex-end;padding:10px;font-size:12px;color:#3a5070;border:1px solid #1a2333;}
 .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px;}
@@ -117,8 +135,18 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
 .cand-btns{display:flex;flex-direction:column;gap:8px;flex-shrink:0;}
 .btn-msg{padding:9px 18px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;background:#4d8ef0;color:#fff;border:none;font-family:'Inter',sans-serif;white-space:nowrap;}
 .btn-inv{padding:9px 18px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;background:transparent;color:#8099b4;border:1px solid #1a2333;font-family:'Inter',sans-serif;white-space:nowrap;}
-
-/* SETTINGS */
+.job-card{background:#0d1321;border-radius:14px;border:1px solid #1a2333;padding:22px 24px;margin-bottom:12px;}
+.job-card:hover{border-color:#2a3f5a;}
+.job-title{font-size:16px;font-weight:600;color:#e8edf4;margin-bottom:4px;}
+.job-meta{font-size:13px;color:#4a607a;margin-bottom:10px;display:flex;gap:12px;flex-wrap:wrap;}
+.job-desc{font-size:14px;color:#8099b4;line-height:1.6;margin-bottom:12px;}
+.job-actions{display:flex;gap:8px;}
+.job-edit{padding:7px 16px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;background:transparent;border:1px solid #1a2333;color:#8099b4;font-family:'Inter',sans-serif;}
+.job-edit:hover{border-color:#4d8ef0;color:#4d8ef0;}
+.job-delete{padding:7px 16px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;background:transparent;border:1px solid #2a1010;color:#f07070;font-family:'Inter',sans-serif;}
+.job-delete:hover{background:#1a0808;}
+.post-job-btn{width:100%;padding:13px;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;background:#4d8ef0;color:#fff;border:none;font-family:'Inter',sans-serif;transition:background .15s;margin-bottom:20px;}
+.post-job-btn:hover{background:#3a7de0;}
 .settings-section{margin-bottom:28px;}
 .settings-section-title{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#3a5070;margin-bottom:14px;}
 .settings-row{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;background:#0d1321;border-radius:10px;border:1px solid #1a2333;margin-bottom:8px;}
@@ -133,9 +161,6 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
 .settings-btn:hover{border-color:#4d8ef0;color:#4d8ef0;}
 .settings-btn.danger{border-color:#2a1010;color:#f07070;}
 .settings-btn.danger:hover{background:#1a0808;border-color:#f07070;}
-.settings-input{padding:8px 12px;border-radius:8px;border:1px solid #1a2333;font-family:'Inter',sans-serif;font-size:14px;background:#060a10;color:#e8edf4;outline:none;width:200px;}
-.settings-input:focus{border-color:#4d8ef0;}
-
 .modal-overlay{display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,0.8);align-items:flex-end;justify-content:center;}
 .modal-overlay.open{display:flex;}
 .modal-box{background:#0d1321;border-radius:20px 20px 0 0;padding:28px 32px 40px;width:100%;max-width:580px;border-top:1px solid #1a2333;}
@@ -179,6 +204,10 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
       </div>
     </div>
   </div>
+  <div class="landing-auth">
+    <button class="btn-login" onclick="showAuthModal('login')">Log in</button>
+    <button class="btn-signup" onclick="showAuthModal('signup')">Sign up free</button>
+  </div>
   <div class="landing-foot">Detroit · Grand Rapids · 2026</div>
 </div>
 
@@ -187,7 +216,6 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
   <div class="topnav">
     <div class="nav-logo" onclick="goLanding()">Trades<em>Connect</em></div>
     <div class="nav-tabs">
-      <button class="nav-tab" onclick="prospectTab('about',this)">About</button>
       <button class="nav-tab on" onclick="prospectTab('discover',this)">Discover</button>
       <button class="nav-tab" onclick="prospectTab('profile',this)">My profile</button>
       <button class="nav-tab" onclick="prospectTab('settings',this)">Settings</button>
@@ -198,68 +226,6 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
     </div>
   </div>
   <div class="page-content">
-    <div id="pt-about" style="display:none;max-width:680px;margin:0 auto;">
-
-      <div style="text-align:center;padding:40px 0 32px;">
-        <div style="font-size:36px;font-weight:700;letter-spacing:-1px;color:#fff;margin-bottom:10px;">Trades<em style="color:#4d8ef0;font-style:normal;">Connect</em></div>
-        <div style="font-size:17px;color:#6a8098;line-height:1.7;max-width:460px;margin:0 auto;">The fastest way for young people to connect with skilled trades programs in Michigan — no resume, no forms, one tap.</div>
-      </div>
-
-      <div style="background:#0d1321;border-radius:14px;border:1px solid #1a2333;padding:28px 32px;margin-bottom:14px;">
-        <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1.2px;color:#3a5070;margin-bottom:16px;">Who we are</div>
-        <div style="font-size:15px;color:#a0b8d0;line-height:1.75;">TradesConnect is a Michigan-built platform connecting high school seniors, recent grads, and career changers to local trade programs and apprenticeships. We exist because the application process for trades is broken — most young people never apply because the hoops are too high. We fix that.</div>
-      </div>
-
-      <div style="background:#0d1321;border-radius:14px;border:1px solid #1a2333;padding:28px 32px;margin-bottom:14px;">
-        <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1.2px;color:#3a5070;margin-bottom:20px;">How it works</div>
-        <div style="display:flex;flex-direction:column;gap:18px;">
-          <div style="display:flex;align-items:flex-start;gap:16px;">
-            <div style="width:32px;height:32px;border-radius:8px;background:#112240;color:#4d8ef0;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">1</div>
-            <div><div style="font-size:15px;font-weight:600;color:#e8edf4;margin-bottom:4px;">Create your profile</div><div style="font-size:14px;color:#6a8098;line-height:1.6;">Name, location, trades you're interested in. Takes 60 seconds. No resume needed.</div></div>
-          </div>
-          <div style="display:flex;align-items:flex-start;gap:16px;">
-            <div style="width:32px;height:32px;border-radius:8px;background:#112240;color:#4d8ef0;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">2</div>
-            <div><div style="font-size:15px;font-weight:600;color:#e8edf4;margin-bottom:4px;">Browse local programs</div><div style="font-size:14px;color:#6a8098;line-height:1.6;">See verified apprenticeships, training centers, and programs across Detroit and Grand Rapids.</div></div>
-          </div>
-          <div style="display:flex;align-items:flex-start;gap:16px;">
-            <div style="width:32px;height:32px;border-radius:8px;background:#112240;color:#4d8ef0;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">3</div>
-            <div><div style="font-size:15px;font-weight:600;color:#e8edf4;margin-bottom:4px;">Express interest in one tap</div><div style="font-size:14px;color:#6a8098;line-height:1.6;">Hit the button. Your profile goes straight to the program. They reach out — no formal application yet.</div></div>
-          </div>
-          <div style="display:flex;align-items:flex-start;gap:16px;">
-            <div style="width:32px;height:32px;border-radius:8px;background:#112240;color:#4d8ef0;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">4</div>
-            <div><div style="font-size:15px;font-weight:600;color:#e8edf4;margin-bottom:4px;">Get hired</div><div style="font-size:14px;color:#6a8098;line-height:1.6;">Connect directly with the program. Start earning while you learn.</div></div>
-          </div>
-        </div>
-      </div>
-
-      <div style="background:#0d1321;border-radius:14px;border:1px solid #1a2333;padding:28px 32px;margin-bottom:14px;">
-        <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1.2px;color:#3a5070;margin-bottom:16px;">Michigan by the numbers</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-          <div style="background:#0c1220;border-radius:10px;padding:16px;text-align:center;">
-            <div style="font-size:26px;font-weight:700;color:#4d8ef0;margin-bottom:4px;">520k+</div>
-            <div style="font-size:12px;color:#4a607a;">trades jobs projected by 2030</div>
-          </div>
-          <div style="background:#0c1220;border-radius:10px;padding:16px;text-align:center;">
-            <div style="font-size:26px;font-weight:700;color:#3dd68c;margin-bottom:4px;">38%</div>
-            <div style="font-size:12px;color:#4a607a;">of HS grads skip college</div>
-          </div>
-          <div style="background:#0c1220;border-radius:10px;padding:16px;text-align:center;">
-            <div style="font-size:26px;font-weight:700;color:#a78bfa;margin-bottom:4px;">20,600</div>
-            <div style="font-size:12px;color:#4a607a;">active MI apprentices</div>
-          </div>
-          <div style="background:#0c1220;border-radius:10px;padding:16px;text-align:center;">
-            <div style="font-size:26px;font-weight:700;color:#fbbf24;margin-bottom:4px;">$61k</div>
-            <div style="font-size:12px;color:#4a607a;">avg trades wage in Michigan</div>
-          </div>
-        </div>
-      </div>
-
-      <div style="text-align:center;padding:24px 0 8px;">
-        <button onclick="prospectTab('discover', document.querySelector('#screen-prospect .nav-tab:nth-child(2)'))" style="padding:13px 32px;border-radius:10px;background:#4d8ef0;color:#fff;border:none;font-family:'Inter',sans-serif;font-size:15px;font-weight:600;cursor:pointer;">Browse programs</button>
-      </div>
-
-    </div>
-
     <div id="pt-discover">
       <div class="filter-row">
         <button class="ftag on" onclick="filterProgs('all',this)">All trades</button>
@@ -274,7 +240,7 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
 
     <div id="pt-profile" style="display:none;">
       <div class="profile-wrap">
-        <div class="profile-cover"></div>
+        <div class="profile-cover"><button class="edit-profile-btn" onclick="showAuthModal('edit')">Edit profile</button></div>
         <div class="profile-body">
           <div class="profile-av">AR</div>
           <div class="profile-name">Alex Rodriguez</div>
@@ -287,10 +253,13 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
           </div>
           <div class="psec">
             <div class="psec-title">Trades &amp; skills</div>
-            <div class="trade-pills" id="skills-list"><span class="trade-pill">⚡ Electrician</span><span class="trade-pill">🔥 Welder</span></div>
-            <div style="margin-top:10px;display:flex;gap:8px;align-items:center;">
-              <input id="skill-input" placeholder="Add a skill..." style="padding:7px 12px;border-radius:8px;border:1px solid #1a2333;background:#060a10;color:#e8edf4;font-family:'Inter',sans-serif;font-size:13px;outline:none;width:180px;">
-              <button onclick="addSkill()" style="padding:7px 14px;border-radius:8px;background:#4d8ef0;color:#fff;border:none;font-family:'Inter',sans-serif;font-size:13px;font-weight:500;cursor:pointer;">+ Add</button>
+            <div class="pills-editable" id="skills-list">
+              <span class="pill-item trade">⚡ Electrician<span class="pill-del" onclick="delPill(this)">×</span></span>
+              <span class="pill-item trade">🔥 Welder<span class="pill-del" onclick="delPill(this)">×</span></span>
+            </div>
+            <div class="add-row">
+              <input id="skill-input" class="add-input" placeholder="Add a skill...">
+              <button class="add-btn" onclick="addSkill()">+ Add</button>
             </div>
           </div>
           <div class="psec">
@@ -299,7 +268,15 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
           </div>
           <div class="psec">
             <div class="psec-title">Certifications</div>
-            <div class="cert-pills"><span class="cert-pill">OSHA-10</span><span class="cert-pill">Construction Safety</span><span class="cert-pill">Electrical Fundamentals</span></div>
+            <div class="pills-editable" id="certs-list">
+              <span class="pill-item cert">OSHA-10<span class="pill-del" onclick="delPill(this)">×</span></span>
+              <span class="pill-item cert">Construction Safety<span class="pill-del" onclick="delPill(this)">×</span></span>
+              <span class="pill-item cert">Electrical Fundamentals<span class="pill-del" onclick="delPill(this)">×</span></span>
+            </div>
+            <div class="add-row">
+              <input id="cert-input" class="add-input" placeholder="Add a certification...">
+              <button class="add-btn" onclick="addCert()">+ Add</button>
+            </div>
           </div>
           <div class="psec">
             <div class="psec-title">Project portfolio</div>
@@ -312,9 +289,7 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
               <div class="photo-tile" style="background:#0d1520;">Blueprint reading</div>
             </div>
             <div style="margin-top:10px;">
-              <label for="photo-upload" style="display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:8px;border:1px solid #1a2333;color:#8099b4;font-family:'Inter',sans-serif;font-size:13px;font-weight:500;cursor:pointer;background:transparent;">
-                + Upload photo
-              </label>
+              <label for="photo-upload" style="display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:8px;border:1px solid #1a2333;color:#8099b4;font-family:'Inter',sans-serif;font-size:13px;font-weight:500;cursor:pointer;">+ Upload photo</label>
               <input type="file" id="photo-upload" accept="image/*" style="display:none;" onchange="addPhoto(this)">
             </div>
           </div>
@@ -401,9 +376,12 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
     <div class="nav-tabs">
       <button class="nav-tab on" onclick="orgTab('dashboard',this)">Dashboard</button>
       <button class="nav-tab" onclick="orgTab('candidates',this)">Browse candidates</button>
+      <button class="nav-tab" onclick="orgTab('myjobs',this)">My jobs</button>
       <button class="nav-tab" onclick="orgTab('settings',this)">Settings</button>
     </div>
     <div class="nav-right">
+      <button class="nav-login" onclick="showAuthModal('login')">Log in</button>
+      <button class="nav-signup" onclick="showAuthModal('signup')">Sign up</button>
       <span class="role-badge role-badge-org">Organization</span>
       <button class="switch-btn" onclick="goLanding()">switch role</button>
     </div>
@@ -530,6 +508,30 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
           <button class="settings-btn">Sign out</button>
         </div>
       </div>
+
+    <div id="ot-myjobs" style="display:none;">
+      <button class="post-job-btn" onclick="showJobModal()">+ Post a new job</button>
+      <div id="jobs-list">
+        <div class="job-card">
+          <div class="job-title">Electrical Apprentice — Detroit</div>
+          <div class="job-meta"><span>📍 Detroit, MI</span><span>$18–22/hr</span><span>4-year apprenticeship</span><span class="accepting">Accepting now</span></div>
+          <div class="job-desc">Looking for motivated entry-level candidates to join our IBEW apprenticeship program. No experience required — just reliability and a willingness to learn.</div>
+          <div class="job-actions">
+            <button class="job-edit">Edit</button>
+            <button class="job-delete" onclick="this.closest('.job-card').remove()">Delete</button>
+          </div>
+        </div>
+        <div class="job-card">
+          <div class="job-title">Helper / Laborer — Grand Rapids</div>
+          <div class="job-meta"><span>📍 Grand Rapids, MI</span><span>$16–19/hr</span><span>Part-time available</span><span class="accepting">Accepting now</span></div>
+          <div class="job-desc">General labor and helper positions available for summer and fall. Ideal for HS graduates or career changers.</div>
+          <div class="job-actions">
+            <button class="job-edit">Edit</button>
+            <button class="job-delete" onclick="this.closest('.job-card').remove()">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
     </div>
   </div>
 </div>
@@ -610,7 +612,6 @@ function filterProgs(trade,el){
 function prospectTab(tab,el){
   document.querySelectorAll("#screen-prospect .nav-tab").forEach(b=>b.classList.remove("on"));
   el.classList.add("on");
-  document.getElementById("pt-about").style.display=tab==="about"?"block":"none";
   document.getElementById("pt-discover").style.display=tab==="discover"?"block":"none";
   document.getElementById("pt-profile").style.display=tab==="profile"?"block":"none";
   document.getElementById("pt-settings").style.display=tab==="settings"?"block":"none";
@@ -640,7 +641,6 @@ function goLanding(){
   document.getElementById("screen-prospect").style.display="none";
   document.getElementById("screen-org").style.display="none";
   // reset prospect tabs
-  document.getElementById("pt-about").style.display="none";
   document.getElementById("pt-discover").style.display="block";
   document.getElementById("pt-profile").style.display="none";
   document.getElementById("pt-settings").style.display="none";
@@ -659,35 +659,68 @@ function openModal(id){
   document.getElementById("modal-success").style.display="none";
   document.getElementById("modal").classList.add("open");
 }
-
 function closeModal(){document.getElementById("modal").classList.remove("open");}
-function submitInterest(){
-  document.getElementById("modal-form").style.display="none";
-  document.getElementById("modal-success").style.display="block";
-}
-function addSkill(){
-  const input=document.getElementById("skill-input");
-  const val=input.value.trim();
-  if(!val)return;
-  const pill=document.createElement("span");
-  pill.className="trade-pill";
-  pill.textContent=val;
-  document.getElementById("skills-list").appendChild(pill);
-  input.value="";
-}
-document.getElementById("skill-input").addEventListener("keydown",function(e){if(e.key==="Enter")addSkill();});
-function addPhoto(input){
-  if(!input.files||!input.files[0])return;
-  const reader=new FileReader();
-  reader.onload=function(e){
-    const tile=document.createElement("div");
-    tile.className="photo-tile";
-    tile.style.cssText="background-image:url("+e.target.result+");background-size:cover;background-position:center;";
-    document.getElementById("photo-grid").appendChild(tile);
-  };
-  reader.readAsDataURL(input.files[0]);
-}
+function submitInterest(){document.getElementById("modal-form").style.display="none";document.getElementById("modal-success").style.display="block";}
+function delPill(el){el.parentElement.remove();}
+function addSkill(){var input=document.getElementById("skill-input");var val=input.value.trim();if(!val)return;var span=document.createElement("span");span.className="pill-item trade";span.innerHTML=val+'<span class="pill-del" onclick="delPill(this)">&times;</span>';document.getElementById("skills-list").appendChild(span);input.value="";}
+function addCert(){var input=document.getElementById("cert-input");var val=input.value.trim();if(!val)return;var span=document.createElement("span");span.className="pill-item cert";span.innerHTML=val+'<span class="pill-del" onclick="delPill(this)">&times;</span>';document.getElementById("certs-list").appendChild(span);input.value="";}
+document.addEventListener("keydown",function(e){if(e.key==="Enter"){if(document.activeElement.id==="skill-input")addSkill();if(document.activeElement.id==="cert-input")addCert();}});
+function addPhoto(input){if(!input.files||!input.files[0])return;var reader=new FileReader();reader.onload=function(e){var tile=document.createElement("div");tile.className="photo-tile";tile.style.cssText="background-image:url("+e.target.result+");background-size:cover;background-position:center;";document.getElementById("photo-grid").appendChild(tile);};reader.readAsDataURL(input.files[0]);}
+function showAuthModal(type){var title=document.getElementById("auth-title");var sub=document.getElementById("auth-sub");var nameRow=document.getElementById("auth-name-row");var btn=document.getElementById("auth-submit-btn");var successTitle=document.getElementById("auth-success-title");document.getElementById("auth-form").style.display="block";document.getElementById("auth-success").style.display="none";if(type==="signup"){title.textContent="Sign up";sub.textContent="Create your TradesConnect account";nameRow.style.display="block";btn.textContent="Create account";successTitle.textContent="Account created!";}else if(type==="edit"){title.textContent="Edit profile";sub.textContent="Update your information";nameRow.style.display="block";btn.textContent="Save changes";successTitle.textContent="Profile updated!";}else{title.textContent="Log in";sub.textContent="Welcome back to TradesConnect";nameRow.style.display="none";btn.textContent="Log in";successTitle.textContent="Welcome back!";}document.getElementById("auth-modal").classList.add("open");}
+function closeAuthModal(){document.getElementById("auth-modal").classList.remove("open");}
+function submitAuth(){document.getElementById("auth-form").style.display="none";document.getElementById("auth-success").style.display="block";}
+function showJobModal(){document.getElementById("job-form").style.display="block";document.getElementById("job-success").style.display="none";document.getElementById("job-modal").classList.add("open");}
+function closeJobModal(){document.getElementById("job-modal").classList.remove("open");}
+function submitJob(){var t=document.getElementById("j-title").value.trim()||"New job";var c=document.getElementById("j-city").value.trim()||"Michigan";var p=document.getElementById("j-pay").value.trim()||"TBD";var ty=document.getElementById("j-type").value.trim()||"";var d=document.getElementById("j-desc").value.trim()||"";var card=document.createElement("div");card.className="job-card";card.innerHTML="<div class='job-title'>"+t+"</div><div class='job-meta'><span>"+c+"</span><span>"+p+"</span><span>"+ty+"</span><span class='accepting'>Accepting now</span></div><div class='job-desc'>"+d+"</div><div class='job-actions'><button class='job-edit'>Edit</button><button class='job-delete' onclick='this.closest(&quot;.job-card&quot;).remove()'>Delete</button></div>";document.getElementById("jobs-list").prepend(card);document.getElementById("job-form").style.display="none";document.getElementById("job-success").style.display="block";}
 document.getElementById("modal").addEventListener("click",function(e){if(e.target===this)closeModal();});
+document.getElementById("auth-modal").addEventListener("click",function(e){if(e.target===this)closeAuthModal();});
+document.getElementById("job-modal").addEventListener("click",function(e){if(e.target===this)closeJobModal();});
 </script>
+
+<div class="modal-overlay" id="auth-modal">
+  <div class="modal-box">
+    <div class="modal-handle"></div>
+    <div id="auth-form">
+      <div class="modal-title" id="auth-title">Log in</div>
+      <div class="modal-prog" id="auth-sub">Welcome back to TradesConnect</div>
+      <div class="input-row"><label class="input-label">Email</label><input class="text-input" placeholder="you@email.com" id="auth-email"></div>
+      <div class="input-row" id="auth-name-row" style="display:none;"><label class="input-label">Full name</label><input class="text-input" placeholder="Alex Rodriguez" id="auth-name"></div>
+      <div class="input-row"><label class="input-label">Password</label><input class="text-input" type="password" placeholder="password" id="auth-pass"></div>
+      <button class="submit-btn" id="auth-submit-btn" onclick="submitAuth()">Log in</button>
+      <span class="cancel-lnk" onclick="closeAuthModal()">Cancel</span>
+    </div>
+    <div id="auth-success" style="display:none;" class="success-view">
+      <div class="success-check">&#10003;</div>
+      <div class="success-title" id="auth-success-title">Welcome back!</div>
+      <div class="success-sub">You are now logged in to TradesConnect.</div>
+      <button class="submit-btn" onclick="closeAuthModal()">Continue</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="job-modal">
+  <div class="modal-box">
+    <div class="modal-handle"></div>
+    <div id="job-form">
+      <div class="modal-title">Post a job</div>
+      <div class="modal-prog">Your listing will be visible to all prospects</div>
+      <div class="input-row"><label class="input-label">Job title</label><input class="text-input" placeholder="Electrical Apprentice" id="j-title"></div>
+      <div class="input-grid">
+        <div><label class="input-label">City</label><input class="text-input" placeholder="Detroit, MI" id="j-city"></div>
+        <div><label class="input-label">Pay rate</label><input class="text-input" placeholder="$18-22/hr" id="j-pay"></div>
+      </div>
+      <div class="input-row"><label class="input-label">Duration / type</label><input class="text-input" placeholder="4-year apprenticeship" id="j-type"></div>
+      <div class="input-row"><label class="input-label">Description</label><input class="text-input" placeholder="Tell candidates what the role involves..." id="j-desc"></div>
+      <button class="submit-btn" onclick="submitJob()">Post job</button>
+      <span class="cancel-lnk" onclick="closeJobModal()">Cancel</span>
+    </div>
+    <div id="job-success" style="display:none;" class="success-view">
+      <div class="success-check">&#10003;</div>
+      <div class="success-title">Job posted!</div>
+      <div class="success-sub">Your listing is now live and visible to prospects in Michigan.</div>
+      <button class="submit-btn" onclick="closeJobModal()">Back to my jobs</button>
+    </div>
+  </div>
+</div>
 </body>
 </html>
