@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>TradesConnect</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+:root{
+  --bg:#080c14;--card:#0d1321;--border:#1a2333;
+  --blue:#4d8ef0;--blue2:#3a7de0;--bluedim:#112240;--blueborder:#1a3a6a;
+  --green:#3dd68c;--greendim:#0a1f14;--greenborder:#1a4030;
+  --purple:#a78bfa;--purpledim:#150d2e;
+  --amber:#fbbf24;--red:#f07070;
+  --text:#e8edf4;--text2:#8099b4;--text3:#4a607a;--text4:#2a3f5a;
+}
+
+/* APP SHELL */
+html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--text);}
+#app{position:fixed;top:0;left:0;right:0;bottom:0;display:flex;flex-direction:column;}
+
+/* SCREENS */
+.screen{display:none;flex-direction:column;flex:1;overflow:hidden;}
+.screen.on{display:flex;}
+
+/* TOP NAV */
+.topnav{background:#0a0e18;border-bottom:1px solid var(--border);padding:0 16px;display:flex;align-items:center;justify-content:space-between;height:52px;flex-shrink:0;z-index:10;}
+.navlogo{font-size:17px;font-weight:800;color:var(--text);}
+.navlogo em{color:var(--blue);font-style:normal;}
+.navr{display:flex;align-items:center;gap:8px;}
+.nbadge{font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;background:var(--bluedim);color:var(--blue);border:1px solid var(--blueborder);}
+.nbadge-org{background:var(--purpledim);color:var(--purple);border-color:#2a1f50;}
+.nswitch{font-size:11px;color:var(--text3);background:none;border:none;font-family:'DM Sans',sans-serif;text-decoration:underline;cursor:pointer;padding:4px;}
+.nlogin{padding:5px 12px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;background:transparent;border:1px solid var(--blueborder);color:var(--blue);font-family:'DM Sans',sans-serif;}
+
+/* SCROLL AREA */
+.scroll{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding:16px 16px 80px;}
+
+/* BOTTOM NAV */
+.botnav{background:#0a0e18;border-top:1px solid var(--border);display:flex;height:56px;flex-shrink:0;}
+.bnt{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:pointer;background:none;border:none;color:var(--text3);font-family:'DM Sans',sans-serif;}
+.bnt.on{color:var(--blue);}
+.bni{font-size:18px;line-height:1;}
+.bnl{font-size:9px;font-weight:600;}
+
+/* TAB PANES */
+.pane{display:none;}
+.pane.on{display:block;}
+
+/* LANDING */
+#land{display:none;flex-direction:column;flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;align-items:center;justify-content:center;padding:40px 24px 40px;}
+#land.on{display:flex;}
+.leyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--text4);margin-bottom:14px;text-align:center;}
+.llogo{font-size:40px;font-weight:800;letter-spacing:-1.5px;color:var(--text);margin-bottom:10px;text-align:center;}
+.llogo em{color:var(--blue);font-style:normal;}
+.lsub{font-size:14px;color:var(--text3);text-align:center;line-height:1.7;margin-bottom:32px;max-width:280px;}
+.rcards{display:flex;flex-direction:column;gap:10px;width:100%;max-width:320px;}
+.rcard{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px 16px;cursor:pointer;display:flex;align-items:center;gap:14px;}
+.rcard:active{border-color:var(--blue);}
+.rcico{font-size:26px;width:48px;height:48px;background:var(--bluedim);border-radius:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.rctitle{font-size:15px;font-weight:700;color:var(--text);margin-bottom:2px;}
+.rcdesc{font-size:12px;color:var(--text3);}
+.lauth{display:flex;gap:10px;margin-top:20px;width:100%;max-width:320px;}
+.btnlogin{flex:1;padding:12px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;background:transparent;border:1px solid var(--blueborder);color:var(--blue);font-family:'DM Sans',sans-serif;}
+.btnsignup{flex:1;padding:12px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;background:var(--blue);border:none;color:#fff;font-family:'DM Sans',sans-serif;}
+.lfoot{margin-top:20px;font-size:11px;color:var(--text4);text-align:center;}
+
+/* FILTERS */
+.filters{display:flex;gap:7px;overflow-x:auto;padding-bottom:2px;margin-bottom:16px;scrollbar-width:none;}
+.filters::-webkit-scrollbar{display:none;}
+.ftag{padding:6px 14px;border-radius:50px;font-size:12px;font-weight:600;border:1px solid var(--border);background:transparent;cursor:pointer;color:var(--text3);font-family:'DM Sans',sans-serif;white-space:nowrap;flex-shrink:0;}
+.ftag.on{background:var(--bluedim);border-color:var(--blue);color:var(--blue);}
+
+/* PROG CARDS */
+.pcard{background:var(--card);border-radius:12px;border:1px solid var(--border);padding:14px;margin-bottom:10px;}
+.pctop{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px;gap:10px;}
+.pcleft{display:flex;gap:10px;flex:1;}
+.pcico{width:40px;height:40px;border-radius:10px;background:var(--bluedim);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.pcname{font-size:14px;font-weight:700;color:var(--text);margin-bottom:3px;line-height:1.3;}
+.pcmeta{font-size:11px;color:var(--text3);display:flex;flex-wrap:wrap;gap:5px;}
+.acc{font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;background:var(--greendim);color:var(--green);border:1px solid var(--greenborder);white-space:nowrap;flex-shrink:0;}
+.pctags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px;}
+.ptag{font-size:11px;font-weight:600;padding:3px 9px;border-radius:5px;}
+.pt-blue{background:var(--bluedim);color:var(--blue);border:1px solid var(--blueborder);}
+.pt-green{background:var(--greendim);color:var(--green);border:1px solid var(--greenborder);}
+.pt-purple{background:var(--purpledim);color:var(--purple);border:1px solid #2a1f50;}
+.pcdesc{font-size:12px;color:var(--text2);line-height:1.6;margin-bottom:12px;}
+.expbtn{width:100%;padding:11px;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;background:var(--blue);color:#fff;border:none;font-family:'DM Sans',sans-serif;}
+.expbtn:active{background:var(--blue2);}
+
+/* PROFILE */
+.profwrap{background:var(--card);border-radius:12px;border:1px solid var(--border);overflow:hidden;margin-bottom:14px;}
+.profcov{height:90px;background:linear-gradient(135deg,var(--bluedim),var(--card));position:relative;}
+.editbtn{position:absolute;top:8px;right:8px;padding:5px 10px;border-radius:7px;font-size:11px;font-weight:600;cursor:pointer;background:rgba(13,31,58,.9);border:1px solid var(--blueborder);color:var(--blue);font-family:'DM Sans',sans-serif;}
+.profbody{padding:0 14px 20px;}
+.profav{width:58px;height:58px;border-radius:50%;background:var(--bluedim);color:var(--blue);font-size:18px;font-weight:800;display:flex;align-items:center;justify-content:center;border:3px solid var(--card);margin-top:-29px;margin-bottom:10px;}
+.profname{font-size:18px;font-weight:800;color:var(--text);margin-bottom:2px;}
+.profsub{font-size:12px;color:var(--text3);margin-bottom:8px;}
+.availpill{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:4px 11px;border-radius:20px;background:var(--greendim);color:var(--green);border:1px solid var(--greenborder);margin-bottom:16px;}
+.availdot{width:5px;height:5px;border-radius:50%;background:var(--green);}
+.stats3{display:grid;grid-template-columns:1fr 1fr 1fr;border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:16px;}
+.ps{padding:12px 6px;background:#0c1220;text-align:center;}
+.ps:not(:last-child){border-right:1px solid var(--border);}
+.psv{font-size:20px;font-weight:800;color:var(--text);display:block;}
+.psl{font-size:10px;color:var(--text3);margin-top:2px;}
+.psec{margin-bottom:16px;}
+.psectl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text4);margin-bottom:7px;}
+.pedit{display:flex;gap:6px;flex-wrap:wrap;align-items:center;}
+.pill{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;background:var(--bluedim);color:var(--blue);border:1px solid var(--blueborder);}
+.pdel{cursor:pointer;font-size:12px;color:var(--text3);}
+.addrow{display:flex;gap:7px;margin-top:8px;}
+.addinput{flex:1;padding:7px 10px;border-radius:7px;border:1px solid var(--border);background:#060a10;color:var(--text);font-family:'DM Sans',sans-serif;font-size:12px;outline:none;}
+.addbtn{padding:7px 12px;border-radius:7px;background:var(--blue);color:#fff;border:none;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;}
+.pbio{font-size:13px;color:var(--text2);line-height:1.7;}
+.pgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;}
+.ptile{border-radius:8px;height:72px;display:flex;align-items:flex-end;padding:6px;font-size:10px;color:var(--text4);border:1px solid var(--border);}
+.uplabel{display:inline-flex;align-items:center;gap:5px;padding:7px 12px;border-radius:7px;border:1px solid var(--border);color:var(--text3);font-size:12px;font-weight:500;cursor:pointer;margin-top:8px;}
+
+/* SBOX */
+.sbox{background:var(--card);border-radius:11px;border:1px solid var(--border);padding:14px;margin-bottom:12px;}
+.stitle{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text4);margin-bottom:12px;}
+
+/* METRICS */
+.metrics{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
+.metric{background:var(--card);border-radius:10px;border:1px solid var(--border);padding:14px;}
+.mval{font-size:28px;font-weight:800;margin-bottom:2px;}
+.mlbl{font-size:11px;color:var(--text3);}
+.mblue{color:var(--blue);}.mgreen{color:var(--green);}.mpurple{color:var(--purple);}.mamber{color:var(--amber);}
+
+/* PIPELINE */
+.prow{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.prow:last-child{margin-bottom:0;}
+.plbl{font-size:12px;color:var(--text2);width:90px;flex-shrink:0;}
+.ptrack{flex:1;background:#0c1220;border-radius:3px;height:6px;overflow:hidden;}
+.pfill{height:6px;border-radius:3px;}
+.pcnt{font-size:12px;font-weight:700;color:var(--text);width:20px;text-align:right;}
+
+/* LEADS */
+.lrow{display:flex;align-items:flex-start;gap:10px;padding:12px 0;border-bottom:1px solid var(--border);}
+.lrow:last-child{border-bottom:none;padding-bottom:0;}
+.lav{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;}
+.linfo{flex:1;}
+.lname{font-size:13px;font-weight:700;color:var(--text);margin-bottom:2px;}
+.ldet{font-size:11px;color:var(--text3);margin-bottom:2px;}
+.lq{font-size:11px;color:var(--text4);font-style:italic;}
+.lt{font-size:10px;color:var(--text4);margin-top:2px;}
+.invbtn{padding:6px 12px;border-radius:7px;font-size:11px;font-weight:700;cursor:pointer;background:var(--blue);color:#fff;border:none;font-family:'DM Sans',sans-serif;flex-shrink:0;}
+
+/* CANDIDATES */
+.ccard{background:var(--card);border-radius:11px;border:1px solid var(--border);padding:14px;margin-bottom:8px;}
+.ctop{display:flex;gap:10px;margin-bottom:8px;}
+.cav{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;flex-shrink:0;}
+.cname{font-size:14px;font-weight:700;color:var(--text);margin-bottom:2px;}
+.cmeta{font-size:11px;color:var(--text3);}
+.cbio{font-size:12px;color:var(--text2);line-height:1.6;margin-bottom:8px;}
+.ctags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px;}
+.ctag{font-size:11px;font-weight:600;padding:3px 9px;border-radius:5px;background:var(--bluedim);color:var(--blue);border:1px solid var(--blueborder);}
+.cbtns{display:flex;gap:7px;}
+.bmsg{flex:1;padding:8px;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;background:var(--blue);color:#fff;border:none;font-family:'DM Sans',sans-serif;}
+.binv{flex:1;padding:8px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;background:transparent;color:var(--text2);border:1px solid var(--border);font-family:'DM Sans',sans-serif;}
+
+/* JOBS */
+.jcard{background:var(--card);border-radius:11px;border:1px solid var(--border);padding:14px;margin-bottom:8px;}
+.jtitle{font-size:14px;font-weight:700;color:var(--text);margin-bottom:3px;}
+.jmeta{font-size:11px;color:var(--text3);display:flex;flex-wrap:wrap;gap:7px;margin-bottom:7px;}
+.jdesc{font-size:12px;color:var(--text2);line-height:1.6;margin-bottom:10px;}
+.jbtns{display:flex;gap:7px;}
+.jedit{flex:1;padding:7px;border-radius:7px;font-size:12px;cursor:pointer;background:transparent;border:1px solid var(--border);color:var(--text3);font-family:'DM Sans',sans-serif;}
+.jdel{flex:1;padding:7px;border-radius:7px;font-size:12px;cursor:pointer;background:transparent;border:1px solid #2a1010;color:var(--red);font-family:'DM Sans',sans-serif;}
+.postbtn{width:100%;padding:12px;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;background:var(--blue);color:#fff;border:none;font-family:'DM Sans',sans-serif;margin-bottom:14px;}
+
+/* SETTINGS */
+.ssec{margin-bottom:20px;}
+.sstitle{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text4);margin-bottom:8px;}
+.srow{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:var(--card);border-radius:9px;border:1px solid var(--border);margin-bottom:5px;}
+.slbl{font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px;}
+.sdesc{font-size:11px;color:var(--text3);}
+.tog{width:40px;height:22px;border-radius:11px;background:var(--border);border:none;cursor:pointer;position:relative;flex-shrink:0;}
+.tog.on{background:var(--blue);}
+.togk{width:16px;height:16px;border-radius:50%;background:#fff;position:absolute;top:3px;left:3px;transition:left .2s;}
+.tog.on .togk{left:21px;}
+.sbtn{padding:7px 14px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;background:transparent;border:1px solid var(--border);color:var(--text3);font-family:'DM Sans',sans-serif;}
+.sbtn.danger{border-color:#2a1010;color:var(--red);}
+
+/* ROADMAP */
+.rmphase{background:var(--card);border-radius:11px;border:1px solid var(--border);padding:14px;margin-bottom:10px;}
+.rmbadge{display:inline-flex;font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;margin-bottom:8px;text-transform:uppercase;letter-spacing:.4px;}
+.rmbadge.live{background:var(--greendim);color:var(--green);border:1px solid var(--greenborder);}
+.rmbadge.dev{background:var(--bluedim);color:var(--blue);border:1px solid var(--blueborder);}
+.rmbadge.soon{background:var(--purpledim);color:var(--purple);border:1px solid #2a1f50;}
+.rmtitle{font-size:14px;font-weight:700;color:var(--text);margin-bottom:10px;}
+.rmitem{display:flex;gap:8px;margin-bottom:7px;}
+.rmitem:last-child{margin-bottom:0;}
+.rmdot{font-size:12px;flex-shrink:0;}
+.rmtext{font-size:12px;color:var(--text2);line-height:1.6;}
+
+/* ABOUT */
+.ahero{text-align:center;padding:20px 0 16px;}
+.alogo{font-size:28px;font-weight:800;letter-spacing:-1px;color:var(--text);margin-bottom:6px;}
+.alogo em{color:var(--blue);font-style:normal;}
+.asub{font-size:13px;color:var(--text3);line-height:1.7;}
+.astats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0;}
+.astat{background:var(--card);border-radius:10px;border:1px solid var(--border);padding:12px;text-align:center;}
+.astatv{font-size:20px;font-weight:800;margin-bottom:2px;}
+.astatl{font-size:10px;color:var(--text3);}
+.howstep{display:flex;gap:10px;margin-bottom:12px;}
+.stepnum{width:26px;height:26px;border-radius:7px;background:var(--bluedim);color:var(--blue);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.steptitle{font-size:13px;font-weight:700;color:var(--text);margin-bottom:2px;}
+.stepdesc{font-size:12px;color:var(--text3);line-height:1.6;}
+
+/* ORGBAR */
+.orgbar{font-size:11px;color:var(--blue);padding:7px 16px;border-bottom:1px solid var(--border);background:var(--bg);font-weight:600;flex-shrink:0;}
+
+/* MODAL */
+.moverlay{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.85);align-items:flex-end;justify-content:center;}
+.moverlay.on{display:flex;}
+.mbox{background:var(--card);border-radius:18px 18px 0 0;padding:18px 18px 32px;width:100%;border-top:2px solid var(--blue);max-height:88vh;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+.mhandle{width:34px;height:3px;background:var(--border);border-radius:2px;margin:0 auto 16px;}
+.mtitle{font-size:17px;font-weight:800;color:var(--text);margin-bottom:3px;}
+.mprog{font-size:12px;color:var(--blue);margin-bottom:16px;font-weight:600;}
+.irow{margin-bottom:10px;}
+.igrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;}
+.ilbl{font-size:10px;font-weight:700;color:var(--text3);display:block;margin-bottom:4px;text-transform:uppercase;letter-spacing:.4px;}
+.tinput{width:100%;padding:11px 12px;border-radius:8px;border:1px solid var(--border);font-family:'DM Sans',sans-serif;font-size:13px;background:#060a10;color:var(--text);outline:none;}
+.tinput:focus{border-color:var(--blue);}
+.subbtn{width:100%;padding:13px;border-radius:9px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;background:var(--blue);color:#fff;border:none;}
+.subbtn:active{background:var(--blue2);}
+.canlnk{display:block;text-align:center;font-size:12px;color:var(--text3);margin-top:10px;cursor:pointer;padding:8px;}
+.succv{text-align:center;padding:14px 0;}
+.succk{font-size:44px;margin-bottom:10px;color:var(--green);}
+.succt{font-size:18px;font-weight:800;color:var(--text);margin-bottom:6px;}
+.succs{font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:20px;}
+
+.ptitle{font-size:20px;font-weight:800;color:var(--text);margin-bottom:4px;}
+.psub{font-size:12px;color:var(--text3);margin-bottom:16px;}
+</style>
+</head>
+<body>
+<div id="app">
+
+<!-- LANDING -->
+<div id="land" class="on">
+  <div class="leyebrow">West Michigan Pilot · Kalamazoo &amp; Grand Rapids</div>
+  <div class="llogo">Trades<em>Connect</em></div>
+  <div class="lsub">One tap. Built for Gen Z entering the skilled trades — discover local programs, show your interest, get hired.</div>
+  <div class="rcards">
+    <div class="rcard" onclick="goPros()">
+      <div class="rcico">🪖</div>
+      <div><div class="rctitle">I'm a prospect</div><div class="rcdesc">Find programs and trade jobs near you</div></div>
+    </div>
+    <div class="rcard" onclick="goOrg()">
+      <div class="rcico">🏗️</div>
+      <div><div class="rctitle">I'm an organization</div><div class="rcdesc">Browse candidates and manage your pipeline</div></div>
+    </div>
+  </div>
+  <div class="lauth">
+    <button class="btnlogin" onclick="showAuth('login')">Log in</button>
+    <button class="btnsignup" onclick="showAuth('signup')">Sign up free</button>
+  </div>
+  <div class="lfoot">Kalamazoo · Grand Rapids · 2026</div>
+</div>
+
+<!-- PROSPECT -->
+<div id="pros" class="screen">
+  <div class="topnav">
+    <div class="navlogo" onclick="goLand()">Trades<em>Connect</em></div>
+    <div class="navr">
+      <button class="nlogin" onclick="showAuth('login')">Log in</button>
+      <span class="nbadge">Prospect</span>
+      <button class="nswitch" onclick="goLand()">switch</button>
+    </div>
+  </div>
+  <div class="scroll" id="pros-scroll">
+    <div id="p-discover" class="pane on">
+      <div class="filters">
+        <button class="ftag on" onclick="filt('all',this)">All trades</button>
+        <button class="ftag" onclick="filt('Electrician',this)">⚡ Electrician</button>
+        <button class="ftag" onclick="filt('Welder',this)">🔥 Welder</button>
+        <button class="ftag" onclick="filt('HVAC',this)">❄️ HVAC</button>
+        <button class="ftag" onclick="filt('Plumber',this)">🔧 Plumber</button>
+        <button class="ftag" onclick="filt('Carpenter',this)">🪵 Carpenter</button>
+      </div>
+      <div id="proglist"></div>
+    </div>
+    <div id="p-profile" class="pane">
+      <div class="profwrap">
+        <div class="profcov"><button class="editbtn" onclick="showAuth('edit')">Edit profile</button></div>
+        <div class="profbody">
+          <div class="profav">AR</div>
+          <div class="profname">Alex Rodriguez</div>
+          <div class="profsub">Kalamazoo, MI · HS Senior, graduating May 2026</div>
+          <div class="availpill"><span class="availdot"></span>Available June 2026</div>
+          <div class="stats3">
+            <div class="ps"><span class="psv">3</span><span class="psl">Interests</span></div>
+            <div class="ps"><span class="psv">2</span><span class="psl">Responses</span></div>
+            <div class="ps"><span class="psv">4</span><span class="psl">Endorsements</span></div>
+          </div>
+          <div class="psec">
+            <div class="psectl">Trades &amp; Skills</div>
+            <div class="pedit" id="skills-list">
+              <span class="pill">⚡ Electrician<span class="pdel" onclick="delPill(this)">×</span></span>
+              <span class="pill">🔥 Welder<span class="pdel" onclick="delPill(this)">×</span></span>
+            </div>
+            <div class="addrow"><input id="skill-inp" class="addinput" placeholder="Add a skill..."><button class="addbtn" onclick="addSkill()">+ Add</button></div>
+          </div>
+          <div class="psec">
+            <div class="psectl">About</div>
+            <div class="pbio">Graduating May 2026. Shop and electrical fundamentals all four years. Looking for a paid apprenticeship where I can learn on the job and build a real career.</div>
+          </div>
+          <div class="psec">
+            <div class="psectl">Certifications</div>
+            <div class="pedit" id="certs-list">
+              <span class="pill">OSHA-10<span class="pdel" onclick="delPill(this)">×</span></span>
+              <span class="pill">Construction Safety<span class="pdel" onclick="delPill(this)">×</span></span>
+              <span class="pill">Electrical Fundamentals<span class="pdel" onclick="delPill(this)">×</span></span>
+            </div>
+            <div class="addrow"><input id="cert-inp" class="addinput" placeholder="Add a certification..."><button class="addbtn" onclick="addCert()">+ Add</button></div>
+          </div>
+          <div class="psec">
+            <div class="psectl">Project Portfolio</div>
+            <div class="pgrid" id="photo-grid">
+              <div class="ptile" style="background:#0d1833;">Wiring</div>
+              <div class="ptile" style="background:#0d1a2e;">Shop fab</div>
+              <div class="ptile" style="background:#0a1a10;">Panel</div>
+              <div class="ptile" style="background:#150d2e;">CTE</div>
+              <div class="ptile" style="background:#1a0d10;">Lab</div>
+              <div class="ptile" style="background:#0d1520;">Blueprints</div>
+            </div>
+            <label class="uplabel">📷 Upload photo<input type="file" accept="image/*" style="display:none;" onchange="addPhoto(this)"></label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="p-about" class="pane">
+      <div class="ahero">
+        <div class="alogo">Trades<em>Connect</em></div>
+        <div class="asub">The fastest way for young people in West Michigan to connect with skilled trades programs — no forms, one tap.</div>
+      </div>
+      <div class="sbox">
+        <div class="stitle">Who we are</div>
+        <div style="font-size:13px;color:var(--text2);line-height:1.75;">TradesConnect connects high school seniors, recent grads, and career changers to local trade programs. We remove the friction and hoops of multiple form applications — candidates build a real profile and express interest with one tap.</div>
+      </div>
+      <div class="sbox">
+        <div class="stitle">How it works</div>
+        <div class="howstep"><div class="stepnum">1</div><div><div class="steptitle">Create your profile</div><div class="stepdesc">Skills, certs, availability. 60 seconds. No resume needed.</div></div></div>
+        <div class="howstep"><div class="stepnum">2</div><div><div class="steptitle">Browse local programs</div><div class="stepdesc">Verified apprenticeships across Kalamazoo and Grand Rapids.</div></div></div>
+        <div class="howstep"><div class="stepnum">3</div><div><div class="steptitle">Express interest</div><div class="stepdesc">One tap — your profile goes straight to the program.</div></div></div>
+        <div class="howstep" style="margin-bottom:0"><div class="stepnum">4</div><div><div class="steptitle">Get hired</div><div class="stepdesc">Connect directly. Start earning while you learn.</div></div></div>
+      </div>
+      <div class="astats">
+        <div class="astat"><div class="astatv" style="color:var(--blue);">520k+</div><div class="astatl">MI trades jobs by 2030</div></div>
+        <div class="astat"><div class="astatv" style="color:var(--green);">38%</div><div class="astatl">HS grads skip college</div></div>
+        <div class="astat"><div class="astatv" style="color:var(--purple);">20,600</div><div class="astatl">Active MI apprentices</div></div>
+        <div class="astat"><div class="astatv" style="color:var(--amber);">$61k</div><div class="astatl">Avg MI trades wage</div></div>
+      </div>
+    </div>
+    <div id="p-roadmap" class="pane">
+      <div class="ptitle">Roadmap</div>
+      <div class="psub">Where TradesConnect is headed.</div>
+      <div class="rmphase"><span class="rmbadge live">Live now</span><div class="rmtitle">Phase 1 — Michigan Pilot</div>
+        <div class="rmitem"><span class="rmdot" style="color:var(--green)">✓</span><div class="rmtext">Prospect profiles, program discovery, express interest</div></div>
+        <div class="rmitem"><span class="rmdot" style="color:var(--green)">✓</span><div class="rmtext">Org dashboard, job posting, candidate browsing</div></div>
+        <div class="rmitem"><span class="rmdot" style="color:var(--green)">✓</span><div class="rmtext">Kalamazoo &amp; Grand Rapids programs seeded</div></div>
+      </div>
+      <div class="rmphase"><span class="rmbadge dev">In development</span><div class="rmtitle">Phase 2 — Real Accounts</div>
+        <div class="rmitem"><span class="rmdot" style="color:var(--blue)">→</span><div class="rmtext">SMS verification, company email verification</div></div>
+        <div class="rmitem"><span class="rmdot" style="color:var(--blue)">→</span><div class="rmtext">Real login, persistent accounts, direct messaging</div></div>
+        <div class="rmitem"><span class="rmdot" style="color:var(--blue)">→</span><div class="rmtext">Ending Soon alerts, end-to-end encryption</div></div>
+      </div>
+      <div class="rmphase"><span class="rmbadge soon">Coming soon</span><div class="rmtitle">Phase 3 — Scale</div>
+        <div class="rmitem"><span class="rmdot" style="color:var(--purple)">◦</span><div class="rmtext">50+ programs statewide, mobile app</div></div>
+        <div class="rmitem"><span class="rmdot" style="color:var(--purple)">◦</span><div class="rmtext">Paid org tiers, endorsements, OSHA integrations</div></div>
+        <div class="rmitem"><span class="rmdot" style="color:var(--purple)">◦</span><div class="rmtext">Multi-state rollout — Ohio, Indiana, Wisconsin</div></div>
+      </div>
+    </div>
+    <div id="p-settings" class="pane">
+      <div class="ssec"><div class="sstitle">Account</div>
+        <div class="srow"><div><div class="slbl">Name</div><div class="sdesc">Alex Rodriguez</div></div><button class="sbtn">Edit</button></div>
+        <div class="srow"><div><div class="slbl">Location</div><div class="sdesc">Kalamazoo, MI</div></div><button class="sbtn">Edit</button></div>
+        <div class="srow"><div><div class="slbl">Availability</div><div class="sdesc">Available June 2026</div></div><button class="sbtn">Edit</button></div>
+      </div>
+      <div class="ssec"><div class="sstitle">Notifications</div>
+        <div class="srow"><div><div class="slbl">Program responses</div><div class="sdesc">When a program responds</div></div><button class="tog on" onclick="this.classList.toggle('on')"><div class="togk"></div></button></div>
+        <div class="srow"><div><div class="slbl">New programs nearby</div><div class="sdesc">New programs near you</div></div><button class="tog on" onclick="this.classList.toggle('on')"><div class="togk"></div></button></div>
+        <div class="srow"><div><div class="slbl">Messages</div><div class="sdesc">New messages from orgs</div></div><button class="tog on" onclick="this.classList.toggle('on')"><div class="togk"></div></button></div>
+      </div>
+      <div class="ssec"><div class="sstitle">Account actions</div>
+        <div class="srow"><div><div class="slbl">Switch role</div><div class="sdesc">Back to role selection</div></div><button class="sbtn" onclick="goLand()">Switch</button></div>
+        <div class="srow"><div><div class="slbl">Sign out</div></div><button class="sbtn">Sign out</button></div>
+        <div class="srow"><div><div class="slbl">Delete account</div></div><button class="sbtn danger">Delete</button></div>
+      </div>
+    </div>
+  </div>
+  <nav class="botnav" id="pnav">
+    <button class="bnt on" onclick="pTab('discover',this)"><span class="bni">🔍</span><span class="bnl">Discover</span></button>
+    <button class="bnt" onclick="pTab('profile',this)"><span class="bni">👤</span><span class="bnl">Profile</span></button>
+    <button class="bnt" onclick="pTab('about',this)"><span class="bni">ℹ️</span><span class="bnl">About</span></button>
+    <button class="bnt" onclick="pTab('roadmap',this)"><span class="bni">🗺️</span><span class="bnl">Roadmap</span></button>
+    <button class="bnt" onclick="pTab('settings',this)"><span class="bni">⚙️</span><span class="bnl">Settings</span></button>
+  </nav>
+</div>
+
+<!-- ORG -->
+<div id="org" class="screen">
+  <div class="topnav">
+    <div class="navlogo" onclick="goLand()">Trades<em>Connect</em></div>
+    <div class="navr">
+      <button class="nlogin" onclick="showAuth('login')">Log in</button>
+      <span class="nbadge nbadge-org">Org</span>
+      <button class="nswitch" onclick="goLand()">switch</button>
+    </div>
+  </div>
+  <div class="orgbar">Kalamazoo Electrical Training Alliance</div>
+  <div class="scroll" id="org-scroll">
+    <div id="o-dashboard" class="pane on">
+      <div class="metrics">
+        <div class="metric"><div class="mval mblue">47</div><div class="mlbl">Leads this month</div></div>
+        <div class="metric"><div class="mval mgreen">12</div><div class="mlbl">Invited to apply</div></div>
+        <div class="metric"><div class="mval mpurple">5</div><div class="mlbl">Interviews</div></div>
+        <div class="metric"><div class="mval mamber">3</div><div class="mlbl">Offers extended</div></div>
+      </div>
+      <div class="sbox"><div class="stitle">Pipeline</div>
+        <div class="prow"><span class="plbl">New leads</span><div class="ptrack"><div class="pfill" style="width:100%;background:var(--blue)"></div></div><span class="pcnt">18</span></div>
+        <div class="prow"><span class="plbl">Messaged</span><div class="ptrack"><div class="pfill" style="width:67%;background:var(--blue)"></div></div><span class="pcnt">12</span></div>
+        <div class="prow"><span class="plbl">Invited</span><div class="ptrack"><div class="pfill" style="width:50%;background:var(--purple)"></div></div><span class="pcnt">9</span></div>
+        <div class="prow"><span class="plbl">Interviews</span><div class="ptrack"><div class="pfill" style="width:28%;background:var(--green)"></div></div><span class="pcnt">5</span></div>
+        <div class="prow"><span class="plbl">Offers</span><div class="ptrack"><div class="pfill" style="width:17%;background:var(--green)"></div></div><span class="pcnt">3</span></div>
+      </div>
+      <div class="sbox"><div class="stitle">Recent leads</div>
+        <div class="lrow"><div class="lav" style="background:var(--bluedim);color:var(--blue)">AR</div><div class="linfo"><div class="lname">Alex Rodriguez</div><div class="ldet">Age 18 · Kalamazoo · Electrician</div><div class="lq">"Ready June 2026. Motivated."</div><div class="lt">2 min ago</div></div><button class="invbtn" onclick="this.textContent='Invited ✓'">Invite</button></div>
+        <div class="lrow"><div class="lav" style="background:var(--greendim);color:var(--green)">ML</div><div class="linfo"><div class="lname">Marcus Lee</div><div class="ldet">Age 17 · Portage · Electrician</div><div class="lq">"Graduating May 2026. CTE electrical."</div><div class="lt">14 min ago</div></div><button class="invbtn" onclick="this.textContent='Invited ✓'">Invite</button></div>
+        <div class="lrow"><div class="lav" style="background:var(--purpledim);color:var(--purple)">JE</div><div class="linfo"><div class="lname">Jordan Ellis</div><div class="ldet">Age 19 · Kalamazoo · Electrician</div><div class="lq">"Career switcher. Available now."</div><div class="lt">31 min ago</div></div><button class="invbtn" onclick="this.textContent='Invited ✓'">Invite</button></div>
+      </div>
+    </div>
+    <div id="o-candidates" class="pane">
+      <div class="filters">
+        <button class="ftag on">All trades</button>
+        <button class="ftag">⚡ Electrician</button>
+        <button class="ftag">🔥 Welder</button>
+        <button class="ftag">❄️ HVAC</button>
+        <button class="ftag">🔧 Plumber</button>
+      </div>
+      <div class="ccard"><div class="ctop"><div class="cav" style="background:var(--bluedim);color:var(--blue)">AR</div><div><div class="cname">Alex Rodriguez</div><div class="cmeta">Age 18 · Kalamazoo, MI · June 2026</div></div></div><div class="cbio">Shop and electrical fundamentals all four years. Reliable and ready to learn.</div><div class="ctags"><span class="ctag">Electrician</span><span class="ctag">OSHA-10</span><span class="ctag">Entry-level</span></div><div class="cbtns"><button class="bmsg" onclick="this.textContent='Sent ✓'">Message</button><button class="binv" onclick="this.textContent='Invited ✓'">Invite</button></div></div>
+      <div class="ccard"><div class="ctop"><div class="cav" style="background:var(--greendim);color:var(--green)">ML</div><div><div class="cname">Marcus Lee</div><div class="cmeta">Age 17 · Portage, MI · May 2026</div></div></div><div class="cbio">CTE electrical fundamentals. Strong academic record and hands-on project work.</div><div class="ctags"><span class="ctag">Electrician</span><span class="ctag">CTE grad</span><span class="ctag">Entry-level</span></div><div class="cbtns"><button class="bmsg" onclick="this.textContent='Sent ✓'">Message</button><button class="binv" onclick="this.textContent='Invited ✓'">Invite</button></div></div>
+      <div class="ccard"><div class="ctop"><div class="cav" style="background:var(--purpledim);color:var(--purple)">JE</div><div><div class="cname">Jordan Ellis</div><div class="cmeta">Age 19 · Kalamazoo, MI · Available now</div></div></div><div class="cbio">Career switcher. Fully committed to trades. Own transportation, any shift.</div><div class="ctags"><span class="ctag">Electrician</span><span class="ctag">Available now</span><span class="ctag">Career switcher</span></div><div class="cbtns"><button class="bmsg" onclick="this.textContent='Sent ✓'">Message</button><button class="binv" onclick="this.textContent='Invited ✓'">Invite</button></div></div>
+    </div>
+    <div id="o-myjobs" class="pane">
+      <button class="postbtn" onclick="showJobModal()">+ Post a new job</button>
+      <div id="jobs-list">
+        <div class="jcard"><div class="jtitle">Electrical Apprentice — Kalamazoo</div><div class="jmeta"><span>Kalamazoo, MI</span><span>$18–22/hr</span><span>5-year apprenticeship</span><span class="acc">Accepting now</span></div><div class="jdesc">Motivated entry-level candidates. IBEW Local 131. No experience required.</div><div class="jbtns"><button class="jedit">Edit</button><button class="jdel" onclick="this.closest('.jcard').remove()">Delete</button></div></div>
+      </div>
+    </div>
+    <div id="o-roadmap" class="pane">
+      <div class="ptitle">Roadmap</div>
+      <div class="psub">Where TradesConnect is headed.</div>
+      <div class="rmphase"><span class="rmbadge live">Live now</span><div class="rmtitle">Phase 1 — Michigan Pilot</div>
+        <div class="rmitem"><span class="rmdot" style="color:var(--green)">✓</span><div class="rmtext">Prospect profiles, program discovery, express interest</div></div>
+        <div class="rmitem"><span class="rmdot" style="color:var(--green)">✓</span><div class="rmtext">Org dashboard, job posting, candidate browsing</div></div>
+        <div class="rmitem"><span class="rmdot" style="color:var(--green)">✓</span><div class="rmtext">Kalamazoo &amp; Grand Rapids programs seeded</div></div>
+      </div>
+      <div class="rmphase"><span class="rmbadge dev">In development</span><div class="rmtitle">Phase 2 — Real Accounts</div>
+        <div class="rmitem"><span class="rmdot" style="color:var(--blue)">→</span><div class="rmtext">SMS verification, company email verification</div></div>
+        <div class="rmitem"><span class="rmdot" style="color:var(--blue)">→</span><div class="rmtext">Real login, direct messaging, Ending Soon alerts</div></div>
+      </div>
+      <div class="rmphase"><span class="rmbadge soon">Coming soon</span><div class="rmtitle">Phase 3 — Scale</div>
+        <div class="rmitem"><span class="rmdot" style="color:var(--purple)">◦</span><div class="rmtext">50+ programs, mobile app, multi-state rollout</div></div>
+        <div class="rmitem"><span class="rmdot" style="color:var(--purple)">◦</span><div class="rmtext">Paid org tiers, endorsements, OSHA integrations</div></div>
+      </div>
+    </div>
+    <div id="o-settings" class="pane">
+      <div class="ssec"><div class="sstitle">Organization</div>
+        <div class="srow"><div><div class="slbl">Org name</div><div class="sdesc">Kalamazoo Electrical Training Alliance</div></div><button class="sbtn">Edit</button></div>
+        <div class="srow"><div><div class="slbl">Location</div><div class="sdesc">Kalamazoo, MI</div></div><button class="sbtn">Edit</button></div>
+        <div class="srow"><div><div class="slbl">Trade focus</div><div class="sdesc">Electrician</div></div><button class="sbtn">Edit</button></div>
+      </div>
+      <div class="ssec"><div class="sstitle">Notifications</div>
+        <div class="srow"><div><div class="slbl">New candidate leads</div><div class="sdesc">When a prospect expresses interest</div></div><button class="tog on" onclick="this.classList.toggle('on')"><div class="togk"></div></button></div>
+        <div class="srow"><div><div class="slbl">Daily lead digest</div><div class="sdesc">Morning summary of new leads</div></div><button class="tog on" onclick="this.classList.toggle('on')"><div class="togk"></div></button></div>
+      </div>
+      <div class="ssec"><div class="sstitle">Account actions</div>
+        <div class="srow"><div><div class="slbl">Switch role</div></div><button class="sbtn" onclick="goLand()">Switch</button></div>
+        <div class="srow"><div><div class="slbl">Sign out</div></div><button class="sbtn">Sign out</button></div>
+      </div>
+    </div>
+  </div>
+  <nav class="botnav" id="onav">
+    <button class="bnt on" onclick="oTab('dashboard',this)"><span class="bni">📊</span><span class="bnl">Dashboard</span></button>
+    <button class="bnt" onclick="oTab('candidates',this)"><span class="bni">👥</span><span class="bnl">Candidates</span></button>
+    <button class="bnt" onclick="oTab('myjobs',this)"><span class="bni">📋</span><span class="bnl">My Jobs</span></button>
+    <button class="bnt" onclick="oTab('roadmap',this)"><span class="bni">🗺️</span><span class="bnl">Roadmap</span></button>
+    <button class="bnt" onclick="oTab('settings',this)"><span class="bni">⚙️</span><span class="bnl">Settings</span></button>
+  </nav>
+</div>
+
+<!-- MODALS -->
+<div class="moverlay" id="modal">
+  <div class="mbox">
+    <div class="mhandle"></div>
+    <div id="mform">
+      <div class="mtitle">Express interest</div>
+      <div class="mprog" id="mprogname"></div>
+      <div class="igrid">
+        <div><label class="ilbl">First name</label><input class="tinput" placeholder="Alex" id="f-name"></div>
+        <div><label class="ilbl">Age</label><input class="tinput" placeholder="18" type="number" id="f-age"></div>
+      </div>
+      <div class="irow"><label class="ilbl">City or zip</label><input class="tinput" placeholder="Kalamazoo, MI" id="f-city"></div>
+      <div class="irow"><label class="ilbl">Available to start</label><input class="tinput" placeholder="June 2026" id="f-start"></div>
+      <div class="irow"><label class="ilbl">Short note (optional)</label><input class="tinput" placeholder="Motivated and ready to learn..." id="f-note"></div>
+      <button class="subbtn" onclick="submitInterest()">Send interest</button>
+      <span class="canlnk" onclick="closeModal()">Cancel</span>
+    </div>
+    <div id="msucc" style="display:none" class="succv">
+      <div class="succk">✓</div>
+      <div class="succt">Interest sent!</div>
+      <div class="succs">The program received your profile. They'll reach out — no formal application yet.</div>
+      <button class="subbtn" onclick="closeModal()">Back to discover</button>
+    </div>
+  </div>
+</div>
+
+<div class="moverlay" id="auth-modal">
+  <div class="mbox">
+    <div class="mhandle"></div>
+    <div id="auth-form">
+      <div class="mtitle" id="auth-title">Log in</div>
+      <div class="mprog" id="auth-sub">Welcome back to TradesConnect</div>
+      <div class="irow"><label class="ilbl">Email</label><input class="tinput" placeholder="your email address" id="auth-email"></div>
+      <div class="irow" id="auth-name-row" style="display:none"><label class="ilbl">Full name</label><input class="tinput" placeholder="Alex Rodriguez" id="auth-name"></div>
+      <div class="irow"><label class="ilbl">Password</label><input class="tinput" type="password" placeholder="password" id="auth-pass"></div>
+      <button class="subbtn" id="auth-subbtn" onclick="submitAuth()">Log in</button>
+      <span class="canlnk" onclick="closeAuth()">Cancel</span>
+    </div>
+    <div id="auth-succ" style="display:none" class="succv">
+      <div class="succk">✓</div>
+      <div class="succt" id="auth-succ-title">Welcome back!</div>
+      <div class="succs">You are now logged in to TradesConnect.</div>
+      <button class="subbtn" onclick="closeAuth()">Continue</button>
+    </div>
+  </div>
+</div>
+
+<div class="moverlay" id="job-modal">
+  <div class="mbox">
+    <div class="mhandle"></div>
+    <div id="job-form">
+      <div class="mtitle">Post a job</div>
+      <div class="mprog">Visible to all prospects in West Michigan</div>
+      <div class="irow"><label class="ilbl">Job title</label><input class="tinput" placeholder="Electrical Apprentice" id="j-title"></div>
+      <div class="igrid">
+        <div><label class="ilbl">City</label><input class="tinput" placeholder="Kalamazoo, MI" id="j-city"></div>
+        <div><label class="ilbl">Pay rate</label><input class="tinput" placeholder="$18-22/hr" id="j-pay"></div>
+      </div>
+      <div class="irow"><label class="ilbl">Duration / type</label><input class="tinput" placeholder="5-year apprenticeship" id="j-type"></div>
+      <div class="irow"><label class="ilbl">Description</label><input class="tinput" placeholder="What the role involves..." id="j-desc"></div>
+      <button class="subbtn" onclick="submitJob()">Post job</button>
+      <span class="canlnk" onclick="closeJob()">Cancel</span>
+    </div>
+    <div id="job-succ" style="display:none" class="succv">
+      <div class="succk">✓</div>
+      <div class="succt">Job posted!</div>
+      <div class="succs">Your listing is live and visible to prospects in West Michigan.</div>
+      <button class="subbtn" onclick="closeJob()">Back to my jobs</button>
+    </div>
+  </div>
+</div>
+
+</div><!-- /app -->
+
+<script>
+const programs=[
+  {id:1,name:"Kalamazoo Electrical Training Alliance",city:"Kalamazoo",trade:"Electrician",icon:"⚡",spots:8,rate:"$18–24/hr",duration:"5-year apprenticeship",tags:[{l:"IBEW Local 131",c:"pt-blue"},{l:"Paid training",c:"pt-green"},{l:"Benefits included",c:"pt-green"}],desc:"IBEW Local 131's JATC — highly competitive, state-of-the-art facility. Trains electricians for the Kalamazoo division."},
+  {id:2,name:"KVCC Electrical Construction Program",city:"Kalamazoo",trade:"Electrician",icon:"⚡",spots:14,rate:"$16–20/hr",duration:"2-year certificate",tags:[{l:"College program",c:"pt-blue"},{l:"No experience needed",c:"pt-green"},{l:"DOL approved",c:"pt-green"}],desc:"Kalamazoo Valley Community College's DOL-approved apprenticeship. NEC code, conduit bending, hands-on lab."},
+  {id:3,name:"West Michigan Electrical — IBEW 275",city:"Grand Rapids",trade:"Electrician",icon:"⚡",spots:10,rate:"$17–23/hr",duration:"5-year apprenticeship",tags:[{l:"IBEW Local 275",c:"pt-blue"},{l:"Union benefits",c:"pt-green"},{l:"Paid apprenticeship",c:"pt-green"}],desc:"West Michigan's premier union electrical training. Residential, commercial and industrial work across Grand Rapids."},
+  {id:4,name:"GRCC Welding Technology",city:"Grand Rapids",trade:"Welder",icon:"🔥",spots:12,rate:"$16–21/hr",duration:"2-year program",tags:[{l:"College program",c:"pt-blue"},{l:"No experience needed",c:"pt-green"},{l:"AWS certification",c:"pt-purple"}],desc:"GRCC is West Michigan's #1 construction trainer. MIG, TIG, stick welding. AWS cert included. 90%+ placement."},
+  {id:5,name:"KVCC Welding Technology",city:"Kalamazoo",trade:"Welder",icon:"🔥",spots:10,rate:"$15–20/hr",duration:"2-year certificate",tags:[{l:"College program",c:"pt-blue"},{l:"No experience needed",c:"pt-green"}],desc:"KVCC welding covering MIG, TIG, stick and advanced techniques. DOL-approved."},
+  {id:6,name:"UA Local 357 — Plumbers & Pipefitters",city:"Kalamazoo",trade:"Plumber",icon:"🔧",spots:6,rate:"$19–26/hr",duration:"5-year apprenticeship",tags:[{l:"Union",c:"pt-blue"},{l:"Top wages",c:"pt-green"},{l:"Benefits included",c:"pt-green"}],desc:"Union pipe trades — plumbing, pipefitting, welding and HVAC-R. 18,000 sq ft facility in Schoolcraft, MI."},
+  {id:7,name:"UA Local 357 — HVAC-R",city:"Kalamazoo",trade:"HVAC",icon:"❄️",spots:7,rate:"$18–24/hr",duration:"5-year apprenticeship",tags:[{l:"Union",c:"pt-blue"},{l:"Paid apprenticeship",c:"pt-green"},{l:"EPA 608 included",c:"pt-green"}],desc:"HVAC-Refrigeration specialist training. Residential and commercial systems, refrigerants, service tech skills."},
+  {id:8,name:"KVCC HVAC Technician Program",city:"Kalamazoo",trade:"HVAC",icon:"❄️",spots:9,rate:"$15–19/hr",duration:"2-year certificate",tags:[{l:"College program",c:"pt-blue"},{l:"EPA 608 included",c:"pt-green"},{l:"No experience needed",c:"pt-green"}],desc:"DOL-approved HVAC program. Refrigerants, sheet metal, system design and EPA 608 cert."},
+  {id:9,name:"GRCC Construction Electrical Apprenticeship",city:"Grand Rapids",trade:"Electrician",icon:"⚡",spots:8,rate:"$17–22/hr",duration:"4-year apprenticeship",tags:[{l:"College program",c:"pt-blue"},{l:"Earn while you learn",c:"pt-green"},{l:"DOL registered",c:"pt-purple"}],desc:"DOL-registered electrical apprenticeship at GRCC. On-the-job training plus classroom. Qualifies for college credit."},
+  {id:10,name:"Michigan Carpenters — Local 1510",city:"Grand Rapids",trade:"Carpenter",icon:"🪵",spots:8,rate:"$17–22/hr",duration:"4-year apprenticeship",tags:[{l:"Union",c:"pt-blue"},{l:"Paid apprenticeship",c:"pt-green"}],desc:"UBC-affiliated carpenters apprenticeship. Framing, finish work, commercial builds across West Michigan."},
+];
+
+var cf="all";
+
+function renderPrograms(){
+  var filtered=cf==="all"?programs:programs.filter(function(p){return p.trade===cf;});
+  document.getElementById("proglist").innerHTML=filtered.map(function(p){
+    return '<div class="pcard"><div class="pctop"><div class="pcleft"><div class="pcico">'+p.icon+'</div><div><div class="pcname">'+p.name+'</div><div class="pcmeta"><span>📍 '+p.city+', MI</span><span>'+p.spots+' spots</span><span>'+p.rate+'</span></div></div></div><span class="acc">Open</span></div><div class="pctags">'+p.tags.map(function(t){return'<span class="ptag '+t.c+'">'+t.l+'</span>';}).join('')+'</div><div class="pcdesc">'+p.desc+'</div><button class="expbtn" onclick="openModal('+p.id+')">Express interest</button></div>';
+  }).join("");
+}
+
+function filt(trade,el){
+  cf=trade;
+  document.querySelectorAll("#p-discover .ftag").forEach(function(b){b.classList.remove("on");});
+  el.classList.add("on");
+  renderPrograms();
+}
+
+function pTab(tab,el){
+  document.querySelectorAll("#pnav .bnt").forEach(function(b){b.classList.remove("on");});
+  el.classList.add("on");
+  document.querySelectorAll("#pros .pane").forEach(function(p){p.classList.remove("on");});
+  document.getElementById("p-"+tab).classList.add("on");
+  document.getElementById("pros-scroll").scrollTop=0;
+}
+
+function oTab(tab,el){
+  document.querySelectorAll("#onav .bnt").forEach(function(b){b.classList.remove("on");});
+  el.classList.add("on");
+  document.querySelectorAll("#org .pane").forEach(function(p){p.classList.remove("on");});
+  document.getElementById("o-"+tab).classList.add("on");
+  document.getElementById("org-scroll").scrollTop=0;
+}
+
+function goPros(){
+  document.getElementById("land").classList.remove("on");
+  document.getElementById("pros").classList.add("on");
+  renderPrograms();
+}
+
+function goOrg(){
+  document.getElementById("land").classList.remove("on");
+  document.getElementById("org").classList.add("on");
+}
+
+function goLand(){
+  document.getElementById("land").classList.add("on");
+  document.getElementById("pros").classList.remove("on");
+  document.getElementById("org").classList.remove("on");
+  document.querySelectorAll("#pros .pane").forEach(function(p){p.classList.remove("on");});
+  document.getElementById("p-discover").classList.add("on");
+  document.querySelectorAll("#pnav .bnt").forEach(function(b,i){b.classList.toggle("on",i===0);});
+  document.querySelectorAll("#org .pane").forEach(function(p){p.classList.remove("on");});
+  document.getElementById("o-dashboard").classList.add("on");
+  document.querySelectorAll("#onav .bnt").forEach(function(b,i){b.classList.toggle("on",i===0);});
+}
+
+function openModal(id){
+  var p=programs.find(function(x){return x.id===id;});
+  document.getElementById("mprogname").textContent=p.name;
+  document.getElementById("mform").style.display="block";
+  document.getElementById("msucc").style.display="none";
+  document.getElementById("modal").classList.add("on");
+}
+function closeModal(){document.getElementById("modal").classList.remove("on");}
+function submitInterest(){document.getElementById("mform").style.display="none";document.getElementById("msucc").style.display="block";}
+
+function delPill(el){el.parentElement.remove();}
+function addSkill(){var i=document.getElementById("skill-inp");var v=i.value.trim();if(!v)return;var s=document.createElement("span");s.className="pill";s.innerHTML=v+'<span class="pdel" onclick="delPill(this)">×</span>';document.getElementById("skills-list").appendChild(s);i.value="";}
+function addCert(){var i=document.getElementById("cert-inp");var v=i.value.trim();if(!v)return;var s=document.createElement("span");s.className="pill";s.innerHTML=v+'<span class="pdel" onclick="delPill(this)">×</span>';document.getElementById("certs-list").appendChild(s);i.value="";}
+
+function addPhoto(inp){if(!inp.files||!inp.files[0])return;var r=new FileReader();r.onload=function(e){var t=document.createElement("div");t.className="ptile";t.style.cssText="background-image:url("+e.target.result+");background-size:cover;background-position:center;";document.getElementById("photo-grid").appendChild(t);};r.readAsDataURL(inp.files[0]);}
+
+function showAuth(type){
+  document.getElementById("auth-form").style.display="block";
+  document.getElementById("auth-succ").style.display="none";
+  if(type==="signup"){document.getElementById("auth-title").textContent="Sign up";document.getElementById("auth-sub").textContent="Create your TradesConnect account";document.getElementById("auth-name-row").style.display="block";document.getElementById("auth-subbtn").textContent="Create account";document.getElementById("auth-succ-title").textContent="Account created!";}
+  else if(type==="edit"){document.getElementById("auth-title").textContent="Edit profile";document.getElementById("auth-sub").textContent="Update your information";document.getElementById("auth-name-row").style.display="block";document.getElementById("auth-subbtn").textContent="Save changes";document.getElementById("auth-succ-title").textContent="Profile updated!";}
+  else{document.getElementById("auth-title").textContent="Log in";document.getElementById("auth-sub").textContent="Welcome back to TradesConnect";document.getElementById("auth-name-row").style.display="none";document.getElementById("auth-subbtn").textContent="Log in";document.getElementById("auth-succ-title").textContent="Welcome back!";}
+  document.getElementById("auth-modal").classList.add("on");
+}
+function closeAuth(){document.getElementById("auth-modal").classList.remove("on");}
+function submitAuth(){document.getElementById("auth-form").style.display="none";document.getElementById("auth-succ").style.display="block";}
+
+function showJobModal(){document.getElementById("job-form").style.display="block";document.getElementById("job-succ").style.display="none";document.getElementById("job-modal").classList.add("on");}
+function closeJob(){document.getElementById("job-modal").classList.remove("on");}
+function submitJob(){
+  var t=document.getElementById("j-title").value.trim()||"New job";
+  var c=document.getElementById("j-city").value.trim()||"West Michigan";
+  var p=document.getElementById("j-pay").value.trim()||"TBD";
+  var ty=document.getElementById("j-type").value.trim()||"";
+  var d=document.getElementById("j-desc").value.trim()||"";
+  var card=document.createElement("div");card.className="jcard";
+  card.innerHTML="<div class='jtitle'>"+t+"</div><div class='jmeta'><span>"+c+"</span><span>"+p+"</span><span>"+ty+"</span><span class='acc'>Accepting now</span></div><div class='jdesc'>"+d+"</div><div class='jbtns'><button class='jedit'>Edit</button><button class='jdel' onclick='this.closest(&quot;.jcard&quot;).remove()'>Delete</button></div>";
+  document.getElementById("jobs-list").prepend(card);
+  document.getElementById("job-form").style.display="none";
+  document.getElementById("job-succ").style.display="block";
+}
+
+document.getElementById("modal").addEventListener("click",function(e){if(e.target===this)closeModal();});
+document.getElementById("auth-modal").addEventListener("click",function(e){if(e.target===this)closeAuth();});
+document.getElementById("job-modal").addEventListener("click",function(e){if(e.target===this)closeJob();});
+</script>
+</body>
+</html>
