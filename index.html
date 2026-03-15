@@ -9,12 +9,12 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:100vh;overflow-y:scroll;}
 #screen-landing{display:flex;flex-direction:column;align-items:center;min-height:100vh;}
-.hero{text-align:center;padding:80px 24px 48px;width:100%;}
+.hero{text-align:center;padding:36px 24px 24px;width:100%;}
 .hero-eyebrow{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:#3a5070;margin-bottom:20px;font-weight:500;}
 .hero-logo{font-size:52px;font-weight:700;letter-spacing:-1.5px;color:#fff;margin-bottom:16px;}
 .hero-logo em{color:#4d8ef0;font-style:normal;}
 .hero-sub{font-size:17px;color:#6a8098;max-width:420px;margin:0 auto 40px;line-height:1.7;}
-.role-section{padding:24px 24px 48px;text-align:center;width:100%;}
+.role-section{padding:16px 24px 32px;text-align:center;width:100%;}
 .role-label{font-size:14px;color:#4a607a;margin-bottom:24px;}
 .role-cards{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
 .role-card{background:#0d1321;border:1px solid #1a2333;border-radius:16px;padding:32px 28px;width:220px;cursor:pointer;transition:all .2s;text-align:center;}
@@ -204,10 +204,7 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
       </div>
     </div>
   </div>
-  <div class="landing-auth">
-    <button class="btn-login" onclick="showAuthModal('login')">Log in</button>
-    <button class="btn-signup" onclick="showAuthModal('signup')">Sign up free</button>
-  </div>
+  <div class="landing-auth"><button class="btn-login" onclick="showAuthModal('login')">Log in</button><button class="btn-signup" onclick="showAuthModal('signup')">Sign up free</button></div>
   <div class="landing-foot">Detroit · Grand Rapids · 2026</div>
 </div>
 
@@ -221,8 +218,7 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
       <button class="nav-tab" onclick="prospectTab('settings',this)">Settings</button>
     </div>
     <div class="nav-right">
-      <span class="role-badge">Prospect</span>
-      <button class="switch-btn" onclick="goLanding()">switch role</button>
+      <button class="nav-login" onclick="showAuthModal('login')">Log in</button><button class="nav-signup" onclick="showAuthModal('signup')">Sign up</button><span class="role-badge">Prospect</span><button class="switch-btn" onclick="goLanding()">switch role</button>
     </div>
   </div>
   <div class="page-content">
@@ -252,15 +248,8 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
             <div class="pstat"><span class="pstat-v">4</span><span class="pstat-l">Endorsements</span></div>
           </div>
           <div class="psec">
-            <div class="psec-title">Trades &amp; skills</div>
-            <div class="pills-editable" id="skills-list">
-              <span class="pill-item trade">⚡ Electrician<span class="pill-del" onclick="delPill(this)">×</span></span>
-              <span class="pill-item trade">🔥 Welder<span class="pill-del" onclick="delPill(this)">×</span></span>
-            </div>
-            <div class="add-row">
-              <input id="skill-input" class="add-input" placeholder="Add a skill...">
-              <button class="add-btn" onclick="addSkill()">+ Add</button>
-            </div>
+            <div class="psec-title">Trades</div>
+            <div class="trade-pills"><span class="trade-pill">⚡ Electrician</span><span class="trade-pill">🔥 Welder</span></div>
           </div>
           <div class="psec">
             <div class="psec-title">About</div>
@@ -268,15 +257,8 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
           </div>
           <div class="psec">
             <div class="psec-title">Certifications</div>
-            <div class="pills-editable" id="certs-list">
-              <span class="pill-item cert">OSHA-10<span class="pill-del" onclick="delPill(this)">×</span></span>
-              <span class="pill-item cert">Construction Safety<span class="pill-del" onclick="delPill(this)">×</span></span>
-              <span class="pill-item cert">Electrical Fundamentals<span class="pill-del" onclick="delPill(this)">×</span></span>
-            </div>
-            <div class="add-row">
-              <input id="cert-input" class="add-input" placeholder="Add a certification...">
-              <button class="add-btn" onclick="addCert()">+ Add</button>
-            </div>
+            <div class="pills-editable" id="certs-list"><span class="pill-item cert">OSHA-10<span class="pill-del" onclick="delPill(this)">&times;</span></span><span class="pill-item cert">Construction Safety<span class="pill-del" onclick="delPill(this)">&times;</span></span><span class="pill-item cert">Electrical Fundamentals<span class="pill-del" onclick="delPill(this)">&times;</span></span></div>
+            <div class="add-row"><input id="cert-input" class="add-input" placeholder="Add a certification..."><button class="add-btn" onclick="addCert()">+ Add</button></div>
           </div>
           <div class="psec">
             <div class="psec-title">Project portfolio</div>
@@ -288,10 +270,7 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
               <div class="photo-tile" style="background:#1a0d10;">Lab exercise</div>
               <div class="photo-tile" style="background:#0d1520;">Blueprint reading</div>
             </div>
-            <div style="margin-top:10px;">
-              <label for="photo-upload" style="display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:8px;border:1px solid #1a2333;color:#8099b4;font-family:'Inter',sans-serif;font-size:13px;font-weight:500;cursor:pointer;">+ Upload photo</label>
-              <input type="file" id="photo-upload" accept="image/*" style="display:none;" onchange="addPhoto(this)">
-            </div>
+            <div style="margin-top:10px;"><label for="photo-upload" style="display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:8px;border:1px solid #1a2333;color:#8099b4;font-family:'Inter',sans-serif;font-size:13px;font-weight:500;cursor:pointer;">+ Upload photo</label><input type="file" id="photo-upload" accept="image/*" style="display:none;" onchange="addPhoto(this)"></div>
           </div>
         </div>
       </div>
@@ -380,10 +359,7 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
       <button class="nav-tab" onclick="orgTab('settings',this)">Settings</button>
     </div>
     <div class="nav-right">
-      <button class="nav-login" onclick="showAuthModal('login')">Log in</button>
-      <button class="nav-signup" onclick="showAuthModal('signup')">Sign up</button>
-      <span class="role-badge role-badge-org">Organization</span>
-      <button class="switch-btn" onclick="goLanding()">switch role</button>
+      <button class="nav-login" onclick="showAuthModal('login')">Log in</button><button class="nav-signup" onclick="showAuthModal('signup')">Sign up</button><span class="role-badge role-badge-org">Organization</span><button class="switch-btn" onclick="goLanding()">switch role</button>
     </div>
   </div>
   <div class="org-sub">Detroit Electrical Industry Training Center</div>
@@ -514,21 +490,15 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
       <div id="jobs-list">
         <div class="job-card">
           <div class="job-title">Electrical Apprentice — Detroit</div>
-          <div class="job-meta"><span>📍 Detroit, MI</span><span>$18–22/hr</span><span>4-year apprenticeship</span><span class="accepting">Accepting now</span></div>
-          <div class="job-desc">Looking for motivated entry-level candidates to join our IBEW apprenticeship program. No experience required — just reliability and a willingness to learn.</div>
-          <div class="job-actions">
-            <button class="job-edit">Edit</button>
-            <button class="job-delete" onclick="this.closest('.job-card').remove()">Delete</button>
-          </div>
+          <div class="job-meta"><span>Detroit, MI</span><span>$18-22/hr</span><span>4-year apprenticeship</span><span class="accepting">Accepting now</span></div>
+          <div class="job-desc">Looking for motivated entry-level candidates to join our IBEW apprenticeship. No experience required.</div>
+          <div class="job-actions"><button class="job-edit">Edit</button><button class="job-delete" onclick="this.closest('.job-card').remove()">Delete</button></div>
         </div>
         <div class="job-card">
           <div class="job-title">Helper / Laborer — Grand Rapids</div>
-          <div class="job-meta"><span>📍 Grand Rapids, MI</span><span>$16–19/hr</span><span>Part-time available</span><span class="accepting">Accepting now</span></div>
-          <div class="job-desc">General labor and helper positions available for summer and fall. Ideal for HS graduates or career changers.</div>
-          <div class="job-actions">
-            <button class="job-edit">Edit</button>
-            <button class="job-delete" onclick="this.closest('.job-card').remove()">Delete</button>
-          </div>
+          <div class="job-meta"><span>Grand Rapids, MI</span><span>$16-19/hr</span><span>Part-time available</span><span class="accepting">Accepting now</span></div>
+          <div class="job-desc">General labor positions for summer and fall. Ideal for HS graduates or career changers.</div>
+          <div class="job-actions"><button class="job-edit">Edit</button><button class="job-delete" onclick="this.closest('.job-card').remove()">Delete</button></div>
         </div>
       </div>
     </div>
@@ -662,16 +632,17 @@ function openModal(id){
 function closeModal(){document.getElementById("modal").classList.remove("open");}
 function submitInterest(){document.getElementById("modal-form").style.display="none";document.getElementById("modal-success").style.display="block";}
 function delPill(el){el.parentElement.remove();}
-function addSkill(){var input=document.getElementById("skill-input");var val=input.value.trim();if(!val)return;var span=document.createElement("span");span.className="pill-item trade";span.innerHTML=val+'<span class="pill-del" onclick="delPill(this)">&times;</span>';document.getElementById("skills-list").appendChild(span);input.value="";}
-function addCert(){var input=document.getElementById("cert-input");var val=input.value.trim();if(!val)return;var span=document.createElement("span");span.className="pill-item cert";span.innerHTML=val+'<span class="pill-del" onclick="delPill(this)">&times;</span>';document.getElementById("certs-list").appendChild(span);input.value="";}
+function addSkill(){var i=document.getElementById("skill-input");var v=i.value.trim();if(!v)return;var s=document.createElement("span");s.className="pill-item trade";s.innerHTML=v+'<span class="pill-del" onclick="delPill(this)">&times;</span>';document.getElementById("skills-list").appendChild(s);i.value="";}
+function addCert(){var i=document.getElementById("cert-input");var v=i.value.trim();if(!v)return;var s=document.createElement("span");s.className="pill-item cert";s.innerHTML=v+'<span class="pill-del" onclick="delPill(this)">&times;</span>';document.getElementById("certs-list").appendChild(s);i.value="";}
 document.addEventListener("keydown",function(e){if(e.key==="Enter"){if(document.activeElement.id==="skill-input")addSkill();if(document.activeElement.id==="cert-input")addCert();}});
-function addPhoto(input){if(!input.files||!input.files[0])return;var reader=new FileReader();reader.onload=function(e){var tile=document.createElement("div");tile.className="photo-tile";tile.style.cssText="background-image:url("+e.target.result+");background-size:cover;background-position:center;";document.getElementById("photo-grid").appendChild(tile);};reader.readAsDataURL(input.files[0]);}
-function showAuthModal(type){var title=document.getElementById("auth-title");var sub=document.getElementById("auth-sub");var nameRow=document.getElementById("auth-name-row");var btn=document.getElementById("auth-submit-btn");var successTitle=document.getElementById("auth-success-title");document.getElementById("auth-form").style.display="block";document.getElementById("auth-success").style.display="none";if(type==="signup"){title.textContent="Sign up";sub.textContent="Create your TradesConnect account";nameRow.style.display="block";btn.textContent="Create account";successTitle.textContent="Account created!";}else if(type==="edit"){title.textContent="Edit profile";sub.textContent="Update your information";nameRow.style.display="block";btn.textContent="Save changes";successTitle.textContent="Profile updated!";}else{title.textContent="Log in";sub.textContent="Welcome back to TradesConnect";nameRow.style.display="none";btn.textContent="Log in";successTitle.textContent="Welcome back!";}document.getElementById("auth-modal").classList.add("open");}
+function addPhoto(inp){if(!inp.files||!inp.files[0])return;var r=new FileReader();r.onload=function(e){var t=document.createElement("div");t.className="photo-tile";t.style.cssText="background-image:url("+e.target.result+");background-size:cover;background-position:center;";document.getElementById("photo-grid").appendChild(t);};r.readAsDataURL(inp.files[0]);}
+function showAuthModal(type){document.getElementById("auth-form").style.display="block";document.getElementById("auth-success").style.display="none";if(type==="signup"){document.getElementById("auth-title").textContent="Sign up";document.getElementById("auth-sub").textContent="Create your TradesConnect account";document.getElementById("auth-name-row").style.display="block";document.getElementById("auth-submit-btn").textContent="Create account";document.getElementById("auth-success-title").textContent="Account created!";}else if(type==="edit"){document.getElementById("auth-title").textContent="Edit profile";document.getElementById("auth-sub").textContent="Update your information";document.getElementById("auth-name-row").style.display="block";document.getElementById("auth-submit-btn").textContent="Save changes";document.getElementById("auth-success-title").textContent="Profile updated!";}else{document.getElementById("auth-title").textContent="Log in";document.getElementById("auth-sub").textContent="Welcome back to TradesConnect";document.getElementById("auth-name-row").style.display="none";document.getElementById("auth-submit-btn").textContent="Log in";document.getElementById("auth-success-title").textContent="Welcome back!";}document.getElementById("auth-modal").classList.add("open");}
 function closeAuthModal(){document.getElementById("auth-modal").classList.remove("open");}
 function submitAuth(){document.getElementById("auth-form").style.display="none";document.getElementById("auth-success").style.display="block";}
 function showJobModal(){document.getElementById("job-form").style.display="block";document.getElementById("job-success").style.display="none";document.getElementById("job-modal").classList.add("open");}
 function closeJobModal(){document.getElementById("job-modal").classList.remove("open");}
 function submitJob(){var t=document.getElementById("j-title").value.trim()||"New job";var c=document.getElementById("j-city").value.trim()||"Michigan";var p=document.getElementById("j-pay").value.trim()||"TBD";var ty=document.getElementById("j-type").value.trim()||"";var d=document.getElementById("j-desc").value.trim()||"";var card=document.createElement("div");card.className="job-card";card.innerHTML="<div class='job-title'>"+t+"</div><div class='job-meta'><span>"+c+"</span><span>"+p+"</span><span>"+ty+"</span><span class='accepting'>Accepting now</span></div><div class='job-desc'>"+d+"</div><div class='job-actions'><button class='job-edit'>Edit</button><button class='job-delete' onclick='this.closest(&quot;.job-card&quot;).remove()'>Delete</button></div>";document.getElementById("jobs-list").prepend(card);document.getElementById("job-form").style.display="none";document.getElementById("job-success").style.display="block";}
+function orgTab(tab,el){document.querySelectorAll("#screen-org .nav-tab").forEach(function(b){b.classList.remove("on");});el.classList.add("on");document.getElementById("ot-dashboard").style.display=tab==="dashboard"?"block":"none";document.getElementById("ot-candidates").style.display=tab==="candidates"?"block":"none";document.getElementById("ot-myjobs").style.display=tab==="myjobs"?"block":"none";document.getElementById("ot-settings").style.display=tab==="settings"?"block":"none";}
 document.getElementById("modal").addEventListener("click",function(e){if(e.target===this)closeModal();});
 document.getElementById("auth-modal").addEventListener("click",function(e){if(e.target===this)closeAuthModal();});
 document.getElementById("job-modal").addEventListener("click",function(e){if(e.target===this)closeJobModal();});
