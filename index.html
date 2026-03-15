@@ -71,7 +71,7 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
 .edit-profile-btn{position:absolute;top:12px;right:14px;padding:6px 14px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;background:rgba(13,31,58,0.85);border:1px solid #1a3a6a;color:#4d8ef0;font-family:'Inter',sans-serif;transition:all .15s;}
 .edit-profile-btn:hover{background:#0d1f3a;}
 .profile-body{padding:0 28px 32px;}
-.profile-av{width:72px;height:72px;border-radius:50%;background:#0d1f3a;color:#4d8ef0;font-size:22px;font-weight:700;display:flex;align-items:center;justify-content:center;border:3px solid #0d1321;margin-top:-36px;margin-bottom:16px;}
+.profile-av{width:72px;height:72px;border-radius:50%;background:#0d1f3a;color:#4d8ef0;font-size:22px;font-weight:700;display:flex;align-items:center;justify-content:center;border:4px solid #0d1321;margin-top:-36px;margin-bottom:16px;position:relative;z-index:1;}
 .profile-name{font-size:22px;font-weight:700;color:#e8edf4;margin-bottom:4px;}
 .profile-sub{font-size:14px;color:#4a607a;margin-bottom:12px;}
 .avail-pill{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;padding:6px 14px;border-radius:20px;background:#0a1f14;color:#3dd68c;border:1px solid #1a4030;margin-bottom:24px;}
@@ -336,80 +336,14 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
           <div><div class="settings-label">Switch role</div><div class="settings-desc">Go back and choose Prospect or Organization</div></div>
           <button class="settings-btn" onclick="goLanding()">Switch</button>
         </div>
-        <div class="settings-row">
-          <div><div class="settings-label">Sign out</div><div class="settings-desc">Sign out of your TradesConnect account</div></div>
-          <button class="settings-btn">Sign out</button>
-        </div>
-        <div class="settings-row">
-          <div><div class="settings-label">Delete account</div><div class="settings-desc">Permanently delete your profile and data</div></div>
-          <button class="settings-btn danger">Delete</button>
-        </div>
-      </div>
-    </div>
 
     <div id="pt-roadmap" style="display:none;max-width:680px;margin:0 auto;">
-      <div style="margin-bottom:28px;">
-        <div style="font-size:22px;font-weight:700;color:#e8edf4;margin-bottom:6px;">Product Roadmap</div>
-        <div style="font-size:14px;color:#6a8098;">Where TradesConnect is headed — built in public, feedback welcome.</div>
-      </div>
-
-      <div class="section-box" style="border-left:3px solid #3dd68c;">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
-          <span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;background:#0a1f14;color:#3dd68c;border:1px solid #1a4030;text-transform:uppercase;letter-spacing:.5px;">Live now</span>
-          <div class="section-title" style="margin-bottom:0;">Phase 1 — Michigan Pilot</div>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:10px;">
-          <div style="display:flex;gap:10px;align-items:flex-start;"><span style="color:#3dd68c;margin-top:2px;">✓</span><div style="font-size:14px;color:#8099b4;">Prospect profiles — trades, skills, certs, portfolio</div></div>
-          <div style="display:flex;gap:10px;align-items:flex-start;"><span style="color:#3dd68c;margin-top:2px;">✓</span><div style="font-size:14px;color:#8099b4;">Program discovery with trade filters</div></div>
-          <div style="display:flex;gap:10px;align-items:flex-start;"><span style="color:#3dd68c;margin-top:2px;">✓</span><div style="font-size:14px;color:#8099b4;">One-tap Express Interest — no resume needed</div></div>
-          <div style="display:flex;gap:10px;align-items:flex-start;"><span style="color:#3dd68c;margin-top:2px;">✓</span><div style="font-size:14px;color:#8099b4;">Organization dashboard — leads, pipeline, candidate browsing</div></div>
-          <div style="display:flex;gap:10px;align-items:flex-start;"><span style="color:#3dd68c;margin-top:2px;">✓</span><div style="font-size:14px;color:#8099b4;">Job posting for organizations</div></div>
-          <div style="display:flex;gap:10px;align-items:flex-start;"><span style="color:#3dd68c;margin-top:2px;">✓</span><div style="font-size:14px;color:#8099b4;">Detroit &amp; Grand Rapids pilot programs seeded</div></div>
-        </div>
-      </div>
-
-      <div class="section-box" style="border-left:3px solid #4d8ef0;">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
-          <span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;background:#112240;color:#4d8ef0;border:1px solid #1a3a6a;text-transform:uppercase;letter-spacing:.5px;">In development</span>
-          <div class="section-title" style="margin-bottom:0;">Phase 2 — Real Accounts</div>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:10px;">
-          <div style="display:flex;gap:10px;align-items:flex-start;"><span style="color:#4d8ef0;margin-top:2px;">→</span><div style="font-size:14px;color:#8099b4;">SMS phone verification for prospects</div></div>
-          <div style="display:flex;gap:10px;align-items:flex-start;"><span style="color:#4d8ef0;margin-top:2px;">→</span><div style="font-size:14px;color:#8099b4;">Company email domain verification for organizations</div></div>
-          <div style="display:flex;gap:10px;align-items:flex-start;"><span style="color:#4d8ef0;margin-top:2px;">→</span><div style="font-size:14px;color:#8099b4;">Real login &amp; persistent accounts (Supabase backend)</div></div>
-          <div style="display:flex;gap:10px;align-items:flex-start;"><span style="color:#4d8ef0;margin-top:2px;">→</span><div style="font-size:14px;color:#8099b4;">Direct messaging between prospects and orgs</div></div>
-          <div style="display:flex;gap:10px;align-items:flex-start;"><span style="color:#4d8ef0;margin-top:2px;">→</span><div style="font-size:14px;color:#8099b4;">"Ending Soon" — limited spots alerts and urgency indicators</div></div>
-          <div style="display:flex;gap:10px;align-items:flex-start;"><span style="color:#4d8ef0;margin-top:2px;">→</span><div style="font-size:14px;color:#8099b4;">End-to-end encryption on all personal data</div></div>
-        </div>
-      </div>
-
-      <div class="section-box" style="border-left:3px solid #a78bfa;">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
-          <span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;background:#150d2e;color:#a78bfa;border:1px solid #2a1f50;text-transform:uppercase;letter-spacing:.5px;">Coming soon</span>
-          <div class="section-title" style="margin-bottom:0;">Phase 3 — Scale</div>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:10px;">
-          <div style="display:flex;gap:10px;align-items:flex-start;"><span style="color:#a78bfa;margin-top:2px;">◦</span><div style="font-size:14px;color:#8099b4;">Statewide Michigan expansion — 50+ programs</div></div>
-          <div style="display:flex;gap:10px;align-items:flex-start;"><span style="color:#a78bfa;margin-top:2px;">◦</span><div style="font-size:14px;color:#8099b4;">Employer endorsements and candidate ratings</div></div>
-          <div style="display:flex;gap:10px;align-items:flex-start;"><span style="color:#a78bfa;margin-top:2px;">◦</span><div style="font-size:14px;color:#8099b4;">OSHA &amp; safety certification integrations</div></div>
-          <div style="display:flex;gap:10px;align-items:flex-start;"><span style="color:#a78bfa;margin-top:2px;">◦</span><div style="font-size:14px;color:#8099b4;">Paid org tiers — featured listings, advanced filters, CRM inbox</div></div>
-          <div style="display:flex;gap:10px;align-items:flex-start;"><span style="color:#a78bfa;margin-top:2px;">◦</span><div style="font-size:14px;color:#8099b4;">Mobile app (iOS + Android)</div></div>
-          <div style="display:flex;gap:10px;align-items:flex-start;"><span style="color:#a78bfa;margin-top:2px;">◦</span><div style="font-size:14px;color:#8099b4;">Multi-state rollout — Ohio, Indiana, Wisconsin</div></div>
-        </div>
-      </div>
-
-      <div class="section-box">
-        <div class="section-title">Security roadmap</div>
-        <div style="display:flex;flex-direction:column;gap:10px;">
-          <div style="display:flex;gap:10px;align-items:flex-start;"><span style="color:#fbbf24;margin-top:2px;">⚑</span><div style="font-size:14px;color:#8099b4;">No SSN ever collected — formal paperwork handled by employer at hire</div></div>
-          <div style="display:flex;gap:10px;align-items:flex-start;"><span style="color:#fbbf24;margin-top:2px;">⚑</span><div style="font-size:14px;color:#8099b4;">All data encrypted at rest and in transit (HTTPS)</div></div>
-          <div style="display:flex;gap:10px;align-items:flex-start;"><span style="color:#fbbf24;margin-top:2px;">⚑</span><div style="font-size:14px;color:#8099b4;">Passwords hashed — never stored in plain text</div></div>
-          <div style="display:flex;gap:10px;align-items:flex-start;"><span style="color:#fbbf24;margin-top:2px;">⚑</span><div style="font-size:14px;color:#8099b4;">GDPR &amp; CCPA compliant data handling</div></div>
-          <div style="display:flex;gap:10px;align-items:flex-start;"><span style="color:#fbbf24;margin-top:2px;">⚑</span><div style="font-size:14px;color:#8099b4;">Organization emails manually verified before listings go live</div></div>
-        </div>
-      </div>
+      <div style="margin-bottom:28px;"><div style="font-size:22px;font-weight:700;color:#e8edf4;margin-bottom:6px;">Product Roadmap</div><div style="font-size:14px;color:#6a8098;">Where TradesConnect is headed — built in public, feedback welcome.</div></div>
+      <div class="section-box" style="border-left:3px solid #3dd68c;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;"><span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;background:#0a1f14;color:#3dd68c;border:1px solid #1a4030;text-transform:uppercase;letter-spacing:.5px;">Live now</span><div class="section-title" style="margin-bottom:0;">Phase 1 — Michigan Pilot</div></div><div style="display:flex;flex-direction:column;gap:10px;"><div style="display:flex;gap:10px;"><span style="color:#3dd68c;">✓</span><div style="font-size:14px;color:#8099b4;">Prospect profiles, program discovery, express interest</div></div><div style="display:flex;gap:10px;"><span style="color:#3dd68c;">✓</span><div style="font-size:14px;color:#8099b4;">Org dashboard — leads, pipeline, candidate browsing</div></div><div style="display:flex;gap:10px;"><span style="color:#3dd68c;">✓</span><div style="font-size:14px;color:#8099b4;">Job posting for organizations</div></div><div style="display:flex;gap:10px;"><span style="color:#3dd68c;">✓</span><div style="font-size:14px;color:#8099b4;">Detroit &amp; Grand Rapids pilot programs seeded</div></div></div></div>
+      <div class="section-box" style="border-left:3px solid #4d8ef0;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;"><span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;background:#112240;color:#4d8ef0;border:1px solid #1a3a6a;text-transform:uppercase;letter-spacing:.5px;">In development</span><div class="section-title" style="margin-bottom:0;">Phase 2 — Real Accounts</div></div><div style="display:flex;flex-direction:column;gap:10px;"><div style="display:flex;gap:10px;"><span style="color:#4d8ef0;">→</span><div style="font-size:14px;color:#8099b4;">SMS phone verification for prospects</div></div><div style="display:flex;gap:10px;"><span style="color:#4d8ef0;">→</span><div style="font-size:14px;color:#8099b4;">Company email domain verification for orgs</div></div><div style="display:flex;gap:10px;"><span style="color:#4d8ef0;">→</span><div style="font-size:14px;color:#8099b4;">Real login &amp; persistent accounts</div></div><div style="display:flex;gap:10px;"><span style="color:#4d8ef0;">→</span><div style="font-size:14px;color:#8099b4;">Direct messaging between prospects and orgs</div></div><div style="display:flex;gap:10px;"><span style="color:#4d8ef0;">→</span><div style="font-size:14px;color:#8099b4;">"Ending Soon" — limited spots alerts</div></div></div></div>
+      <div class="section-box" style="border-left:3px solid #a78bfa;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;"><span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;background:#150d2e;color:#a78bfa;border:1px solid #2a1f50;text-transform:uppercase;letter-spacing:.5px;">Coming soon</span><div class="section-title" style="margin-bottom:0;">Phase 3 — Scale</div></div><div style="display:flex;flex-direction:column;gap:10px;"><div style="display:flex;gap:10px;"><span style="color:#a78bfa;">◦</span><div style="font-size:14px;color:#8099b4;">Statewide Michigan expansion — 50+ programs</div></div><div style="display:flex;gap:10px;"><span style="color:#a78bfa;">◦</span><div style="font-size:14px;color:#8099b4;">Paid org tiers — featured listings, CRM inbox</div></div><div style="display:flex;gap:10px;"><span style="color:#a78bfa;">◦</span><div style="font-size:14px;color:#8099b4;">Mobile app (iOS + Android)</div></div><div style="display:flex;gap:10px;"><span style="color:#a78bfa;">◦</span><div style="font-size:14px;color:#8099b4;">Multi-state rollout — Ohio, Indiana, Wisconsin</div></div></div></div>
+      <div class="section-box"><div class="section-title">Security roadmap</div><div style="display:flex;flex-direction:column;gap:10px;"><div style="display:flex;gap:10px;"><span style="color:#fbbf24;">⚑</span><div style="font-size:14px;color:#8099b4;">No SSN ever collected — formal paperwork handled by employer at hire</div></div><div style="display:flex;gap:10px;"><span style="color:#fbbf24;">⚑</span><div style="font-size:14px;color:#8099b4;">All data encrypted at rest and in transit</div></div><div style="display:flex;gap:10px;"><span style="color:#fbbf24;">⚑</span><div style="font-size:14px;color:#8099b4;">Passwords hashed — never stored plain text</div></div><div style="display:flex;gap:10px;"><span style="color:#fbbf24;">⚑</span><div style="font-size:14px;color:#8099b4;">GDPR &amp; CCPA compliant</div></div></div></div>
     </div>
-
   </div>
 </div>
 
@@ -554,58 +488,16 @@ body{font-family:'Inter',sans-serif;background:#080c14;color:#e8edf4;min-height:
     <div id="ot-myjobs" style="display:none;">
       <button class="post-job-btn" onclick="showJobModal()">+ Post a new job</button>
       <div id="jobs-list">
-        <div class="job-card">
-          <div class="job-title">Electrical Apprentice — Detroit</div>
-          <div class="job-meta"><span>Detroit, MI</span><span>$18-22/hr</span><span>4-year apprenticeship</span><span class="accepting">Accepting now</span></div>
-          <div class="job-desc">Looking for motivated entry-level candidates to join our IBEW apprenticeship. No experience required.</div>
-          <div class="job-actions"><button class="job-edit">Edit</button><button class="job-delete" onclick="this.closest('.job-card').remove()">Delete</button></div>
-        </div>
-        <div class="job-card">
-          <div class="job-title">Helper / Laborer — Grand Rapids</div>
-          <div class="job-meta"><span>Grand Rapids, MI</span><span>$16-19/hr</span><span>Part-time available</span><span class="accepting">Accepting now</span></div>
-          <div class="job-desc">General labor positions for summer and fall. Ideal for HS graduates or career changers.</div>
-          <div class="job-actions"><button class="job-edit">Edit</button><button class="job-delete" onclick="this.closest('.job-card').remove()">Delete</button></div>
-        </div>
+        <div class="job-card"><div class="job-title">Electrical Apprentice — Detroit</div><div class="job-meta"><span>Detroit, MI</span><span>$18-22/hr</span><span>4-year apprenticeship</span><span class="accepting">Accepting now</span></div><div class="job-desc">Looking for motivated entry-level candidates. No experience required.</div><div class="job-actions"><button class="job-edit">Edit</button><button class="job-delete" onclick="this.closest('.job-card').remove()">Delete</button></div></div>
+        <div class="job-card"><div class="job-title">Helper / Laborer — Grand Rapids</div><div class="job-meta"><span>Grand Rapids, MI</span><span>$16-19/hr</span><span>Part-time available</span><span class="accepting">Accepting now</span></div><div class="job-desc">General labor for summer and fall. Ideal for HS graduates or career changers.</div><div class="job-actions"><button class="job-edit">Edit</button><button class="job-delete" onclick="this.closest('.job-card').remove()">Delete</button></div></div>
       </div>
     </div>
-
     <div id="ot-roadmap" style="display:none;max-width:680px;margin:0 auto;">
-      <div style="margin-bottom:28px;">
-        <div style="font-size:22px;font-weight:700;color:#e8edf4;margin-bottom:6px;">Product Roadmap</div>
-        <div style="font-size:14px;color:#6a8098;">Where TradesConnect is headed — built in public, feedback welcome.</div>
-      </div>
-      <div class="section-box" style="border-left:3px solid #3dd68c;">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;"><span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;background:#0a1f14;color:#3dd68c;border:1px solid #1a4030;text-transform:uppercase;letter-spacing:.5px;">Live now</span><div class="section-title" style="margin-bottom:0;">Phase 1 — Michigan Pilot</div></div>
-        <div style="display:flex;flex-direction:column;gap:10px;">
-          <div style="display:flex;gap:10px;"><span style="color:#3dd68c;">✓</span><div style="font-size:14px;color:#8099b4;">Prospect profiles, program discovery, express interest</div></div>
-          <div style="display:flex;gap:10px;"><span style="color:#3dd68c;">✓</span><div style="font-size:14px;color:#8099b4;">Organization dashboard — leads, pipeline, candidate browsing</div></div>
-          <div style="display:flex;gap:10px;"><span style="color:#3dd68c;">✓</span><div style="font-size:14px;color:#8099b4;">Job posting for organizations</div></div>
-          <div style="display:flex;gap:10px;"><span style="color:#3dd68c;">✓</span><div style="font-size:14px;color:#8099b4;">Detroit &amp; Grand Rapids pilot programs seeded</div></div>
-        </div>
-      </div>
-      <div class="section-box" style="border-left:3px solid #4d8ef0;">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;"><span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;background:#112240;color:#4d8ef0;border:1px solid #1a3a6a;text-transform:uppercase;letter-spacing:.5px;">In development</span><div class="section-title" style="margin-bottom:0;">Phase 2 — Real Accounts</div></div>
-        <div style="display:flex;flex-direction:column;gap:10px;">
-          <div style="display:flex;gap:10px;"><span style="color:#4d8ef0;">→</span><div style="font-size:14px;color:#8099b4;">SMS phone verification for prospects</div></div>
-          <div style="display:flex;gap:10px;"><span style="color:#4d8ef0;">→</span><div style="font-size:14px;color:#8099b4;">Company email domain verification for organizations</div></div>
-          <div style="display:flex;gap:10px;"><span style="color:#4d8ef0;">→</span><div style="font-size:14px;color:#8099b4;">Real login &amp; persistent accounts</div></div>
-          <div style="display:flex;gap:10px;"><span style="color:#4d8ef0;">→</span><div style="font-size:14px;color:#8099b4;">Direct messaging between prospects and orgs</div></div>
-          <div style="display:flex;gap:10px;"><span style="color:#4d8ef0;">→</span><div style="font-size:14px;color:#8099b4;">"Ending Soon" — limited spots alerts</div></div>
-          <div style="display:flex;gap:10px;"><span style="color:#4d8ef0;">→</span><div style="font-size:14px;color:#8099b4;">End-to-end encryption on all personal data</div></div>
-        </div>
-      </div>
-      <div class="section-box" style="border-left:3px solid #a78bfa;">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;"><span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;background:#150d2e;color:#a78bfa;border:1px solid #2a1f50;text-transform:uppercase;letter-spacing:.5px;">Coming soon</span><div class="section-title" style="margin-bottom:0;">Phase 3 — Scale</div></div>
-        <div style="display:flex;flex-direction:column;gap:10px;">
-          <div style="display:flex;gap:10px;"><span style="color:#a78bfa;">◦</span><div style="font-size:14px;color:#8099b4;">Statewide Michigan expansion — 50+ programs</div></div>
-          <div style="display:flex;gap:10px;"><span style="color:#a78bfa;">◦</span><div style="font-size:14px;color:#8099b4;">Paid org tiers — featured listings, advanced filters, CRM inbox</div></div>
-          <div style="display:flex;gap:10px;"><span style="color:#a78bfa;">◦</span><div style="font-size:14px;color:#8099b4;">Employer endorsements and candidate ratings</div></div>
-          <div style="display:flex;gap:10px;"><span style="color:#a78bfa;">◦</span><div style="font-size:14px;color:#8099b4;">Mobile app (iOS + Android)</div></div>
-          <div style="display:flex;gap:10px;"><span style="color:#a78bfa;">◦</span><div style="font-size:14px;color:#8099b4;">Multi-state rollout — Ohio, Indiana, Wisconsin</div></div>
-        </div>
-      </div>
+      <div style="margin-bottom:28px;"><div style="font-size:22px;font-weight:700;color:#e8edf4;margin-bottom:6px;">Product Roadmap</div><div style="font-size:14px;color:#6a8098;">Where TradesConnect is headed.</div></div>
+      <div class="section-box" style="border-left:3px solid #3dd68c;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;"><span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;background:#0a1f14;color:#3dd68c;border:1px solid #1a4030;text-transform:uppercase;letter-spacing:.5px;">Live now</span><div class="section-title" style="margin-bottom:0;">Phase 1 — Michigan Pilot</div></div><div style="display:flex;flex-direction:column;gap:10px;"><div style="display:flex;gap:10px;"><span style="color:#3dd68c;">✓</span><div style="font-size:14px;color:#8099b4;">Prospect profiles, program discovery, express interest</div></div><div style="display:flex;gap:10px;"><span style="color:#3dd68c;">✓</span><div style="font-size:14px;color:#8099b4;">Org dashboard, job posting, candidate browsing</div></div></div></div>
+      <div class="section-box" style="border-left:3px solid #4d8ef0;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;"><span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;background:#112240;color:#4d8ef0;border:1px solid #1a3a6a;text-transform:uppercase;letter-spacing:.5px;">In development</span><div class="section-title" style="margin-bottom:0;">Phase 2 — Real Accounts</div></div><div style="display:flex;flex-direction:column;gap:10px;"><div style="display:flex;gap:10px;"><span style="color:#4d8ef0;">→</span><div style="font-size:14px;color:#8099b4;">SMS verification, company email verification</div></div><div style="display:flex;gap:10px;"><span style="color:#4d8ef0;">→</span><div style="font-size:14px;color:#8099b4;">Real login, direct messaging, "Ending Soon" alerts</div></div></div></div>
+      <div class="section-box" style="border-left:3px solid #a78bfa;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;"><span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;background:#150d2e;color:#a78bfa;border:1px solid #2a1f50;text-transform:uppercase;letter-spacing:.5px;">Coming soon</span><div class="section-title" style="margin-bottom:0;">Phase 3 — Scale</div></div><div style="display:flex;flex-direction:column;gap:10px;"><div style="display:flex;gap:10px;"><span style="color:#a78bfa;">◦</span><div style="font-size:14px;color:#8099b4;">50+ programs statewide, mobile app, multi-state rollout</div></div><div style="display:flex;gap:10px;"><span style="color:#a78bfa;">◦</span><div style="font-size:14px;color:#8099b4;">Paid org tiers, endorsements, OSHA integrations</div></div></div></div>
     </div>
-
     </div>
   </div>
 </div>
@@ -689,7 +581,6 @@ function prospectTab(tab,el){
   document.getElementById("pt-discover").style.display=tab==="discover"?"block":"none";
   document.getElementById("pt-profile").style.display=tab==="profile"?"block":"none";
   document.getElementById("pt-settings").style.display=tab==="settings"?"block":"none";
-  document.getElementById("pt-roadmap").style.display=tab==="roadmap"?"block":"none";
 }
 
 function orgTab(tab,el){
@@ -697,9 +588,7 @@ function orgTab(tab,el){
   el.classList.add("on");
   document.getElementById("ot-dashboard").style.display=tab==="dashboard"?"block":"none";
   document.getElementById("ot-candidates").style.display=tab==="candidates"?"block":"none";
-  document.getElementById("ot-myjobs").style.display=tab==="myjobs"?"block":"none";
   document.getElementById("ot-settings").style.display=tab==="settings"?"block":"none";
-  document.getElementById("ot-roadmap").style.display=tab==="roadmap"?"block":"none";
 }
 
 function goProspect(){
@@ -721,14 +610,11 @@ function goLanding(){
   document.getElementById("pt-discover").style.display="block";
   document.getElementById("pt-profile").style.display="none";
   document.getElementById("pt-settings").style.display="none";
-  document.getElementById("pt-roadmap").style.display="none";
   document.querySelectorAll("#screen-prospect .nav-tab").forEach((b,i)=>{b.classList.toggle("on",i===0);});
   // reset org tabs
   document.getElementById("ot-dashboard").style.display="block";
   document.getElementById("ot-candidates").style.display="none";
-  document.getElementById("ot-myjobs").style.display="none";
   document.getElementById("ot-settings").style.display="none";
-  document.getElementById("ot-roadmap").style.display="none";
   document.querySelectorAll("#screen-org .nav-tab").forEach((b,i)=>{b.classList.toggle("on",i===0);});
 }
 
@@ -739,6 +625,12 @@ function openModal(id){
   document.getElementById("modal-success").style.display="none";
   document.getElementById("modal").classList.add("open");
 }
+function prospectTab(tab,el){document.querySelectorAll("#screen-prospect .nav-tab").forEach(function(b){b.classList.remove("on");});el.classList.add("on");document.getElementById("pt-discover").style.display=tab==="discover"?"block":"none";document.getElementById("pt-profile").style.display=tab==="profile"?"block":"none";document.getElementById("pt-settings").style.display=tab==="settings"?"block":"none";document.getElementById("pt-roadmap").style.display=tab==="roadmap"?"block":"none";}
+function orgTab(tab,el){document.querySelectorAll("#screen-org .nav-tab").forEach(function(b){b.classList.remove("on");});el.classList.add("on");document.getElementById("ot-dashboard").style.display=tab==="dashboard"?"block":"none";document.getElementById("ot-candidates").style.display=tab==="candidates"?"block":"none";document.getElementById("ot-myjobs").style.display=tab==="myjobs"?"block":"none";document.getElementById("ot-settings").style.display=tab==="settings"?"block":"none";document.getElementById("ot-roadmap").style.display=tab==="roadmap"?"block":"none";}
+function goProspect(){document.getElementById("screen-landing").style.display="none";document.getElementById("screen-prospect").style.display="block";renderPrograms();}
+function goOrg(){document.getElementById("screen-landing").style.display="none";document.getElementById("screen-org").style.display="block";}
+function goLanding(){document.getElementById("screen-landing").style.display="flex";document.getElementById("screen-prospect").style.display="none";document.getElementById("screen-org").style.display="none";document.getElementById("pt-discover").style.display="block";document.getElementById("pt-profile").style.display="none";document.getElementById("pt-settings").style.display="none";document.getElementById("pt-roadmap").style.display="none";document.querySelectorAll("#screen-prospect .nav-tab").forEach(function(b,i){b.classList.toggle("on",i===0);});document.getElementById("ot-dashboard").style.display="block";document.getElementById("ot-candidates").style.display="none";document.getElementById("ot-myjobs").style.display="none";document.getElementById("ot-settings").style.display="none";document.getElementById("ot-roadmap").style.display="none";document.querySelectorAll("#screen-org .nav-tab").forEach(function(b,i){b.classList.toggle("on",i===0);});}
+function openModal(id){var p=programs.find(function(x){return x.id===id;});document.getElementById("modal-prog-name").textContent=p.name;document.getElementById("modal-form").style.display="block";document.getElementById("modal-success").style.display="none";document.getElementById("modal").classList.add("open");}
 function closeModal(){document.getElementById("modal").classList.remove("open");}
 function submitInterest(){document.getElementById("modal-form").style.display="none";document.getElementById("modal-success").style.display="block";}
 </script>
