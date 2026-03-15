@@ -591,33 +591,6 @@ function orgTab(tab,el){
   document.getElementById("ot-settings").style.display=tab==="settings"?"block":"none";
 }
 
-function goProspect(){
-  document.getElementById("screen-landing").style.display="none";
-  document.getElementById("screen-prospect").style.display="block";
-  renderPrograms();
-}
-
-function goOrg(){
-  document.getElementById("screen-landing").style.display="none";
-  document.getElementById("screen-org").style.display="block";
-}
-
-function goLanding(){
-  document.getElementById("screen-landing").style.display="flex";
-  document.getElementById("screen-prospect").style.display="none";
-  document.getElementById("screen-org").style.display="none";
-  // reset prospect tabs
-  document.getElementById("pt-discover").style.display="block";
-  document.getElementById("pt-profile").style.display="none";
-  document.getElementById("pt-settings").style.display="none";
-  document.querySelectorAll("#screen-prospect .nav-tab").forEach((b,i)=>{b.classList.toggle("on",i===0);});
-  // reset org tabs
-  document.getElementById("ot-dashboard").style.display="block";
-  document.getElementById("ot-candidates").style.display="none";
-  document.getElementById("ot-settings").style.display="none";
-  document.querySelectorAll("#screen-org .nav-tab").forEach((b,i)=>{b.classList.toggle("on",i===0);});
-}
-
 function openModal(id){
   const p=programs.find(x=>x.id===id);
   document.getElementById("modal-prog-name").textContent=p.name;
@@ -627,10 +600,7 @@ function openModal(id){
 }
 function prospectTab(tab,el){document.querySelectorAll("#screen-prospect .nav-tab").forEach(function(b){b.classList.remove("on");});el.classList.add("on");document.getElementById("pt-discover").style.display=tab==="discover"?"block":"none";document.getElementById("pt-profile").style.display=tab==="profile"?"block":"none";document.getElementById("pt-settings").style.display=tab==="settings"?"block":"none";document.getElementById("pt-roadmap").style.display=tab==="roadmap"?"block":"none";}
 function orgTab(tab,el){document.querySelectorAll("#screen-org .nav-tab").forEach(function(b){b.classList.remove("on");});el.classList.add("on");document.getElementById("ot-dashboard").style.display=tab==="dashboard"?"block":"none";document.getElementById("ot-candidates").style.display=tab==="candidates"?"block":"none";document.getElementById("ot-myjobs").style.display=tab==="myjobs"?"block":"none";document.getElementById("ot-settings").style.display=tab==="settings"?"block":"none";document.getElementById("ot-roadmap").style.display=tab==="roadmap"?"block":"none";}
-function goProspect(){document.getElementById("screen-landing").style.display="none";document.getElementById("screen-prospect").style.display="block";renderPrograms();}
-function goOrg(){document.getElementById("screen-landing").style.display="none";document.getElementById("screen-org").style.display="block";}
-function goLanding(){document.getElementById("screen-landing").style.display="flex";document.getElementById("screen-prospect").style.display="none";document.getElementById("screen-org").style.display="none";document.getElementById("pt-discover").style.display="block";document.getElementById("pt-profile").style.display="none";document.getElementById("pt-settings").style.display="none";document.getElementById("pt-roadmap").style.display="none";document.querySelectorAll("#screen-prospect .nav-tab").forEach(function(b,i){b.classList.toggle("on",i===0);});document.getElementById("ot-dashboard").style.display="block";document.getElementById("ot-candidates").style.display="none";document.getElementById("ot-myjobs").style.display="none";document.getElementById("ot-settings").style.display="none";document.getElementById("ot-roadmap").style.display="none";document.querySelectorAll("#screen-org .nav-tab").forEach(function(b,i){b.classList.toggle("on",i===0);});}
-function openModal(id){var p=programs.find(function(x){return x.id===id;});document.getElementById("modal-prog-name").textContent=p.name;document.getElementById("modal-form").style.display="block";document.getElemen
+function openModal(id){var p=programs.find(function(x){return x.id===id;});document.getElementById("modal-prog-name").textContent=p.name;document.getElementById("modal-form").style.display="block";document.getElementById("modal-success").style.display="none";document.getElementById("modal").classList.add("open");}
 function closeModal(){document.getElementById("modal").classList.remove("open");}
 function submitInterest(){document.getElementById("modal-form").style.display="none";document.getElementById("modal-success").style.display="block";}
 function delPill(el){el.parentElement.remove();}
@@ -644,6 +614,9 @@ function submitAuth(){document.getElementById("auth-form").style.display="none";
 function showJobModal(){document.getElementById("job-form").style.display="block";document.getElementById("job-success").style.display="none";document.getElementById("job-modal").classList.add("open");}
 function closeJobModal(){document.getElementById("job-modal").classList.remove("open");}
 function submitJob(){var t=document.getElementById("j-title").value.trim()||"New job";var c=document.getElementById("j-city").value.trim()||"West Michigan";var p=document.getElementById("j-pay").value.trim()||"TBD";var ty=document.getElementById("j-type").value.trim()||"";var d=document.getElementById("j-desc").value.trim()||"";var card=document.createElement("div");card.className="job-card";card.innerHTML="<div class='job-title'>"+t+"</div><div class='job-meta'><span>"+c+"</span><span>"+p+"</span><span>"+ty+"</span><span class='accepting'>Accepting now</span></div><div class='job-desc'>"+d+"</div><div class='job-actions'><button class='job-edit'>Edit</button><button class='job-delete' onclick='this.closest(&quot;.job-card&quot;).remove()'>Delete</button></div>";document.getElementById("jobs-list").prepend(card);document.getElementById("job-form").style.display="none";document.getElementById("job-success").style.display="block";}
+function goProspect(){document.getElementById("screen-landing").style.display="none";document.getElementById("screen-prospect").style.display="block";renderPrograms();}
+function goOrg(){document.getElementById("screen-landing").style.display="none";document.getElementById("screen-org").style.display="block";}
+function goLanding(){document.getElementById("screen-landing").style.display="flex";document.getElementById("screen-prospect").style.display="none";document.getElementById("screen-org").style.display="none";document.getElementById("pt-discover").style.display="block";document.getElementById("pt-profile").style.display="none";document.getElementById("pt-settings").style.display="none";document.getElementById("pt-roadmap").style.display="none";document.querySelectorAll("#screen-prospect .nav-tab").forEach(function(b,i){b.classList.toggle("on",i===0);});document.getElementById("ot-dashboard").style.display="block";document.getElementById("ot-candidates").style.display="none";document.getElementById("ot-myjobs").style.display="none";document.getElementById("ot-settings").style.display="none";document.getElementById("ot-roadmap").style.display="none";document.querySelectorAll("#screen-org .nav-tab").forEach(function(b,i){b.classList.toggle("on",i===0);});}
 document.getElementById("modal").addEventListener("click",function(e){if(e.target===this)closeModal();});
 document.getElementById("auth-modal").addEventListener("click",function(e){if(e.target===this)closeAuthModal();});
 document.getElementById("job-modal").addEventListener("click",function(e){if(e.target===this)closeJobModal();});
