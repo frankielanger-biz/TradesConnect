@@ -2,300 +2,284 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>TradesConnect</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TradesConnect — Michigan Pilot</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+*{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --bg:#080c14;
-  --card:#0d1321;
-  --card2:#0f1929;
-  --border:#1a2333;
-  --border2:#2a3f5a;
-  --blue:#4d8ef0;
-  --blue2:#3a7de0;
-  --blue-dim:#112240;
-  --blue-border:#1a3a6a;
-  --green:#3dd68c;
-  --green-dim:#0a1f14;
-  --green-border:#1a4030;
-  --purple:#a78bfa;
-  --purple-dim:#150d2e;
-  --amber:#fbbf24;
-  --red:#f07070;
-  --text:#e8edf4;
-  --text2:#8099b4;
-  --text3:#4a607a;
-  --text4:#2a3f5a;
+  --bg:#080c14;--card:#0d1321;--border:#1a2333;
+  --blue:#4d8ef0;--blue2:#3a7de0;--bluedim:#112240;--blueborder:#1a3a6a;
+  --green:#3dd68c;--greendim:#0a1f14;--greenborder:#1a4030;
+  --purple:#a78bfa;--purpledim:#150d2e;
+  --amber:#fbbf24;--red:#f07070;
+  --text:#e8edf4;--text2:#8099b4;--text3:#4a607a;--text4:#2a3f5a;
 }
-html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh;}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh;}
 
-/* ── SCREENS ── */
-.screen{display:none;min-height:100vh;flex-direction:column;}
-.screen.active{display:flex;}
+/* SCREENS */
+.screen{display:none;}
+.screen.on{display:block;}
+#land{display:none;min-height:100vh;align-items:center;justify-content:center;flex-direction:column;padding:60px 24px;}
+#land.on{display:flex;}
 
-/* ── LANDING ── */
-#s-land{align-items:center;justify-content:center;padding:40px 24px 120px;}
-.land-eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--text4);margin-bottom:16px;text-align:center;}
-.land-logo{font-size:42px;font-weight:800;letter-spacing:-1.5px;color:var(--text);margin-bottom:12px;text-align:center;}
-.land-logo em{color:var(--blue);font-style:normal;}
-.land-sub{font-size:15px;color:var(--text3);text-align:center;line-height:1.7;margin-bottom:40px;max-width:300px;}
-.role-cards{display:flex;flex-direction:column;gap:12px;width:100%;max-width:340px;}
-.role-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px 20px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:16px;}
-.role-card:active{transform:scale(.98);border-color:var(--blue);}
-.role-card-icon{font-size:28px;width:52px;height:52px;background:var(--blue-dim);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.role-card-text{}
-.role-card-title{font-size:16px;font-weight:700;color:var(--text);margin-bottom:3px;}
-.role-card-desc{font-size:13px;color:var(--text3);line-height:1.5;}
-.land-auth{display:flex;gap:10px;margin-top:24px;width:100%;max-width:340px;}
-.btn-login{flex:1;padding:12px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;background:transparent;border:1px solid var(--blue-border);color:var(--blue);font-family:'DM Sans',sans-serif;}
-.btn-signup{flex:1;padding:12px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;background:var(--blue);border:none;color:#fff;font-family:'DM Sans',sans-serif;}
-.land-foot{margin-top:24px;font-size:11px;color:var(--text4);text-align:center;}
+/* LANDING */
+.eyebrow{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--text4);margin-bottom:20px;text-align:center;}
+.logo{font-size:52px;font-weight:800;letter-spacing:-2px;color:var(--text);margin-bottom:14px;text-align:center;}
+.logo em{color:var(--blue);font-style:normal;}
+.tagline{font-size:16px;color:var(--text3);text-align:center;line-height:1.7;margin-bottom:16px;max-width:380px;}
+.chooselbl{font-size:13px;color:var(--text4);text-align:center;margin-bottom:20px;}
+.rcards{display:flex;gap:16px;width:100%;max-width:520px;margin-bottom:24px;}
+.rcard{flex:1;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px 20px;cursor:pointer;transition:border-color .2s,transform .1s;text-align:center;}
+.rcard:hover{border-color:var(--blue);}
+.rcard:active{transform:scale(.98);}
+.rcico{font-size:36px;margin-bottom:14px;}
+.rctitle{font-size:16px;font-weight:700;color:var(--text);margin-bottom:6px;}
+.rcdesc{font-size:13px;color:var(--text3);line-height:1.5;}
+.lauth{display:flex;gap:12px;width:100%;max-width:520px;}
+.btnlogin{flex:1;padding:13px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;background:transparent;border:1px solid var(--blueborder);color:var(--blue);font-family:'DM Sans',sans-serif;}
+.btnsignup{flex:1;padding:13px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;background:var(--blue);border:none;color:#fff;font-family:'DM Sans',sans-serif;}
+.lfoot{margin-top:20px;font-size:12px;color:var(--text4);text-align:center;}
 
-/* ── TOP NAV ── */
-.topnav{background:#0a0e18;border-bottom:1px solid var(--border);padding:0 16px;display:flex;align-items:center;justify-content:space-between;height:54px;position:sticky;top:0;z-index:100;flex-shrink:0;}
-.nav-logo{font-size:17px;font-weight:800;color:var(--text);cursor:pointer;}
-.nav-logo em{color:var(--blue);font-style:normal;}
-.nav-badge{font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;background:var(--blue-dim);color:var(--blue);border:1px solid var(--blue-border);}
-.nav-badge-org{background:var(--purple-dim);color:var(--purple);border-color:#2a1f50;}
-.nav-right{display:flex;align-items:center;gap:8px;}
-.nav-switch{font-size:11px;color:var(--text3);background:none;border:none;font-family:'DM Sans',sans-serif;text-decoration:underline;cursor:pointer;}
+/* TOP NAV */
+.topnav{background:#0a0e18;border-bottom:1px solid var(--border);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:50;}
+.navlogo{font-size:18px;font-weight:800;color:var(--text);cursor:pointer;text-decoration:none;}
+.navlogo em{color:var(--blue);font-style:normal;}
+.navr{display:flex;align-items:center;gap:10px;}
+.nbadge{font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;background:var(--bluedim);color:var(--blue);border:1px solid var(--blueborder);}
+.nbadge-org{background:var(--purpledim);color:var(--purple);border-color:#2a1f50;}
+.nswitch{font-size:12px;color:var(--text3);background:none;border:none;font-family:'DM Sans',sans-serif;text-decoration:underline;cursor:pointer;}
+.nlogin{padding:7px 14px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;background:transparent;border:1px solid var(--blueborder);color:var(--blue);font-family:'DM Sans',sans-serif;}
 
-/* ── BOTTOM NAV ── */
-.bottomnav{position:fixed;bottom:0;left:0;right:0;background:#0a0e18;border-top:1px solid var(--border);display:flex;height:64px;z-index:100;padding-bottom:env(safe-area-inset-bottom);}
-.bnav-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;background:none;border:none;color:var(--text3);font-family:'DM Sans',sans-serif;transition:color .15s;}
-.bnav-btn.on{color:var(--blue);}
-.bnav-icon{font-size:20px;line-height:1;}
-.bnav-label{font-size:10px;font-weight:600;}
+/* TAB NAV */
+.tabnav{background:#0a0e18;border-bottom:1px solid var(--border);display:flex;padding:0 24px;}
+.tab{padding:14px 16px;font-size:13px;font-weight:600;color:var(--text3);cursor:pointer;border-bottom:2px solid transparent;background:none;border-top:none;border-left:none;border-right:none;font-family:'DM Sans',sans-serif;}
+.tab.on{color:var(--blue);border-bottom-color:var(--blue);}
 
-/* ── PAGE CONTENT ── */
-.page{padding:20px 16px 90px;flex:1;overflow-y:auto;overflow-x:hidden;}
-.page>*{max-width:680px;margin-left:auto;margin-right:auto;}
+/* CONTENT */
+.content{max-width:720px;margin:0 auto;padding:28px 24px 60px;}
+.pane{display:none;}
+.pane.on{display:block;}
 
-/* ── FILTER PILLS ── */
-.filter-row{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;margin-bottom:20px;scrollbar-width:none;}
-.filter-row::-webkit-scrollbar{display:none;}
-.ftag{padding:7px 16px;border-radius:50px;font-size:13px;font-weight:600;border:1px solid var(--border);background:transparent;cursor:pointer;color:var(--text3);font-family:'DM Sans',sans-serif;white-space:nowrap;flex-shrink:0;}
-.ftag.on{background:var(--blue-dim);border-color:var(--blue);color:var(--blue);}
+/* ORG SUBBAR */
+.orgbar{font-size:12px;color:var(--blue);padding:8px 24px;border-bottom:1px solid var(--border);background:var(--bg);font-weight:600;}
 
-/* ── PROGRAM CARDS ── */
-.prog-card{background:var(--card);border-radius:14px;border:1px solid var(--border);padding:16px;margin-bottom:12px;}
-.prog-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px;}
-.prog-left{display:flex;gap:12px;align-items:flex-start;}
-.prog-ico{width:44px;height:44px;border-radius:11px;background:var(--blue-dim);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
-.prog-name{font-size:15px;font-weight:700;color:var(--text);margin-bottom:3px;line-height:1.3;}
-.prog-meta{font-size:12px;color:var(--text3);display:flex;flex-wrap:wrap;gap:6px;}
-.accepting{font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;background:var(--green-dim);color:var(--green);border:1px solid var(--green-border);white-space:nowrap;}
-.prog-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;}
-.ptag{font-size:11px;font-weight:600;padding:3px 10px;border-radius:5px;}
-.pt-blue{background:var(--blue-dim);color:var(--blue);border:1px solid var(--blue-border);}
-.pt-green{background:var(--green-dim);color:var(--green);border:1px solid var(--green-border);}
-.pt-purple{background:var(--purple-dim);color:var(--purple);border:1px solid #2a1f50;}
-.prog-desc{font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:14px;}
-.express-btn{width:100%;padding:12px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;background:var(--blue);color:#fff;border:none;font-family:'DM Sans',sans-serif;}
-.express-btn:active{background:var(--blue2);}
+/* PAGE TITLES */
+.ptitle{font-size:24px;font-weight:800;color:var(--text);margin-bottom:6px;}
+.psub{font-size:14px;color:var(--text3);margin-bottom:24px;}
 
-/* ── PROFILE ── */
-.profile-cover{height:100px;background:linear-gradient(135deg,var(--blue-dim),var(--card));border-radius:14px 14px 0 0;position:relative;}
-.edit-profile-btn{position:absolute;top:10px;right:10px;padding:5px 12px;border-radius:7px;font-size:11px;font-weight:600;cursor:pointer;background:rgba(13,31,58,.9);border:1px solid var(--blue-border);color:var(--blue);font-family:'DM Sans',sans-serif;}
-.profile-wrap{background:var(--card);border-radius:14px;border:1px solid var(--border);overflow:hidden;margin-bottom:16px;}
-.profile-body{padding:0 16px 24px;}
-.profile-av{width:64px;height:64px;border-radius:50%;background:var(--blue-dim);color:var(--blue);font-size:20px;font-weight:800;display:flex;align-items:center;justify-content:center;border:3px solid var(--card);margin-top:-32px;margin-bottom:12px;}
-.profile-name{font-size:20px;font-weight:800;color:var(--text);margin-bottom:2px;}
-.profile-sub{font-size:13px;color:var(--text3);margin-bottom:10px;}
-.avail-pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;padding:5px 12px;border-radius:20px;background:var(--green-dim);color:var(--green);border:1px solid var(--green-border);margin-bottom:18px;}
-.avail-dot{width:6px;height:6px;border-radius:50%;background:var(--green);}
-.stats3{display:grid;grid-template-columns:1fr 1fr 1fr;border:1px solid var(--border);border-radius:11px;overflow:hidden;margin-bottom:20px;}
-.pstat{padding:14px 8px;background:#0c1220;text-align:center;}
-.pstat:not(:last-child){border-right:1px solid var(--border);}
-.pstat-v{font-size:22px;font-weight:800;color:var(--text);display:block;}
-.pstat-l{font-size:10px;color:var(--text3);margin-top:2px;}
-.psec{margin-bottom:18px;}
-.psec-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--text4);margin-bottom:8px;}
-.pills-editable{display:flex;gap:7px;flex-wrap:wrap;align-items:center;}
-.pill-item{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:600;padding:5px 12px;border-radius:20px;}
-.pill-item.trade{background:var(--blue-dim);color:var(--blue);border:1px solid var(--blue-border);}
-.pill-item.cert{background:var(--blue-dim);color:var(--blue);border:1px solid var(--blue-border);}
-.pill-del{cursor:pointer;font-size:13px;color:var(--text3);}
-.add-row{display:flex;gap:8px;align-items:center;margin-top:10px;}
-.add-input{flex:1;padding:8px 12px;border-radius:8px;border:1px solid var(--border);background:#060a10;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;outline:none;}
-.add-input:focus{border-color:var(--blue);}
-.add-btn{padding:8px 14px;border-radius:8px;background:var(--blue);color:#fff;border:none;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;}
-.profile-bio{font-size:14px;color:var(--text2);line-height:1.7;}
-.cert-pills{display:flex;gap:7px;flex-wrap:wrap;}
-.photo-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
-.photo-tile{border-radius:9px;height:80px;display:flex;align-items:flex-end;padding:7px;font-size:11px;color:var(--text4);border:1px solid var(--border);}
-.upload-label{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:8px;border:1px solid var(--border);color:var(--text3);font-size:13px;font-weight:500;cursor:pointer;margin-top:10px;}
+/* FILTER PILLS */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
+.ftag{padding:7px 16px;border-radius:50px;font-size:13px;font-weight:600;border:1px solid var(--border);background:transparent;cursor:pointer;color:var(--text3);font-family:'DM Sans',sans-serif;}
+.ftag.on{background:var(--bluedim);border-color:var(--blue);color:var(--blue);}
 
-/* ── SECTION BOX ── */
-.sbox{background:var(--card);border-radius:12px;border:1px solid var(--border);padding:16px;margin-bottom:14px;}
-.stitle{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text4);margin-bottom:14px;}
+/* PROGRAM CARDS */
+.pcard{background:var(--card);border-radius:14px;border:1px solid var(--border);padding:20px;margin-bottom:14px;}
+.pctop{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px;}
+.pcleft{display:flex;gap:14px;}
+.pcico{width:48px;height:48px;border-radius:12px;background:var(--bluedim);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+.pcname{font-size:16px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.pcmeta{font-size:12px;color:var(--text3);display:flex;flex-wrap:wrap;gap:8px;}
+.acc{font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;background:var(--greendim);color:var(--green);border:1px solid var(--greenborder);}
+.pctags{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px;}
+.ptag{font-size:12px;font-weight:600;padding:4px 11px;border-radius:6px;}
+.pt-blue{background:var(--bluedim);color:var(--blue);border:1px solid var(--blueborder);}
+.pt-green{background:var(--greendim);color:var(--green);border:1px solid var(--greenborder);}
+.pt-purple{background:var(--purpledim);color:var(--purple);border:1px solid #2a1f50;}
+.pcdesc{font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:16px;}
+.expbtn{width:100%;padding:13px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;background:var(--blue);color:#fff;border:none;font-family:'DM Sans',sans-serif;}
+.expbtn:hover{background:var(--blue2);}
 
-/* ── METRICS ── */
-.metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
-.metric{background:var(--card);border-radius:11px;border:1px solid var(--border);padding:16px;}
-.metric-val{font-size:30px;font-weight:800;margin-bottom:3px;}
-.metric-lbl{font-size:12px;color:var(--text3);}
-.m-blue{color:var(--blue);}
-.m-green{color:var(--green);}
-.m-purple{color:var(--purple);}
-.m-amber{color:var(--amber);}
+/* PROFILE */
+.profwrap{background:var(--card);border-radius:14px;border:1px solid var(--border);overflow:hidden;margin-bottom:20px;}
+.profcov{height:110px;background:linear-gradient(135deg,var(--bluedim),#0a1020);position:relative;}
+.editbtn{position:absolute;top:12px;right:12px;padding:6px 14px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;background:rgba(13,31,58,.9);border:1px solid var(--blueborder);color:var(--blue);font-family:'DM Sans',sans-serif;}
+.profbody{padding:0 20px 24px;}
+.profav{width:68px;height:68px;border-radius:50%;background:var(--bluedim);color:var(--blue);font-size:22px;font-weight:800;display:flex;align-items:center;justify-content:center;border:4px solid var(--card);margin-top:-34px;margin-bottom:14px;}
+.profname{font-size:22px;font-weight:800;color:var(--text);margin-bottom:3px;}
+.profsub{font-size:13px;color:var(--text3);margin-bottom:12px;}
+.availpill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:5px 13px;border-radius:20px;background:var(--greendim);color:var(--green);border:1px solid var(--greenborder);margin-bottom:20px;}
+.adot{width:6px;height:6px;border-radius:50%;background:var(--green);}
+.stats3{display:grid;grid-template-columns:1fr 1fr 1fr;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:22px;}
+.ps{padding:16px;background:#0c1220;text-align:center;}
+.ps:not(:last-child){border-right:1px solid var(--border);}
+.psv{font-size:26px;font-weight:800;color:var(--text);display:block;}
+.psl{font-size:11px;color:var(--text3);margin-top:3px;}
+.psec{margin-bottom:20px;}
+.psectl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text4);margin-bottom:10px;}
+.pedit{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+.pill{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:600;padding:5px 12px;border-radius:20px;background:var(--bluedim);color:var(--blue);border:1px solid var(--blueborder);}
+.pdel{cursor:pointer;font-size:14px;color:var(--text3);}
+.addrow{display:flex;gap:8px;margin-top:10px;}
+.addinput{flex:1;padding:9px 13px;border-radius:8px;border:1px solid var(--border);background:#060a10;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;outline:none;}
+.addinput:focus{border-color:var(--blue);}
+.addbtn{padding:9px 16px;border-radius:8px;background:var(--blue);color:#fff;border:none;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;}
+.pbio{font-size:14px;color:var(--text2);line-height:1.75;}
+.pgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+.ptile{border-radius:10px;height:90px;display:flex;align-items:flex-end;padding:8px;font-size:11px;color:var(--text4);border:1px solid var(--border);}
+.uplabel{display:inline-flex;align-items:center;gap:7px;padding:9px 16px;border-radius:8px;border:1px solid var(--border);color:var(--text3);font-size:13px;font-weight:500;cursor:pointer;margin-top:12px;}
 
-/* ── PIPELINE ── */
-.pipe-row{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
-.pipe-row:last-child{margin-bottom:0;}
-.pipe-label{font-size:13px;color:var(--text2);width:110px;flex-shrink:0;}
-.pipe-track{flex:1;background:#0c1220;border-radius:4px;height:6px;overflow:hidden;}
-.pipe-fill{height:6px;border-radius:4px;}
-.pipe-count{font-size:13px;font-weight:700;color:var(--text);width:24px;text-align:right;}
+/* SBOX */
+.sbox{background:var(--card);border-radius:12px;border:1px solid var(--border);padding:18px;margin-bottom:16px;}
+.stitle{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text4);margin-bottom:14px;}
 
-/* ── LEADS ── */
-.lead-row{display:flex;align-items:flex-start;gap:12px;padding:14px 0;border-bottom:1px solid var(--border);}
-.lead-row:last-child{border-bottom:none;padding-bottom:0;}
-.lead-av{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex-shrink:0;}
-.lead-info{flex:1;}
-.lead-name{font-size:14px;font-weight:700;color:var(--text);margin-bottom:2px;}
-.lead-detail{font-size:12px;color:var(--text3);margin-bottom:2px;}
-.lead-quote{font-size:12px;color:var(--text4);font-style:italic;}
-.lead-time{font-size:11px;color:var(--text4);}
-.invite-btn{padding:7px 14px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;background:var(--blue);color:#fff;border:none;font-family:'DM Sans',sans-serif;white-space:nowrap;flex-shrink:0;margin-top:2px;}
+/* METRICS */
+.metrics{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-bottom:18px;}
+.metric{background:var(--card);border-radius:12px;border:1px solid var(--border);padding:18px;}
+.mval{font-size:32px;font-weight:800;margin-bottom:4px;}
+.mlbl{font-size:12px;color:var(--text3);}
+.mblue{color:var(--blue);}.mgreen{color:var(--green);}.mpurple{color:var(--purple);}.mamber{color:var(--amber);}
 
-/* ── CANDIDATES ── */
-.cand-card{background:var(--card);border-radius:12px;border:1px solid var(--border);padding:16px;margin-bottom:10px;}
-.cand-top{display:flex;gap:12px;margin-bottom:10px;}
-.cand-av{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;flex-shrink:0;}
-.cand-info{flex:1;}
-.cand-name{font-size:15px;font-weight:700;color:var(--text);margin-bottom:2px;}
-.cand-meta{font-size:12px;color:var(--text3);}
-.cand-bio{font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:10px;}
-.cand-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;}
-.cand-tag{font-size:11px;font-weight:600;padding:3px 10px;border-radius:5px;background:var(--blue-dim);color:var(--blue);border:1px solid var(--blue-border);}
-.cand-btns{display:flex;gap:8px;}
-.btn-msg{flex:1;padding:9px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;background:var(--blue);color:#fff;border:none;font-family:'DM Sans',sans-serif;}
-.btn-inv{flex:1;padding:9px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;background:transparent;color:var(--text2);border:1px solid var(--border);font-family:'DM Sans',sans-serif;}
+/* PIPELINE */
+.prow{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+.prow:last-child{margin-bottom:0;}
+.plbl{font-size:13px;color:var(--text2);width:100px;flex-shrink:0;}
+.ptrack{flex:1;background:#0c1220;border-radius:4px;height:6px;overflow:hidden;}
+.pfill{height:6px;border-radius:4px;}
+.pcnt{font-size:13px;font-weight:700;color:var(--text);width:24px;text-align:right;}
 
-/* ── JOBS ── */
-.job-card{background:var(--card);border-radius:12px;border:1px solid var(--border);padding:16px;margin-bottom:10px;}
-.job-title{font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px;}
-.job-meta{font-size:12px;color:var(--text3);display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;}
-.job-desc{font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:12px;}
-.job-actions{display:flex;gap:8px;}
-.job-edit{flex:1;padding:8px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;background:transparent;border:1px solid var(--border);color:var(--text3);font-family:'DM Sans',sans-serif;}
-.job-delete{flex:1;padding:8px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;background:transparent;border:1px solid #2a1010;color:var(--red);font-family:'DM Sans',sans-serif;}
-.post-job-btn{width:100%;padding:13px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;background:var(--blue);color:#fff;border:none;font-family:'DM Sans',sans-serif;margin-bottom:16px;}
+/* LEADS */
+.lrow{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--border);}
+.lrow:last-child{border-bottom:none;}
+.lav{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;flex-shrink:0;}
+.linfo{flex:1;}
+.lname{font-size:14px;font-weight:700;color:var(--text);margin-bottom:3px;}
+.ldet{font-size:12px;color:var(--text3);margin-bottom:2px;}
+.lq{font-size:12px;color:var(--text4);font-style:italic;}
+.lt{font-size:11px;color:var(--text4);margin-top:3px;}
+.invbtn{padding:7px 16px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;background:var(--blue);color:#fff;border:none;font-family:'DM Sans',sans-serif;}
 
-/* ── SETTINGS ── */
+/* CANDIDATES */
+.ccard{background:var(--card);border-radius:12px;border:1px solid var(--border);padding:18px;margin-bottom:12px;}
+.ctop{display:flex;gap:14px;margin-bottom:10px;}
+.cav{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;flex-shrink:0;}
+.cname{font-size:15px;font-weight:700;color:var(--text);margin-bottom:3px;}
+.cmeta{font-size:12px;color:var(--text3);}
+.cbio{font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:10px;}
+.ctags{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px;}
+.ctag{font-size:12px;font-weight:600;padding:4px 11px;border-radius:6px;background:var(--bluedim);color:var(--blue);border:1px solid var(--blueborder);}
+.cbtns{display:flex;gap:10px;}
+.bmsg{flex:1;padding:10px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;background:var(--blue);color:#fff;border:none;font-family:'DM Sans',sans-serif;}
+.binv{flex:1;padding:10px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;background:transparent;color:var(--text2);border:1px solid var(--border);font-family:'DM Sans',sans-serif;}
+
+/* JOBS */
+.jcard{background:var(--card);border-radius:12px;border:1px solid var(--border);padding:18px;margin-bottom:12px;}
+.jtitle{font-size:15px;font-weight:700;color:var(--text);margin-bottom:5px;}
+.jmeta{font-size:12px;color:var(--text3);display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px;}
+.jdesc{font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:14px;}
+.jbtns{display:flex;gap:10px;}
+.jedit{flex:1;padding:9px;border-radius:8px;font-size:13px;cursor:pointer;background:transparent;border:1px solid var(--border);color:var(--text3);font-family:'DM Sans',sans-serif;}
+.jdel{flex:1;padding:9px;border-radius:8px;font-size:13px;cursor:pointer;background:transparent;border:1px solid #2a1010;color:var(--red);font-family:'DM Sans',sans-serif;}
+.postbtn{padding:13px 24px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;background:var(--blue);color:#fff;border:none;font-family:'DM Sans',sans-serif;margin-bottom:18px;}
+
+/* SETTINGS */
 .ssec{margin-bottom:24px;}
-.ssec-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text4);margin-bottom:10px;}
-.srow{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:var(--card);border-radius:10px;border:1px solid var(--border);margin-bottom:6px;}
+.sstitle{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text4);margin-bottom:10px;}
+.srow{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:var(--card);border-radius:10px;border:1px solid var(--border);margin-bottom:8px;}
 .slbl{font-size:14px;font-weight:600;color:var(--text);margin-bottom:2px;}
 .sdesc{font-size:12px;color:var(--text3);}
-.toggle{width:42px;height:23px;border-radius:12px;background:var(--border);border:none;cursor:pointer;position:relative;flex-shrink:0;}
-.toggle.on{background:var(--blue);}
+.tog{width:42px;height:23px;border-radius:12px;background:var(--border);border:none;cursor:pointer;position:relative;flex-shrink:0;}
+.tog.on{background:var(--blue);}
 .togk{width:17px;height:17px;border-radius:50%;background:#fff;position:absolute;top:3px;left:3px;transition:left .2s;}
-.toggle.on .togk{left:22px;}
+.tog.on .togk{left:22px;}
 .sbtn{padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;background:transparent;border:1px solid var(--border);color:var(--text3);font-family:'DM Sans',sans-serif;}
-.sbtn:active{border-color:var(--blue);color:var(--blue);}
 .sbtn.danger{border-color:#2a1010;color:var(--red);}
 
-/* ── ROADMAP ── */
-.rm-phase{background:var(--card);border-radius:12px;border:1px solid var(--border);padding:16px;margin-bottom:12px;}
-.rm-badge{display:inline-flex;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px;}
-.rm-badge.live{background:var(--green-dim);color:var(--green);border:1px solid var(--green-border);}
-.rm-badge.dev{background:var(--blue-dim);color:var(--blue);border:1px solid var(--blue-border);}
-.rm-badge.soon{background:var(--purple-dim);color:var(--purple);border:1px solid #2a1f50;}
-.rm-phase-title{font-size:15px;font-weight:700;color:var(--text);margin-bottom:12px;}
-.rm-item{display:flex;gap:10px;margin-bottom:8px;}
-.rm-item:last-child{margin-bottom:0;}
-.rm-dot{font-size:13px;flex-shrink:0;margin-top:1px;}
-.rm-text{font-size:13px;color:var(--text2);line-height:1.6;}
+/* ROADMAP */
+.rmphase{background:var(--card);border-radius:12px;border:1px solid var(--border);padding:18px;margin-bottom:14px;}
+.rmbadge{display:inline-flex;font-size:11px;font-weight:700;padding:4px 11px;border-radius:20px;margin-bottom:12px;text-transform:uppercase;}
+.rmbadge.live{background:var(--greendim);color:var(--green);border:1px solid var(--greenborder);}
+.rmbadge.dev{background:var(--bluedim);color:var(--blue);border:1px solid var(--blueborder);}
+.rmbadge.soon{background:var(--purpledim);color:var(--purple);border:1px solid #2a1f50;}
+.rmtitle{font-size:15px;font-weight:700;color:var(--text);margin-bottom:12px;}
+.rmitem{display:flex;gap:10px;margin-bottom:8px;}
+.rmitem:last-child{margin-bottom:0;}
+.rmdot{font-size:13px;flex-shrink:0;}
+.rmtext{font-size:13px;color:var(--text2);line-height:1.6;}
 
-/* ── ABOUT ── */
-.about-hero{text-align:center;padding:24px 0 20px;}
-.about-logo{font-size:32px;font-weight:800;letter-spacing:-1px;color:var(--text);margin-bottom:8px;}
-.about-logo em{color:var(--blue);font-style:normal;}
-.about-sub{font-size:14px;color:var(--text3);line-height:1.7;}
-.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0;}
-.astat{background:var(--card);border-radius:11px;border:1px solid var(--border);padding:14px;text-align:center;}
-.astat-v{font-size:22px;font-weight:800;margin-bottom:3px;}
-.astat-l{font-size:11px;color:var(--text3);}
-.how-step{display:flex;gap:12px;margin-bottom:14px;}
-.step-num{width:28px;height:28px;border-radius:8px;background:var(--blue-dim);color:var(--blue);font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.step-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:3px;}
-.step-desc{font-size:13px;color:var(--text3);line-height:1.6;}
+/* ABOUT */
+.ahero{text-align:center;padding:20px 0 24px;}
+.alogo{font-size:36px;font-weight:800;letter-spacing:-1px;color:var(--text);margin-bottom:8px;}
+.alogo em{color:var(--blue);font-style:normal;}
+.asub{font-size:15px;color:var(--text3);line-height:1.7;max-width:500px;margin:0 auto;}
+.astats{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin:20px 0;}
+.astat{background:var(--card);border-radius:12px;border:1px solid var(--border);padding:16px;text-align:center;}
+.astatv{font-size:22px;font-weight:800;margin-bottom:3px;}
+.astatl{font-size:11px;color:var(--text3);}
+.howstep{display:flex;gap:14px;margin-bottom:16px;}
+.stepnum{width:30px;height:30px;border-radius:8px;background:var(--bluedim);color:var(--blue);font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.steptitle{font-size:14px;font-weight:700;color:var(--text);margin-bottom:3px;}
+.stepdesc{font-size:13px;color:var(--text3);line-height:1.6;}
 
-/* ── ORG SUB ── */
-.org-sub{font-size:12px;color:var(--blue);padding:8px 16px;border-bottom:1px solid var(--border);background:#080c14;font-weight:600;}
-
-/* ── MODAL ── */
-.modal-overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.85);align-items:flex-end;justify-content:center;}
-.modal-overlay.open{display:flex;}
-.modal-box{background:var(--card);border-radius:20px 20px 0 0;padding:20px 20px 36px;width:100%;max-width:520px;border-top:2px solid var(--blue);max-height:90vh;overflow-y:auto;}
-.modal-handle{width:36px;height:3px;background:var(--border);border-radius:2px;margin:0 auto 18px;}
-.modal-title{font-size:18px;font-weight:800;color:var(--text);margin-bottom:3px;}
-.modal-prog{font-size:13px;color:var(--blue);margin-bottom:18px;font-weight:600;}
-.input-row{margin-bottom:12px;}
-.input-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
-.input-label{font-size:11px;font-weight:700;color:var(--text3);display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:.4px;}
-.text-input{width:100%;padding:12px 14px;border-radius:9px;border:1px solid var(--border);font-family:'DM Sans',sans-serif;font-size:14px;background:#060a10;color:var(--text);outline:none;}
-.text-input:focus{border-color:var(--blue);}
-.submit-btn{width:100%;padding:14px;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;cursor:pointer;background:var(--blue);color:#fff;border:none;}
-.submit-btn:active{background:var(--blue2);}
-.cancel-lnk{display:block;text-align:center;font-size:13px;color:var(--text3);margin-top:12px;cursor:pointer;padding:8px;}
-.success-view{text-align:center;padding:16px 0;}
-.success-check{font-size:48px;margin-bottom:12px;color:var(--green);}
-.success-title{font-size:20px;font-weight:800;color:var(--text);margin-bottom:8px;}
-.success-sub{font-size:14px;color:var(--text2);line-height:1.7;margin-bottom:22px;}
-
-/* ── PAGE TITLES ── */
-.page-title{font-size:22px;font-weight:800;color:var(--text);margin-bottom:6px;}
-.page-sub{font-size:13px;color:var(--text3);margin-bottom:20px;}
+/* MODAL */
+.moverlay{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.8);align-items:flex-end;justify-content:center;}
+.moverlay.on{display:flex;}
+.mbox{background:var(--card);border-radius:20px 20px 0 0;padding:24px 24px 40px;width:100%;max-width:520px;border-top:2px solid var(--blue);max-height:88vh;overflow-y:auto;}
+.mhandle{width:36px;height:3px;background:var(--border);border-radius:2px;margin:0 auto 20px;}
+.mtitle{font-size:20px;font-weight:800;color:var(--text);margin-bottom:4px;}
+.mprog{font-size:13px;color:var(--blue);margin-bottom:20px;font-weight:600;}
+.irow{margin-bottom:14px;}
+.igrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;}
+.ilbl{font-size:11px;font-weight:700;color:var(--text3);display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:.4px;}
+.tinput{width:100%;padding:12px 14px;border-radius:9px;border:1px solid var(--border);font-family:'DM Sans',sans-serif;font-size:14px;background:#060a10;color:var(--text);outline:none;}
+.tinput:focus{border-color:var(--blue);}
+select.tinput{cursor:pointer;}
+.subbtn{width:100%;padding:14px;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;cursor:pointer;background:var(--blue);color:#fff;border:none;}
+.subbtn:hover{background:var(--blue2);}
+.canlnk{display:block;text-align:center;font-size:13px;color:var(--text3);margin-top:14px;cursor:pointer;padding:8px;}
+.succv{text-align:center;padding:20px 0;}
+.succk{font-size:52px;margin-bottom:14px;color:var(--green);}
+.succt{font-size:22px;font-weight:800;color:var(--text);margin-bottom:8px;}
+.succs{font-size:14px;color:var(--text2);line-height:1.7;margin-bottom:24px;}
 </style>
 </head>
 <body>
 
 <!-- LANDING -->
-<div id="s-land" class="screen active">
-  <div class="land-eyebrow">West Michigan Pilot · Kalamazoo &amp; Grand Rapids</div>
-  <div class="land-logo">Trades<em>Connect</em></div>
-  <div class="land-sub">One tap. Built for Gen Z entering the skilled trades — discover local programs, show your interest, get hired.</div>
-  <div class="role-cards">
-    <div class="role-card" onclick="goProspect()">
-      <div class="role-card-icon">🪖</div>
-      <div class="role-card-text">
-        <div class="role-card-title">I'm a prospect</div>
-        <div class="role-card-desc">Find programs and trade jobs near you</div>
-      </div>
+<div id="land" class="on">
+  <div class="eyebrow">West Michigan Pilot · Kalamazoo &amp; Grand Rapids</div>
+  <div class="logo">Trades<em>Connect</em></div>
+  <div class="tagline">One tap. Built for Gen Z entering the skilled trades — discover local programs, show your interest, get hired.</div>
+  <div class="chooselbl">Choose how you're using TradesConnect</div>
+  <div class="rcards">
+    <div class="rcard" onclick="goPros()">
+      <div class="rcico">🪖</div>
+      <div class="rctitle">I'm a prospect</div>
+      <div class="rcdesc">Find programs and trade jobs near you</div>
     </div>
-    <div class="role-card" onclick="goOrg()">
-      <div class="role-card-icon">🏗️</div>
-      <div class="role-card-text">
-        <div class="role-card-title">I'm an organization</div>
-        <div class="role-card-desc">Browse candidates and manage your pipeline</div>
-      </div>
+    <div class="rcard" onclick="goOrg()">
+      <div class="rcico">🏗️</div>
+      <div class="rctitle">I'm an organization</div>
+      <div class="rcdesc">Browse candidates and manage your pipeline</div>
     </div>
   </div>
-  <div class="land-auth">
-    <button class="btn-login" onclick="showAuthModal('login')">Log in</button>
-    <button class="btn-signup" onclick="showAuthModal('signup')">Sign up free</button>
+  <div class="lauth">
+    <button class="btnlogin" onclick="showAuth('login')">Log in</button>
+    <button class="btnsignup" onclick="showAuth('signup')">Sign up free</button>
   </div>
-  <div class="land-foot">Kalamazoo · Grand Rapids · 2026</div>
+  <div class="lfoot">Kalamazoo · Grand Rapids · 2026</div>
 </div>
 
 <!-- PROSPECT -->
-<div id="s-pros" class="screen">
+<div id="pros" class="screen">
   <div class="topnav">
-    <div class="nav-logo" onclick="goLand()">Trades<em>Connect</em></div>
-    <div class="nav-right">
-      <button class="nav-login" onclick="showAuthModal('login')" style="padding:6px 12px;border-radius:7px;font-size:12px;font-weight:500;cursor:pointer;background:transparent;border:1px solid var(--blue-border);color:var(--blue);font-family:'DM Sans',sans-serif;">Log in</button>
-      <span class="nav-badge">Prospect</span>
-      <button class="nav-switch" onclick="goLand()">switch</button>
+    <a class="navlogo" onclick="goLand()">Trades<em>Connect</em></a>
+    <div class="navr">
+      <button class="nlogin" onclick="showAuth('login')">Log in</button>
+      <span class="nbadge">Prospect</span>
+      <button class="nswitch" onclick="goLand()">switch</button>
     </div>
   </div>
-  <div class="page" id="pros-page">
-    <div id="pt-discover" class="tab-content">
-      <div class="filter-row">
+  <div class="tabnav" id="pnav">
+    <button class="tab on" onclick="pTab('discover',this)">Discover</button>
+    <button class="tab" onclick="pTab('profile',this)">My Profile</button>
+    <button class="tab" onclick="pTab('about',this)">About</button>
+    <button class="tab" onclick="pTab('roadmap',this)">Roadmap</button>
+    <button class="tab" onclick="pTab('settings',this)">Settings</button>
+  </div>
+  <div class="content">
+    <div id="p-discover" class="pane on">
+      <div class="filters">
         <button class="ftag on" onclick="filt('all',this)">All trades</button>
         <button class="ftag" onclick="filt('Electrician',this)">⚡ Electrician</button>
         <button class="ftag" onclick="filt('Welder',this)">🔥 Welder</button>
@@ -303,424 +287,295 @@ html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-seri
         <button class="ftag" onclick="filt('Plumber',this)">🔧 Plumber</button>
         <button class="ftag" onclick="filt('Carpenter',this)">🪵 Carpenter</button>
       </div>
-      <div id="prog-list"></div>
+      <div id="proglist"></div>
     </div>
-    <div id="pt-profile" class="tab-content" style="display:none;">
-      <div class="profile-wrap">
-        <div class="profile-cover"><button class="edit-profile-btn" onclick="showAuthModal('edit')">Edit profile</button></div>
-        <div class="profile-body">
-          <div class="profile-av">AR</div>
-          <div class="profile-name">Alex Rodriguez</div>
-          <div class="profile-sub">Kalamazoo, MI · HS Senior, graduating May 2026</div>
-          <div class="avail-pill"><span class="avail-dot"></span>Available June 2026</div>
+    <div id="p-profile" class="pane">
+      <div class="profwrap">
+        <div class="profcov"><button class="editbtn" onclick="showAuth('edit')">Edit profile</button></div>
+        <div class="profbody">
+          <div class="profav">AR</div>
+          <div class="profname">Alex Rodriguez</div>
+          <div class="profsub">Kalamazoo, MI · HS Senior, graduating May 2026</div>
+          <div class="availpill"><span class="adot"></span>Available June 2026</div>
           <div class="stats3">
-            <div class="pstat"><span class="pstat-v">3</span><span class="pstat-l">Interests sent</span></div>
-            <div class="pstat"><span class="pstat-v">2</span><span class="pstat-l">Responses</span></div>
-            <div class="pstat"><span class="pstat-v">4</span><span class="pstat-l">Endorsements</span></div>
+            <div class="ps"><span class="psv">3</span><span class="psl">Interests sent</span></div>
+            <div class="ps"><span class="psv">2</span><span class="psl">Responses</span></div>
+            <div class="ps"><span class="psv">4</span><span class="psl">Endorsements</span></div>
           </div>
           <div class="psec">
-            <div class="psec-title">Trades &amp; Skills</div>
-            <div class="pills-editable" id="skills-list">
-              <span class="pill-item trade">⚡ Electrician<span class="pill-del" onclick="delPill(this)">×</span></span>
-              <span class="pill-item trade">🔥 Welder<span class="pill-del" onclick="delPill(this)">×</span></span>
+            <div class="psectl">Trades &amp; Skills</div>
+            <div class="pedit" id="skills-list">
+              <span class="pill">⚡ Electrician<span class="pdel" onclick="delPill(this)">×</span></span>
+              <span class="pill">🔥 Welder<span class="pdel" onclick="delPill(this)">×</span></span>
             </div>
-            <div class="add-row"><input id="skill-input" class="add-input" placeholder="Add a skill..."><button class="add-btn" onclick="addSkill()">+ Add</button></div>
+            <div class="addrow"><input id="skill-inp" class="addinput" placeholder="Add a skill..."><button class="addbtn" onclick="addSkill()">+ Add</button></div>
           </div>
           <div class="psec">
-            <div class="psec-title">About</div>
-            <div class="profile-bio">Graduating May 2026. Took shop and electrical fundamentals all four years. Looking for a paid apprenticeship where I can learn on the job and build a real career.</div>
+            <div class="psectl">About</div>
+            <div class="pbio">Graduating May 2026. Shop and electrical fundamentals all four years. Looking for a paid apprenticeship where I can learn on the job and build a real career.</div>
           </div>
           <div class="psec">
-            <div class="psec-title">Certifications</div>
-            <div class="pills-editable" id="certs-list">
-              <span class="pill-item cert">OSHA-10<span class="pill-del" onclick="delPill(this)">×</span></span>
-              <span class="pill-item cert">Construction Safety<span class="pill-del" onclick="delPill(this)">×</span></span>
-              <span class="pill-item cert">Electrical Fundamentals<span class="pill-del" onclick="delPill(this)">×</span></span>
+            <div class="psectl">Certifications</div>
+            <div class="pedit" id="certs-list">
+              <span class="pill">OSHA-10<span class="pdel" onclick="delPill(this)">×</span></span>
+              <span class="pill">Construction Safety<span class="pdel" onclick="delPill(this)">×</span></span>
+              <span class="pill">Electrical Fundamentals<span class="pdel" onclick="delPill(this)">×</span></span>
             </div>
-            <div class="add-row"><input id="cert-input" class="add-input" placeholder="Add a certification..."><button class="add-btn" onclick="addCert()">+ Add</button></div>
+            <div class="addrow"><input id="cert-inp" class="addinput" placeholder="Add a certification..."><button class="addbtn" onclick="addCert()">+ Add</button></div>
           </div>
           <div class="psec">
-            <div class="psec-title">Project Portfolio</div>
-            <div class="photo-grid" id="photo-grid">
-              <div class="photo-tile" style="background:#0d1833;">Wiring</div>
-              <div class="photo-tile" style="background:#0d1a2e;">Shop fab</div>
-              <div class="photo-tile" style="background:#0a1a10;">Panel work</div>
-              <div class="photo-tile" style="background:#150d2e;">CTE project</div>
-              <div class="photo-tile" style="background:#1a0d10;">Lab</div>
-              <div class="photo-tile" style="background:#0d1520;">Blueprints</div>
+            <div class="psectl">Project Portfolio</div>
+            <div class="pgrid" id="photo-grid">
+              <div class="ptile" style="background:#0d1833;">Wiring</div>
+              <div class="ptile" style="background:#0d1a2e;">Shop fab</div>
+              <div class="ptile" style="background:#0a1a10;">Panel</div>
+              <div class="ptile" style="background:#150d2e;">CTE project</div>
+              <div class="ptile" style="background:#1a0d10;">Lab</div>
+              <div class="ptile" style="background:#0d1520;">Blueprints</div>
             </div>
-            <label class="upload-label" for="photo-upload">📷 Upload photo<input type="file" id="photo-upload" accept="image/*" style="display:none;" onchange="addPhoto(this)"></label>
+            <label class="uplabel">📷 Upload photo<input type="file" accept="image/*" style="display:none;" onchange="addPhoto(this)"></label>
           </div>
         </div>
       </div>
     </div>
-    <div id="pt-about" class="tab-content" style="display:none;">
-      <div class="about-hero">
-        <div class="about-logo">Trades<em>Connect</em></div>
-        <div class="about-sub">The fastest way for young people in West Michigan to connect with skilled trades programs — no resume, no forms, one tap.</div>
+    <div id="p-about" class="pane">
+      <div class="ahero">
+        <div class="alogo">Trades<em>Connect</em></div>
+        <div class="asub">The fastest way for young people in West Michigan to connect with skilled trades programs — remove the friction and hoops, express interest in one tap.</div>
       </div>
       <div class="sbox">
         <div class="stitle">Who we are</div>
-        <div style="font-size:14px;color:var(--text2);line-height:1.75;">TradesConnect is a West Michigan-built platform connecting high school seniors, recent grads, and career changers to local trade programs and apprenticeships. We exist because the application process for trades is broken — most young people never apply because the hoops are too high. We fix that.</div>
+        <div style="font-size:14px;color:var(--text2);line-height:1.75;">TradesConnect connects high school seniors, recent grads, and career changers to local trade programs. We remove the friction and hoops of multiple form applications — candidates build a real profile and express interest with one tap.</div>
       </div>
       <div class="sbox">
         <div class="stitle">How it works</div>
-        <div class="how-step"><div class="step-num">1</div><div><div class="step-title">Create your profile</div><div class="step-desc">Name, location, trades you're interested in. Takes 60 seconds. No resume needed.</div></div></div>
-        <div class="how-step"><div class="step-num">2</div><div><div class="step-title">Browse local programs</div><div class="step-desc">See verified apprenticeships and training centers across Kalamazoo and Grand Rapids.</div></div></div>
-        <div class="how-step"><div class="step-num">3</div><div><div class="step-title">Express interest in one tap</div><div class="step-desc">Hit the button. Your profile goes straight to the program. They reach out — no formal application yet.</div></div></div>
-        <div class="how-step" style="margin-bottom:0;"><div class="step-num">4</div><div><div class="step-title">Get hired</div><div class="step-desc">Connect directly with the program. Start earning while you learn.</div></div></div>
+        <div class="howstep"><div class="stepnum">1</div><div><div class="steptitle">Create your profile</div><div class="stepdesc">Skills, certifications, work uploads, availability. 60 seconds. No resume.</div></div></div>
+        <div class="howstep"><div class="stepnum">2</div><div><div class="steptitle">Browse local programs</div><div class="stepdesc">Verified apprenticeships across Kalamazoo and Grand Rapids.</div></div></div>
+        <div class="howstep"><div class="stepnum">3</div><div><div class="steptitle">Express interest</div><div class="stepdesc">One tap — your profile goes straight to the program. No formal application yet.</div></div></div>
+        <div class="howstep" style="margin-bottom:0"><div class="stepnum">4</div><div><div class="steptitle">Get hired</div><div class="stepdesc">Connect directly. Start earning while you learn.</div></div></div>
       </div>
-      <div class="about-stats">
-        <div class="astat"><div class="astat-v" style="color:var(--blue);">520k+</div><div class="astat-l">MI trades jobs by 2030</div></div>
-        <div class="astat"><div class="astat-v" style="color:var(--green);">38%</div><div class="astat-l">HS grads skip college</div></div>
-        <div class="astat"><div class="astat-v" style="color:var(--purple);">20,600</div><div class="astat-l">Active MI apprentices</div></div>
-        <div class="astat"><div class="astat-v" style="color:var(--amber);">$61k</div><div class="astat-l">Avg MI trades wage</div></div>
-      </div>
-    </div>
-    <div id="pt-roadmap" class="tab-content" style="display:none;">
-      <div class="page-title">Roadmap</div>
-      <div class="page-sub">Where TradesConnect is headed.</div>
-      <div class="rm-phase">
-        <span class="rm-badge live">Live now</span>
-        <div class="rm-phase-title">Phase 1 — Michigan Pilot</div>
-        <div class="rm-item"><span class="rm-dot" style="color:var(--green);">✓</span><div class="rm-text">Prospect profiles, program discovery, express interest</div></div>
-        <div class="rm-item"><span class="rm-dot" style="color:var(--green);">✓</span><div class="rm-text">Org dashboard, job posting, candidate browsing</div></div>
-        <div class="rm-item"><span class="rm-dot" style="color:var(--green);">✓</span><div class="rm-text">Kalamazoo &amp; Grand Rapids programs seeded</div></div>
-      </div>
-      <div class="rm-phase">
-        <span class="rm-badge dev">In development</span>
-        <div class="rm-phase-title">Phase 2 — Real Accounts</div>
-        <div class="rm-item"><span class="rm-dot" style="color:var(--blue);">→</span><div class="rm-text">SMS verification, company email verification</div></div>
-        <div class="rm-item"><span class="rm-dot" style="color:var(--blue);">→</span><div class="rm-text">Real login &amp; persistent accounts</div></div>
-        <div class="rm-item"><span class="rm-dot" style="color:var(--blue);">→</span><div class="rm-text">Direct messaging, "Ending Soon" alerts</div></div>
-      </div>
-      <div class="rm-phase">
-        <span class="rm-badge soon">Coming soon</span>
-        <div class="rm-phase-title">Phase 3 — Scale</div>
-        <div class="rm-item"><span class="rm-dot" style="color:var(--purple);">◦</span><div class="rm-text">50+ programs statewide, mobile app</div></div>
-        <div class="rm-item"><span class="rm-dot" style="color:var(--purple);">◦</span><div class="rm-text">Paid org tiers, endorsements, OSHA integrations</div></div>
-        <div class="rm-item"><span class="rm-dot" style="color:var(--purple);">◦</span><div class="rm-text">Multi-state rollout — Ohio, Indiana, Wisconsin</div></div>
+      <div class="astats">
+        <div class="astat"><div class="astatv" style="color:var(--blue);">520k+</div><div class="astatl">MI trades jobs by 2030</div></div>
+        <div class="astat"><div class="astatv" style="color:var(--green);">38%</div><div class="astatl">HS grads skip college</div></div>
+        <div class="astat"><div class="astatv" style="color:var(--purple);">20,600</div><div class="astatl">Active MI apprentices</div></div>
+        <div class="astat"><div class="astatv" style="color:var(--amber);">$61k</div><div class="astatl">Avg MI trades wage</div></div>
       </div>
     </div>
-    <div id="pt-settings" class="tab-content" style="display:none;">
-      <div class="ssec">
-        <div class="ssec-title">Account</div>
+    <div id="p-roadmap" class="pane">
+      <div class="ptitle">Roadmap</div>
+      <div class="psub">Where TradesConnect is headed.</div>
+      <div class="rmphase"><span class="rmbadge live">Live now</span><div class="rmtitle">Phase 1 — Michigan Pilot</div>
+        <div class="rmitem"><span class="rmdot" style="color:var(--green)">✓</span><div class="rmtext">Prospect profiles, program discovery, express interest</div></div>
+        <div class="rmitem"><span class="rmdot" style="color:var(--green)">✓</span><div class="rmtext">Org dashboard, job posting, candidate browsing</div></div>
+        <div class="rmitem"><span class="rmdot" style="color:var(--green)">✓</span><div class="rmtext">Kalamazoo &amp; Grand Rapids programs seeded</div></div>
+      </div>
+      <div class="rmphase"><span class="rmbadge dev">In development</span><div class="rmtitle">Phase 2 — Real Accounts</div>
+        <div class="rmitem"><span class="rmdot" style="color:var(--blue)">→</span><div class="rmtext">SMS + email verification, real login, persistent accounts</div></div>
+        <div class="rmitem"><span class="rmdot" style="color:var(--blue)">→</span><div class="rmtext">Direct messaging, calendar scheduling, Ending Soon alerts</div></div>
+        <div class="rmitem"><span class="rmdot" style="color:var(--blue)">→</span><div class="rmtext">Stripe payments, student free tier (.edu), $9.99 personal</div></div>
+      </div>
+      <div class="rmphase"><span class="rmbadge soon">Coming soon</span><div class="rmtitle">Phase 3 — Scale</div>
+        <div class="rmitem"><span class="rmdot" style="color:var(--purple)">◦</span><div class="rmtext">50+ programs statewide, native iOS app</div></div>
+        <div class="rmitem"><span class="rmdot" style="color:var(--purple)">◦</span><div class="rmtext">Multi-state rollout — Ohio, Indiana, Wisconsin</div></div>
+        <div class="rmitem"><span class="rmdot" style="color:var(--purple)">◦</span><div class="rmtext">Paid org tiers, endorsements, OSHA integrations</div></div>
+      </div>
+    </div>
+    <div id="p-settings" class="pane">
+      <div class="ssec"><div class="sstitle">Account</div>
         <div class="srow"><div><div class="slbl">Name</div><div class="sdesc">Alex Rodriguez</div></div><button class="sbtn">Edit</button></div>
         <div class="srow"><div><div class="slbl">Location</div><div class="sdesc">Kalamazoo, MI</div></div><button class="sbtn">Edit</button></div>
         <div class="srow"><div><div class="slbl">Availability</div><div class="sdesc">Available June 2026</div></div><button class="sbtn">Edit</button></div>
       </div>
-      <div class="ssec">
-        <div class="ssec-title">Notifications</div>
-        <div class="srow"><div><div class="slbl">Program responses</div><div class="sdesc">When a program responds to your interest</div></div><button class="toggle on" onclick="this.classList.toggle('on')"><div class="togk"></div></button></div>
-        <div class="srow"><div><div class="slbl">New programs nearby</div><div class="sdesc">Alert when new programs open near you</div></div><button class="toggle on" onclick="this.classList.toggle('on')"><div class="togk"></div></button></div>
-        <div class="srow"><div><div class="slbl">Messages</div><div class="sdesc">New messages from organizations</div></div><button class="toggle on" onclick="this.classList.toggle('on')"><div class="togk"></div></button></div>
-        <div class="srow"><div><div class="slbl">Weekly digest</div><div class="sdesc">Weekly summary of activity</div></div><button class="toggle" onclick="this.classList.toggle('on')"><div class="togk"></div></button></div>
+      <div class="ssec"><div class="sstitle">Notifications</div>
+        <div class="srow"><div><div class="slbl">Program responses</div><div class="sdesc">When a program responds to your interest</div></div><button class="tog on" onclick="this.classList.toggle('on')"><div class="togk"></div></button></div>
+        <div class="srow"><div><div class="slbl">New programs nearby</div><div class="sdesc">Alert when new programs open near you</div></div><button class="tog on" onclick="this.classList.toggle('on')"><div class="togk"></div></button></div>
+        <div class="srow"><div><div class="slbl">Messages</div><div class="sdesc">New messages from organizations</div></div><button class="tog on" onclick="this.classList.toggle('on')"><div class="togk"></div></button></div>
       </div>
-      <div class="ssec">
-        <div class="ssec-title">Privacy</div>
-        <div class="srow"><div><div class="slbl">Profile visibility</div><div class="sdesc">Allow orgs to find your profile</div></div><button class="toggle on" onclick="this.classList.toggle('on')"><div class="togk"></div></button></div>
-        <div class="srow"><div><div class="slbl">Show availability</div><div class="sdesc">Display availability to organizations</div></div><button class="toggle on" onclick="this.classList.toggle('on')"><div class="togk"></div></button></div>
-      </div>
-      <div class="ssec">
-        <div class="ssec-title">Account actions</div>
-        <div class="srow"><div><div class="slbl">Switch role</div><div class="sdesc">Go back to role selection</div></div><button class="sbtn" onclick="goLand()">Switch</button></div>
-        <div class="srow"><div><div class="slbl">Sign out</div><div class="sdesc">Sign out of TradesConnect</div></div><button class="sbtn">Sign out</button></div>
-        <div class="srow"><div><div class="slbl">Delete account</div><div class="sdesc">Permanently delete your profile</div></div><button class="sbtn danger">Delete</button></div>
+      <div class="ssec"><div class="sstitle">Account Actions</div>
+        <div class="srow"><div><div class="slbl">Switch role</div></div><button class="sbtn" onclick="goLand()">Switch</button></div>
+        <div class="srow"><div><div class="slbl">Sign out</div></div><button class="sbtn">Sign out</button></div>
+        <div class="srow"><div><div class="slbl">Delete account</div></div><button class="sbtn danger">Delete</button></div>
       </div>
     </div>
   </div>
-  <nav class="bottomnav" id="pros-nav">
-    <button class="bnav-btn on" onclick="pTab('discover',this)" id="pnav-discover">
-      <span class="bnav-icon">🔍</span><span class="bnav-label">Discover</span>
-    </button>
-    <button class="bnav-btn" onclick="pTab('profile',this)" id="pnav-profile">
-      <span class="bnav-icon">👤</span><span class="bnav-label">Profile</span>
-    </button>
-    <button class="bnav-btn" onclick="pTab('about',this)" id="pnav-about">
-      <span class="bnav-icon">ℹ️</span><span class="bnav-label">About</span>
-    </button>
-    <button class="bnav-btn" onclick="pTab('roadmap',this)" id="pnav-roadmap">
-      <span class="bnav-icon">🗺️</span><span class="bnav-label">Roadmap</span>
-    </button>
-    <button class="bnav-btn" onclick="pTab('settings',this)" id="pnav-settings">
-      <span class="bnav-icon">⚙️</span><span class="bnav-label">Settings</span>
-    </button>
-  </nav>
 </div>
 
 <!-- ORG -->
-<div id="s-org" class="screen">
+<div id="org" class="screen">
   <div class="topnav">
-    <div class="nav-logo" onclick="goLand()">Trades<em>Connect</em></div>
-    <div class="nav-right">
-      <button class="nav-login" onclick="showAuthModal('login')" style="padding:6px 12px;border-radius:7px;font-size:12px;font-weight:500;cursor:pointer;background:transparent;border:1px solid var(--blue-border);color:var(--blue);font-family:'DM Sans',sans-serif;">Log in</button>
-      <span class="nav-badge nav-badge-org">Org</span>
-      <button class="nav-switch" onclick="goLand()">switch</button>
+    <a class="navlogo" onclick="goLand()">Trades<em>Connect</em></a>
+    <div class="navr">
+      <button class="nlogin" onclick="showAuth('login')">Log in</button>
+      <span class="nbadge nbadge-org">Org</span>
+      <button class="nswitch" onclick="goLand()">switch</button>
     </div>
   </div>
-  <div class="org-sub">Kalamazoo Electrical Training Alliance</div>
-  <div class="page" id="org-page">
-    <div id="ot-dashboard" class="tab-content">
+  <div class="orgbar">Kalamazoo Electrical Training Alliance</div>
+  <div class="tabnav" id="onav">
+    <button class="tab on" onclick="oTab('dashboard',this)">Dashboard</button>
+    <button class="tab" onclick="oTab('candidates',this)">Browse Candidates</button>
+    <button class="tab" onclick="oTab('myjobs',this)">My Jobs</button>
+    <button class="tab" onclick="oTab('roadmap',this)">Roadmap</button>
+    <button class="tab" onclick="oTab('settings',this)">Settings</button>
+  </div>
+  <div class="content">
+    <div id="o-dashboard" class="pane on">
       <div class="metrics">
-        <div class="metric"><div class="metric-val m-blue">47</div><div class="metric-lbl">Leads this month</div></div>
-        <div class="metric"><div class="metric-val m-green">12</div><div class="metric-lbl">Invited to apply</div></div>
-        <div class="metric"><div class="metric-val m-purple">5</div><div class="metric-lbl">Interviews</div></div>
-        <div class="metric"><div class="metric-val m-amber">3</div><div class="metric-lbl">Offers extended</div></div>
+        <div class="metric"><div class="mval mblue">47</div><div class="mlbl">Leads this month</div></div>
+        <div class="metric"><div class="mval mgreen">12</div><div class="mlbl">Invited to apply</div></div>
+        <div class="metric"><div class="mval mpurple">5</div><div class="mlbl">Interviews</div></div>
+        <div class="metric"><div class="mval mamber">3</div><div class="mlbl">Offers extended</div></div>
       </div>
-      <div class="sbox">
-        <div class="stitle">Pipeline</div>
-        <div class="pipe-row"><span class="pipe-label">New leads</span><div class="pipe-track"><div class="pipe-fill" style="width:100%;background:var(--blue);"></div></div><span class="pipe-count">18</span></div>
-        <div class="pipe-row"><span class="pipe-label">Messaged</span><div class="pipe-track"><div class="pipe-fill" style="width:67%;background:var(--blue);"></div></div><span class="pipe-count">12</span></div>
-        <div class="pipe-row"><span class="pipe-label">Invited</span><div class="pipe-track"><div class="pipe-fill" style="width:50%;background:var(--purple);"></div></div><span class="pipe-count">9</span></div>
-        <div class="pipe-row"><span class="pipe-label">Interviews</span><div class="pipe-track"><div class="pipe-fill" style="width:28%;background:var(--green);"></div></div><span class="pipe-count">5</span></div>
-        <div class="pipe-row"><span class="pipe-label">Offers</span><div class="pipe-track"><div class="pipe-fill" style="width:17%;background:var(--green);"></div></div><span class="pipe-count">3</span></div>
+      <div class="sbox"><div class="stitle">Pipeline</div>
+        <div class="prow"><span class="plbl">New leads</span><div class="ptrack"><div class="pfill" style="width:100%;background:var(--blue)"></div></div><span class="pcnt">18</span></div>
+        <div class="prow"><span class="plbl">Messaged</span><div class="ptrack"><div class="pfill" style="width:67%;background:var(--blue)"></div></div><span class="pcnt">12</span></div>
+        <div class="prow"><span class="plbl">Invited</span><div class="ptrack"><div class="pfill" style="width:50%;background:var(--purple)"></div></div><span class="pcnt">9</span></div>
+        <div class="prow"><span class="plbl">Interviews</span><div class="ptrack"><div class="pfill" style="width:28%;background:var(--green)"></div></div><span class="pcnt">5</span></div>
+        <div class="prow"><span class="plbl">Offers</span><div class="ptrack"><div class="pfill" style="width:17%;background:var(--green)"></div></div><span class="pcnt">3</span></div>
       </div>
-      <div class="sbox">
-        <div class="stitle">Recent leads</div>
-        <div class="lead-row">
-          <div class="lead-av" style="background:var(--blue-dim);color:var(--blue);">AR</div>
-          <div class="lead-info"><div class="lead-name">Alex Rodriguez</div><div class="lead-detail">Age 18 · Kalamazoo, MI · Electrician</div><div class="lead-quote">"Ready June 2026. Motivated to learn."</div><div class="lead-time">2 min ago</div></div>
-          <button class="invite-btn" onclick="this.textContent='Invited ✓';this.style.background='var(--green-dim)';this.style.color='var(--green)';">Invite</button>
-        </div>
-        <div class="lead-row">
-          <div class="lead-av" style="background:var(--green-dim);color:var(--green);">ML</div>
-          <div class="lead-info"><div class="lead-name">Marcus Lee</div><div class="lead-detail">Age 17 · Portage, MI · Electrician</div><div class="lead-quote">"Graduating May 2026. CTE electrical."</div><div class="lead-time">14 min ago</div></div>
-          <button class="invite-btn" onclick="this.textContent='Invited ✓';this.style.background='var(--green-dim)';this.style.color='var(--green)';">Invite</button>
-        </div>
-        <div class="lead-row">
-          <div class="lead-av" style="background:var(--purple-dim);color:var(--purple);">JE</div>
-          <div class="lead-info"><div class="lead-name">Jordan Ellis</div><div class="lead-detail">Age 19 · Kalamazoo, MI · Electrician</div><div class="lead-quote">"Career switcher. Available immediately."</div><div class="lead-time">31 min ago</div></div>
-          <button class="invite-btn" onclick="this.textContent='Invited ✓';this.style.background='var(--green-dim)';this.style.color='var(--green)';">Invite</button>
-        </div>
+      <div class="sbox"><div class="stitle">Recent leads</div>
+        <div class="lrow"><div class="lav" style="background:var(--bluedim);color:var(--blue)">AR</div><div class="linfo"><div class="lname">Alex Rodriguez</div><div class="ldet">Age 18 · Kalamazoo, MI · Electrician</div><div class="lq">"Ready June 2026. Motivated to learn."</div><div class="lt">2 min ago</div></div><button class="invbtn" onclick="this.textContent='Invited ✓'">Invite</button></div>
+        <div class="lrow"><div class="lav" style="background:var(--greendim);color:var(--green)">ML</div><div class="linfo"><div class="lname">Marcus Lee</div><div class="ldet">Age 17 · Portage, MI · Electrician</div><div class="lq">"Graduating May 2026. CTE electrical."</div><div class="lt">14 min ago</div></div><button class="invbtn" onclick="this.textContent='Invited ✓'">Invite</button></div>
+        <div class="lrow"><div class="lav" style="background:var(--purpledim);color:var(--purple)">JE</div><div class="linfo"><div class="lname">Jordan Ellis</div><div class="ldet">Age 19 · Kalamazoo, MI · Electrician</div><div class="lq">"Career switcher. Available immediately."</div><div class="lt">31 min ago</div></div><button class="invbtn" onclick="this.textContent='Invited ✓'">Invite</button></div>
       </div>
     </div>
-    <div id="ot-candidates" class="tab-content" style="display:none;">
-      <div class="filter-row">
+    <div id="o-candidates" class="pane">
+      <div class="filters">
         <button class="ftag on">All trades</button>
         <button class="ftag">⚡ Electrician</button>
         <button class="ftag">🔥 Welder</button>
         <button class="ftag">❄️ HVAC</button>
         <button class="ftag">🔧 Plumber</button>
       </div>
-      <div class="cand-card">
-        <div class="cand-top"><div class="cand-av" style="background:var(--blue-dim);color:var(--blue);">AR</div><div class="cand-info"><div class="cand-name">Alex Rodriguez</div><div class="cand-meta">Age 18 · Kalamazoo, MI · Available June 2026</div></div></div>
-        <div class="cand-bio">Shop and electrical fundamentals all four years. Reliable and ready to learn from day one.</div>
-        <div class="cand-tags"><span class="cand-tag">Electrician</span><span class="cand-tag">OSHA-10</span><span class="cand-tag">Entry-level</span></div>
-        <div class="cand-btns"><button class="btn-msg" onclick="this.textContent='Sent ✓'">Message</button><button class="btn-inv" onclick="this.textContent='Invited ✓'">Invite</button></div>
-      </div>
-      <div class="cand-card">
-        <div class="cand-top"><div class="cand-av" style="background:var(--green-dim);color:var(--green);">ML</div><div class="cand-info"><div class="cand-name">Marcus Lee</div><div class="cand-meta">Age 17 · Portage, MI · Available May 2026</div></div></div>
-        <div class="cand-bio">CTE electrical fundamentals. Strong academic record and hands-on project work.</div>
-        <div class="cand-tags"><span class="cand-tag">Electrician</span><span class="cand-tag">CTE grad</span><span class="cand-tag">Entry-level</span></div>
-        <div class="cand-btns"><button class="btn-msg" onclick="this.textContent='Sent ✓'">Message</button><button class="btn-inv" onclick="this.textContent='Invited ✓'">Invite</button></div>
-      </div>
-      <div class="cand-card">
-        <div class="cand-top"><div class="cand-av" style="background:var(--purple-dim);color:var(--purple);">JE</div><div class="cand-info"><div class="cand-name">Jordan Ellis</div><div class="cand-meta">Age 19 · Kalamazoo, MI · Available immediately</div></div></div>
-        <div class="cand-bio">Career switcher. Fully committed to trades. Own transportation, available any shift.</div>
-        <div class="cand-tags"><span class="cand-tag">Electrician</span><span class="cand-tag">Available now</span><span class="cand-tag">Career switcher</span></div>
-        <div class="cand-btns"><button class="btn-msg" onclick="this.textContent='Sent ✓'">Message</button><button class="btn-inv" onclick="this.textContent='Invited ✓'">Invite</button></div>
-      </div>
+      <div class="ccard"><div class="ctop"><div class="cav" style="background:var(--bluedim);color:var(--blue)">AR</div><div><div class="cname">Alex Rodriguez</div><div class="cmeta">Age 18 · Kalamazoo, MI · Available June 2026</div></div></div><div class="cbio">Shop and electrical fundamentals all four years. Reliable and ready to learn from day one.</div><div class="ctags"><span class="ctag">Electrician</span><span class="ctag">OSHA-10</span><span class="ctag">Entry-level</span></div><div class="cbtns"><button class="bmsg" onclick="this.textContent='Sent ✓'">Message</button><button class="binv" onclick="this.textContent='Invited ✓'">Invite</button></div></div>
+      <div class="ccard"><div class="ctop"><div class="cav" style="background:var(--greendim);color:var(--green)">ML</div><div><div class="cname">Marcus Lee</div><div class="cmeta">Age 17 · Portage, MI · Available May 2026</div></div></div><div class="cbio">CTE electrical fundamentals. Strong academic record and hands-on project work.</div><div class="ctags"><span class="ctag">Electrician</span><span class="ctag">CTE grad</span><span class="ctag">Entry-level</span></div><div class="cbtns"><button class="bmsg" onclick="this.textContent='Sent ✓'">Message</button><button class="binv" onclick="this.textContent='Invited ✓'">Invite</button></div></div>
+      <div class="ccard"><div class="ctop"><div class="cav" style="background:var(--purpledim);color:var(--purple)">JE</div><div><div class="cname">Jordan Ellis</div><div class="cmeta">Age 19 · Kalamazoo, MI · Available immediately</div></div></div><div class="cbio">Career switcher. Fully committed. Own transportation, available any shift.</div><div class="ctags"><span class="ctag">Electrician</span><span class="ctag">Available now</span><span class="ctag">Career switcher</span></div><div class="cbtns"><button class="bmsg" onclick="this.textContent='Sent ✓'">Message</button><button class="binv" onclick="this.textContent='Invited ✓'">Invite</button></div></div>
     </div>
-    <div id="ot-myjobs" class="tab-content" style="display:none;">
-      <button class="post-job-btn" onclick="showJobModal()">+ Post a new job</button>
+    <div id="o-myjobs" class="pane">
+      <button class="postbtn" onclick="showJobModal()">+ Post a new listing</button>
       <div id="jobs-list">
-        <div class="job-card">
-          <div class="job-title">Electrical Apprentice — Kalamazoo</div>
-          <div class="job-meta"><span>Kalamazoo, MI</span><span>$18–22/hr</span><span>5-year apprenticeship</span><span class="accepting">Accepting now</span></div>
-          <div class="job-desc">Motivated entry-level candidates to join our IBEW apprenticeship program. No experience required.</div>
-          <div class="job-actions"><button class="job-edit">Edit</button><button class="job-delete" onclick="this.closest('.job-card').remove()">Delete</button></div>
-        </div>
+        <div class="jcard"><div class="jtitle">Electrical Apprentice — Kalamazoo</div><div class="jmeta"><span>📍 Kalamazoo, MI</span><span>$18–22/hr</span><span>8 spots</span><span>5-year apprenticeship</span><span class="acc">Electrician</span></div><div class="pctags"><span class="ptag pt-blue">Union</span><span class="ptag pt-green">No experience needed</span><span class="ptag pt-green">Health insurance</span><span class="ptag pt-green">Paid training</span></div><div class="jdesc">Motivated entry-level candidates. IBEW Local 131. No experience required — we train you.</div><div class="jbtns"><button class="jedit">Edit</button><button class="jdel" onclick="this.closest('.jcard').remove()">Delete</button></div></div>
       </div>
     </div>
-    <div id="ot-roadmap" class="tab-content" style="display:none;">
-      <div class="page-title">Roadmap</div>
-      <div class="page-sub">Where TradesConnect is headed.</div>
-      <div class="rm-phase">
-        <span class="rm-badge live">Live now</span>
-        <div class="rm-phase-title">Phase 1 — Michigan Pilot</div>
-        <div class="rm-item"><span class="rm-dot" style="color:var(--green);">✓</span><div class="rm-text">Prospect profiles, program discovery, express interest</div></div>
-        <div class="rm-item"><span class="rm-dot" style="color:var(--green);">✓</span><div class="rm-text">Org dashboard, job posting, candidate browsing</div></div>
-        <div class="rm-item"><span class="rm-dot" style="color:var(--green);">✓</span><div class="rm-text">Kalamazoo &amp; Grand Rapids programs seeded</div></div>
+    <div id="o-roadmap" class="pane">
+      <div class="ptitle">Roadmap</div>
+      <div class="psub">Where TradesConnect is headed.</div>
+      <div class="rmphase"><span class="rmbadge live">Live now</span><div class="rmtitle">Phase 1 — Michigan Pilot</div>
+        <div class="rmitem"><span class="rmdot" style="color:var(--green)">✓</span><div class="rmtext">Prospect profiles, program discovery, express interest</div></div>
+        <div class="rmitem"><span class="rmdot" style="color:var(--green)">✓</span><div class="rmtext">Org dashboard, job posting, candidate browsing</div></div>
+        <div class="rmitem"><span class="rmdot" style="color:var(--green)">✓</span><div class="rmtext">Kalamazoo &amp; Grand Rapids programs seeded</div></div>
       </div>
-      <div class="rm-phase">
-        <span class="rm-badge dev">In development</span>
-        <div class="rm-phase-title">Phase 2 — Real Accounts</div>
-        <div class="rm-item"><span class="rm-dot" style="color:var(--blue);">→</span><div class="rm-text">SMS verification, company email verification</div></div>
-        <div class="rm-item"><span class="rm-dot" style="color:var(--blue);">→</span><div class="rm-text">Real login &amp; persistent accounts</div></div>
-        <div class="rm-item"><span class="rm-dot" style="color:var(--blue);">→</span><div class="rm-text">Direct messaging, Ending Soon alerts</div></div>
+      <div class="rmphase"><span class="rmbadge dev">In development</span><div class="rmtitle">Phase 2 — Real Accounts</div>
+        <div class="rmitem"><span class="rmdot" style="color:var(--blue)">→</span><div class="rmtext">SMS + email verification, real login, Stripe payments</div></div>
+        <div class="rmitem"><span class="rmdot" style="color:var(--blue)">→</span><div class="rmtext">Direct messaging, calendar scheduling, direct inbox</div></div>
       </div>
-      <div class="rm-phase">
-        <span class="rm-badge soon">Coming soon</span>
-        <div class="rm-phase-title">Phase 3 — Scale</div>
-        <div class="rm-item"><span class="rm-dot" style="color:var(--purple);">◦</span><div class="rm-text">50+ programs statewide, mobile app, multi-state</div></div>
-        <div class="rm-item"><span class="rm-dot" style="color:var(--purple);">◦</span><div class="rm-text">Paid org tiers, endorsements, OSHA integrations</div></div>
+      <div class="rmphase"><span class="rmbadge soon">Coming soon</span><div class="rmtitle">Phase 3 — Scale</div>
+        <div class="rmitem"><span class="rmdot" style="color:var(--purple)">◦</span><div class="rmtext">50+ programs, native iOS app, multi-state rollout</div></div>
+        <div class="rmitem"><span class="rmdot" style="color:var(--purple)">◦</span><div class="rmtext">Paid org tiers, endorsements, OSHA integrations</div></div>
       </div>
     </div>
-    <div id="ot-settings" class="tab-content" style="display:none;">
-      <div class="ssec">
-        <div class="ssec-title">Organization</div>
+    <div id="o-settings" class="pane">
+      <div class="ssec"><div class="sstitle">Organization</div>
         <div class="srow"><div><div class="slbl">Org name</div><div class="sdesc">Kalamazoo Electrical Training Alliance</div></div><button class="sbtn">Edit</button></div>
         <div class="srow"><div><div class="slbl">Location</div><div class="sdesc">Kalamazoo, MI</div></div><button class="sbtn">Edit</button></div>
         <div class="srow"><div><div class="slbl">Trade focus</div><div class="sdesc">Electrician</div></div><button class="sbtn">Edit</button></div>
       </div>
-      <div class="ssec">
-        <div class="ssec-title">Notifications</div>
-        <div class="srow"><div><div class="slbl">New candidate leads</div><div class="sdesc">When a prospect expresses interest</div></div><button class="toggle on" onclick="this.classList.toggle('on')"><div class="togk"></div></button></div>
-        <div class="srow"><div><div class="slbl">Daily lead digest</div><div class="sdesc">Morning summary of new leads</div></div><button class="toggle on" onclick="this.classList.toggle('on')"><div class="togk"></div></button></div>
-        <div class="srow"><div><div class="slbl">Interview reminders</div><div class="sdesc">Before scheduled interviews</div></div><button class="toggle" onclick="this.classList.toggle('on')"><div class="togk"></div></button></div>
+      <div class="ssec"><div class="sstitle">Notifications</div>
+        <div class="srow"><div><div class="slbl">New candidate leads</div><div class="sdesc">When a prospect expresses interest</div></div><button class="tog on" onclick="this.classList.toggle('on')"><div class="togk"></div></button></div>
+        <div class="srow"><div><div class="slbl">Daily lead digest</div><div class="sdesc">Morning summary of new leads</div></div><button class="tog on" onclick="this.classList.toggle('on')"><div class="togk"></div></button></div>
       </div>
-      <div class="ssec">
-        <div class="ssec-title">Account actions</div>
-        <div class="srow"><div><div class="slbl">Switch role</div><div class="sdesc">Go back to role selection</div></div><button class="sbtn" onclick="goLand()">Switch</button></div>
-        <div class="srow"><div><div class="slbl">Sign out</div><div class="sdesc">Sign out of TradesConnect</div></div><button class="sbtn">Sign out</button></div>
+      <div class="ssec"><div class="sstitle">Account Actions</div>
+        <div class="srow"><div><div class="slbl">Switch role</div></div><button class="sbtn" onclick="goLand()">Switch</button></div>
+        <div class="srow"><div><div class="slbl">Sign out</div></div><button class="sbtn">Sign out</button></div>
       </div>
     </div>
   </div>
-  <nav class="bottomnav" id="org-nav">
-    <button class="bnav-btn on" onclick="oTab('dashboard',this)">
-      <span class="bnav-icon">📊</span><span class="bnav-label">Dashboard</span>
-    </button>
-    <button class="bnav-btn" onclick="oTab('candidates',this)">
-      <span class="bnav-icon">👥</span><span class="bnav-label">Candidates</span>
-    </button>
-    <button class="bnav-btn" onclick="oTab('myjobs',this)">
-      <span class="bnav-icon">📋</span><span class="bnav-label">My Jobs</span>
-    </button>
-    <button class="bnav-btn" onclick="oTab('roadmap',this)">
-      <span class="bnav-icon">🗺️</span><span class="bnav-label">Roadmap</span>
-    </button>
-    <button class="bnav-btn" onclick="oTab('settings',this)">
-      <span class="bnav-icon">⚙️</span><span class="bnav-label">Settings</span>
-    </button>
-  </nav>
 </div>
 
 <!-- EXPRESS INTEREST MODAL -->
-<div class="modal-overlay" id="modal">
-  <div class="modal-box">
-    <div class="modal-handle"></div>
-    <div id="modal-form">
-      <div class="modal-title">Express interest</div>
-      <div class="modal-prog" id="modal-prog-name"></div>
-      <div class="input-grid">
-        <div><label class="input-label">First name</label><input class="text-input" placeholder="Alex" id="f-name"></div>
-        <div><label class="input-label">Age</label><input class="text-input" placeholder="18" type="number" id="f-age"></div>
+<div class="moverlay" id="modal">
+  <div class="mbox">
+    <div class="mhandle"></div>
+    <div id="mform">
+      <div class="mtitle">Express interest</div>
+      <div class="mprog" id="mprogname"></div>
+      <div class="igrid">
+        <div><label class="ilbl">First name</label><input class="tinput" placeholder="Alex" id="f-name"></div>
+        <div><label class="ilbl">Age</label><input class="tinput" type="number" placeholder="18" id="f-age"></div>
       </div>
-      <div class="input-row"><label class="input-label">City or zip</label><input class="text-input" placeholder="Kalamazoo, MI" id="f-city"></div>
-      <div class="input-row"><label class="input-label">Available to start</label><input class="text-input" placeholder="June 2026" id="f-start"></div>
-      <div class="input-row"><label class="input-label">Short note (optional)</label><input class="text-input" placeholder="Motivated and ready to learn..." id="f-note"></div>
-      <button class="submit-btn" onclick="submitInterest()">Send interest</button>
-      <span class="cancel-lnk" onclick="closeModal()">Cancel</span>
+      <div class="irow"><label class="ilbl">City or zip</label><input class="tinput" placeholder="Kalamazoo, MI" id="f-city"></div>
+      <div class="irow"><label class="ilbl">Available to start</label><input class="tinput" placeholder="June 2026" id="f-start"></div>
+      <div class="irow"><label class="ilbl">Short note (optional)</label><input class="tinput" placeholder="Motivated and ready to learn..." id="f-note"></div>
+      <button class="subbtn" onclick="submitInterest()">Send interest</button>
+      <span class="canlnk" onclick="closeModal()">Cancel</span>
     </div>
-    <div id="modal-success" class="success-view" style="display:none;">
-      <div class="success-check">✓</div>
-      <div class="success-title">Interest sent!</div>
-      <div class="success-sub">The program received your profile. They'll reach out — no formal application required yet.</div>
-      <button class="submit-btn" onclick="closeModal()">Back to discover</button>
+    <div id="msucc" style="display:none" class="succv">
+      <div class="succk">✓</div>
+      <div class="succt">Interest sent!</div>
+      <div class="succs">The program received your profile. They'll reach out — no formal application required yet.</div>
+      <button class="subbtn" onclick="closeModal()">Back to discover</button>
     </div>
   </div>
 </div>
 
 <!-- AUTH MODAL -->
-<div class="modal-overlay" id="auth-modal">
-  <div class="modal-box">
-    <div class="modal-handle"></div>
+<div class="moverlay" id="auth-modal">
+  <div class="mbox">
+    <div class="mhandle"></div>
     <div id="auth-form">
-      <div class="modal-title" id="auth-title">Log in</div>
-      <div class="modal-prog" id="auth-sub">Welcome back to TradesConnect</div>
-      <div class="input-row"><label class="input-label">Email</label><input class="text-input" placeholder="your email address" id="auth-email"></div>
-      <div class="input-row" id="auth-name-row" style="display:none;"><label class="input-label">Full name</label><input class="text-input" placeholder="Alex Rodriguez" id="auth-name"></div>
-      <div class="input-row"><label class="input-label">Password</label><input class="text-input" type="password" placeholder="password" id="auth-pass"></div>
-      <button class="submit-btn" id="auth-submit-btn" onclick="submitAuth()">Log in</button>
-      <span class="cancel-lnk" onclick="closeAuthModal()">Cancel</span>
+      <div class="mtitle" id="auth-title">Log in</div>
+      <div class="mprog" id="auth-sub">Welcome back to TradesConnect</div>
+      <div class="irow"><label class="ilbl">Email</label><input class="tinput" placeholder="your email address" id="auth-email"></div>
+      <div class="irow" id="auth-name-row" style="display:none"><label class="ilbl">Full name</label><input class="tinput" placeholder="Alex Rodriguez" id="auth-name"></div>
+      <div class="irow"><label class="ilbl">Password</label><input class="tinput" type="password" placeholder="password"></div>
+      <button class="subbtn" id="auth-subbtn" onclick="submitAuth()">Log in</button>
+      <span class="canlnk" onclick="closeAuth()">Cancel</span>
     </div>
-    <div id="auth-success" style="display:none;" class="success-view">
-      <div class="success-check">✓</div>
-      <div class="success-title" id="auth-success-title">Welcome back!</div>
-      <div class="success-sub">You are now logged in to TradesConnect.</div>
-      <button class="submit-btn" onclick="closeAuthModal()">Continue</button>
+    <div id="auth-succ" style="display:none" class="succv">
+      <div class="succk">✓</div>
+      <div class="succt" id="auth-succ-title">Welcome back!</div>
+      <div class="succs">You are now logged in to TradesConnect.</div>
+      <button class="subbtn" onclick="closeAuth()">Continue</button>
     </div>
   </div>
 </div>
 
 <!-- JOB MODAL -->
-<div class="modal-overlay" id="job-modal">
-  <div class="modal-box">
-    <div class="modal-handle"></div>
+<div class="moverlay" id="job-modal">
+  <div class="mbox">
+    <div class="mhandle"></div>
     <div id="job-form">
-      <div class="modal-title">Post a listing</div>
-      <div class="modal-prog">Visible to all prospects in West Michigan</div>
-
-      <div class="input-row"><label class="input-label">Position title</label><input class="text-input" placeholder="Electrical Apprentice" id="j-title"></div>
-
-      <div class="input-grid">
-        <div><label class="input-label">Trade</label>
-          <select class="text-input" id="j-trade">
-            <option value="">Select trade...</option>
-            <option>Electrician</option>
-            <option>Plumber</option>
-            <option>HVAC</option>
-            <option>Welder</option>
-            <option>Carpenter</option>
-            <option>Pipefitter</option>
-            <option>Other</option>
-          </select>
+      <div class="mtitle">Post a listing</div>
+      <div class="mprog">Visible to all prospects in West Michigan</div>
+      <div class="irow"><label class="ilbl">Position title</label><input class="tinput" placeholder="Electrical Apprentice" id="j-title"></div>
+      <div class="igrid">
+        <div><label class="ilbl">Trade</label>
+          <select class="tinput" id="j-trade"><option value="">Select trade...</option><option>Electrician</option><option>Plumber</option><option>HVAC</option><option>Welder</option><option>Carpenter</option><option>Pipefitter</option><option>Other</option></select>
         </div>
-        <div><label class="input-label">City</label><input class="text-input" placeholder="Kalamazoo, MI" id="j-city"></div>
+        <div><label class="ilbl">City</label><input class="tinput" placeholder="Kalamazoo, MI" id="j-city"></div>
       </div>
-
-      <div class="input-grid">
-        <div><label class="input-label">Pay rate</label><input class="text-input" placeholder="$18–22/hr" id="j-pay"></div>
-        <div><label class="input-label">Program duration</label>
-          <select class="text-input" id="j-duration">
-            <option value="">Select...</option>
-            <option>2-year certificate</option>
-            <option>3-year apprenticeship</option>
-            <option>4-year apprenticeship</option>
-            <option>5-year apprenticeship</option>
-            <option>Full-time position</option>
-            <option>Part-time / seasonal</option>
-          </select>
+      <div class="igrid">
+        <div><label class="ilbl">Pay rate</label><input class="tinput" placeholder="$18–22/hr" id="j-pay"></div>
+        <div><label class="ilbl">Duration</label>
+          <select class="tinput" id="j-duration"><option value="">Select...</option><option>2-year certificate</option><option>3-year apprenticeship</option><option>4-year apprenticeship</option><option>5-year apprenticeship</option><option>Full-time position</option><option>Part-time / seasonal</option></select>
         </div>
       </div>
-
-      <div class="input-grid">
-        <div><label class="input-label">Experience level</label>
-          <select class="text-input" id="j-exp">
-            <option value="">Select...</option>
-            <option>No experience needed</option>
-            <option>Some exposure preferred</option>
-            <option>1–2 years required</option>
-            <option>Journeyman level</option>
-          </select>
+      <div class="igrid">
+        <div><label class="ilbl">Experience level</label>
+          <select class="tinput" id="j-exp"><option value="">Select...</option><option>No experience needed</option><option>Some exposure preferred</option><option>1–2 years required</option><option>Journeyman level</option></select>
         </div>
-        <div><label class="input-label">Start date</label>
-          <select class="text-input" id="j-start">
-            <option value="">Select...</option>
-            <option>Immediate / rolling</option>
-            <option>Spring 2026</option>
-            <option>Summer 2026</option>
-            <option>Fall 2026</option>
-            <option>January 2027</option>
-            <option>Flexible</option>
-          </select>
+        <div><label class="ilbl">Start date</label>
+          <select class="tinput" id="j-start"><option value="">Select...</option><option>Immediate / rolling</option><option>Spring 2026</option><option>Summer 2026</option><option>Fall 2026</option><option>January 2027</option><option>Flexible</option></select>
         </div>
       </div>
-
-      <div class="input-grid">
-        <div><label class="input-label">Spots available</label><input class="text-input" type="number" placeholder="8" id="j-spots" min="1"></div>
-        <div><label class="input-label">Union / Non-union</label>
-          <select class="text-input" id="j-union">
-            <option value="">Select...</option>
-            <option>Union</option>
-            <option>Non-union</option>
-            <option>Either</option>
-          </select>
+      <div class="igrid">
+        <div><label class="ilbl">Spots available</label><input class="tinput" type="number" placeholder="8" id="j-spots"></div>
+        <div><label class="ilbl">Union / Non-union</label>
+          <select class="tinput" id="j-union"><option value="">Select...</option><option>Union</option><option>Non-union</option><option>Either</option></select>
         </div>
       </div>
-
-      <div class="input-row"><label class="input-label">Benefits included</label>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px;">
+      <div class="irow"><label class="ilbl">Benefits included</label>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;">
           <label style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text2);cursor:pointer;"><input type="checkbox" id="j-b-health"> Health insurance</label>
           <label style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text2);cursor:pointer;"><input type="checkbox" id="j-b-pension"> Pension / 401k</label>
           <label style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text2);cursor:pointer;"><input type="checkbox" id="j-b-tools"> Tools provided</label>
@@ -728,138 +583,119 @@ html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-seri
           <label style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text2);cursor:pointer;"><input type="checkbox" id="j-b-cert"> Cert assistance</label>
         </div>
       </div>
-
-      <div class="input-row"><label class="input-label">Description</label><textarea class="text-input" placeholder="What the role involves, what you're looking for in a candidate..." id="j-desc" rows="3" style="resize:vertical;"></textarea></div>
-
-      <button class="submit-btn" onclick="submitJob()">Post listing</button>
-      <span class="cancel-lnk" onclick="closeJobModal()">Cancel</span>
+      <div class="irow"><label class="ilbl">Description</label><textarea class="tinput" placeholder="What the role involves, what you're looking for..." id="j-desc" rows="3" style="resize:vertical;"></textarea></div>
+      <button class="subbtn" onclick="submitJob()">Post listing</button>
+      <span class="canlnk" onclick="closeJob()">Cancel</span>
     </div>
-    <div id="job-success" style="display:none;" class="success-view">
-      <div class="success-check">✓</div>
-      <div class="success-title">Listing posted!</div>
-      <div class="success-sub">Your listing is live and visible to all prospects in West Michigan.</div>
-      <button class="submit-btn" onclick="closeJobModal()">Back to my jobs</button>
+    <div id="job-succ" style="display:none" class="succv">
+      <div class="succk">✓</div>
+      <div class="succt">Listing posted!</div>
+      <div class="succs">Your listing is live and visible to all prospects in West Michigan.</div>
+      <button class="subbtn" onclick="closeJob()">Back to my jobs</button>
     </div>
   </div>
 </div>
 
 <script>
-const programs=[
-  {id:1,name:"Kalamazoo Electrical Training Alliance",city:"Kalamazoo",trade:"Electrician",icon:"⚡",spots:8,rate:"$18–24/hr",duration:"5-year apprenticeship",tags:[{l:"IBEW Local 131",c:"pt-blue"},{l:"Paid training",c:"pt-green"},{l:"Benefits included",c:"pt-green"}],desc:"IBEW Local 131's JATC — highly competitive, state-of-the-art facility. Trains electricians and technicians for the Kalamazoo division."},
+var programs=[
+  {id:1,name:"Kalamazoo Electrical Training Alliance",city:"Kalamazoo",trade:"Electrician",icon:"⚡",spots:8,rate:"$18–24/hr",duration:"5-year apprenticeship",tags:[{l:"IBEW Local 131",c:"pt-blue"},{l:"Paid training",c:"pt-green"},{l:"Benefits included",c:"pt-green"}],desc:"IBEW Local 131's JATC — highly competitive, state-of-the-art facility. Trains electricians for the Kalamazoo division."},
   {id:2,name:"KVCC Electrical Construction Program",city:"Kalamazoo",trade:"Electrician",icon:"⚡",spots:14,rate:"$16–20/hr",duration:"2-year certificate",tags:[{l:"College program",c:"pt-blue"},{l:"No experience needed",c:"pt-green"},{l:"DOL approved",c:"pt-green"}],desc:"Kalamazoo Valley Community College's DOL-approved apprenticeship. NEC code, conduit bending, electrical theory, hands-on lab."},
   {id:3,name:"West Michigan Electrical — IBEW 275",city:"Grand Rapids",trade:"Electrician",icon:"⚡",spots:10,rate:"$17–23/hr",duration:"5-year apprenticeship",tags:[{l:"IBEW Local 275",c:"pt-blue"},{l:"Union benefits",c:"pt-green"},{l:"Paid apprenticeship",c:"pt-green"}],desc:"West Michigan's premier union electrical training. Residential, commercial and industrial work across the Grand Rapids region."},
   {id:4,name:"GRCC Welding Technology",city:"Grand Rapids",trade:"Welder",icon:"🔥",spots:12,rate:"$16–21/hr",duration:"2-year program",tags:[{l:"College program",c:"pt-blue"},{l:"No experience needed",c:"pt-green"},{l:"AWS certification",c:"pt-purple"}],desc:"GRCC is West Michigan's #1 construction trainer. MIG, TIG, and stick welding. AWS certification included. 90%+ placement rate."},
-  {id:5,name:"KVCC Welding Technology",city:"Kalamazoo",trade:"Welder",icon:"🔥",spots:10,rate:"$15–20/hr",duration:"2-year certificate",tags:[{l:"College program",c:"pt-blue"},{l:"No experience needed",c:"pt-green"}],desc:"KVCC's welding program covering MIG, TIG, stick and advanced techniques. DOL-approved and articulated with regional employers."},
-  {id:6,name:"UA Local 357 — Plumbers & Pipefitters",city:"Kalamazoo",trade:"Plumber",icon:"🔧",spots:6,rate:"$19–26/hr",duration:"5-year apprenticeship",tags:[{l:"Union",c:"pt-blue"},{l:"Top wages",c:"pt-green"},{l:"Benefits included",c:"pt-green"}],desc:"Union pipe trades covering plumbing, pipefitting, welding and HVAC-R. 18,000 sq ft training facility in Schoolcraft, MI."},
-  {id:7,name:"UA Local 357 — HVAC-R Apprenticeship",city:"Kalamazoo",trade:"HVAC",icon:"❄️",spots:7,rate:"$18–24/hr",duration:"5-year apprenticeship",tags:[{l:"Union",c:"pt-blue"},{l:"Paid apprenticeship",c:"pt-green"},{l:"EPA 608 included",c:"pt-green"}],desc:"Train as an HVAC-Refrigeration specialist. Covers residential and commercial systems, refrigerants, and service tech skills."},
+  {id:5,name:"KVCC Welding Technology",city:"Kalamazoo",trade:"Welder",icon:"🔥",spots:10,rate:"$15–20/hr",duration:"2-year certificate",tags:[{l:"College program",c:"pt-blue"},{l:"No experience needed",c:"pt-green"}],desc:"KVCC welding covering MIG, TIG, stick and advanced techniques. DOL-approved and articulated with regional employers."},
+  {id:6,name:"UA Local 357 — Plumbers & Pipefitters",city:"Kalamazoo",trade:"Plumber",icon:"🔧",spots:6,rate:"$19–26/hr",duration:"5-year apprenticeship",tags:[{l:"Union",c:"pt-blue"},{l:"Top wages",c:"pt-green"},{l:"Benefits included",c:"pt-green"}],desc:"Union pipe trades — plumbing, pipefitting, welding and HVAC-R. 18,000 sq ft facility in Schoolcraft, MI."},
+  {id:7,name:"UA Local 357 — HVAC-R",city:"Kalamazoo",trade:"HVAC",icon:"❄️",spots:7,rate:"$18–24/hr",duration:"5-year apprenticeship",tags:[{l:"Union",c:"pt-blue"},{l:"Paid apprenticeship",c:"pt-green"},{l:"EPA 608 included",c:"pt-green"}],desc:"HVAC-Refrigeration specialist training. Residential and commercial systems, refrigerants, and service tech skills."},
   {id:8,name:"KVCC HVAC Technician Program",city:"Kalamazoo",trade:"HVAC",icon:"❄️",spots:9,rate:"$15–19/hr",duration:"2-year certificate",tags:[{l:"College program",c:"pt-blue"},{l:"EPA 608 included",c:"pt-green"},{l:"No experience needed",c:"pt-green"}],desc:"DOL-approved HVAC program covering refrigerants, sheet metal, system design and EPA 608 certification."},
-  {id:9,name:"GRCC Construction Electrical Apprenticeship",city:"Grand Rapids",trade:"Electrician",icon:"⚡",spots:8,rate:"$17–22/hr",duration:"4-year apprenticeship",tags:[{l:"College program",c:"pt-blue"},{l:"Earn while you learn",c:"pt-green"},{l:"DOL registered",c:"pt-purple"}],desc:"DOL-registered electrical apprenticeship. On-the-job training plus classroom instruction. Qualifies for college credit."},
+  {id:9,name:"GRCC Construction Electrical Apprenticeship",city:"Grand Rapids",trade:"Electrician",icon:"⚡",spots:8,rate:"$17–22/hr",duration:"4-year apprenticeship",tags:[{l:"College program",c:"pt-blue"},{l:"Earn while you learn",c:"pt-green"},{l:"DOL registered",c:"pt-purple"}],desc:"DOL-registered electrical apprenticeship at GRCC. On-the-job training plus classroom. Qualifies for college credit."},
   {id:10,name:"Michigan Carpenters Apprenticeship — Local 1510",city:"Grand Rapids",trade:"Carpenter",icon:"🪵",spots:8,rate:"$17–22/hr",duration:"4-year apprenticeship",tags:[{l:"Union",c:"pt-blue"},{l:"Paid apprenticeship",c:"pt-green"}],desc:"UBC-affiliated carpenters apprenticeship. Framing, finish work, commercial builds across West Michigan."},
 ];
 
-let cf="all";
+var cf="all";
 
 function renderPrograms(){
-  const filtered=cf==="all"?programs:programs.filter(p=>p.trade===cf);
-  document.getElementById("prog-list").innerHTML=filtered.map(p=>`
-    <div class="prog-card">
-      <div class="prog-top">
-        <div class="prog-left">
-          <div class="prog-ico">${p.icon}</div>
-          <div>
-            <div class="prog-name">${p.name}</div>
-            <div class="prog-meta"><span>📍 ${p.city}, MI</span><span>${p.spots} spots</span><span>${p.rate}</span><span>${p.duration}</span></div>
-          </div>
-        </div>
-        <span class="accepting">Open</span>
-      </div>
-      <div class="prog-tags">${p.tags.map(t=>`<span class="ptag ${t.c}">${t.l}</span>`).join("")}</div>
-      <div class="prog-desc">${p.desc}</div>
-      <button class="express-btn" onclick="openModal(${p.id})">Express interest</button>
-    </div>`).join("");
+  var list=cf==="all"?programs:programs.filter(function(p){return p.trade===cf;});
+  document.getElementById("proglist").innerHTML=list.map(function(p){
+    return '<div class="pcard"><div class="pctop"><div class="pcleft"><div class="pcico">'+p.icon+'</div><div><div class="pcname">'+p.name+'</div><div class="pcmeta"><span>📍 '+p.city+', MI</span><span>'+p.spots+' spots</span><span>'+p.rate+'</span><span>'+p.duration+'</span></div></div></div><span class="acc">Open</span></div><div class="pctags">'+p.tags.map(function(t){return'<span class="ptag '+t.c+'">'+t.l+'</span>';}).join('')+'</div><div class="pcdesc">'+p.desc+'</div><button class="expbtn" onclick="openModal('+p.id+')">Express interest</button></div>';
+  }).join('');
 }
 
 function filt(trade,el){
   cf=trade;
-  document.querySelectorAll("#pt-discover .ftag").forEach(c=>c.classList.remove("on"));
+  document.querySelectorAll("#p-discover .ftag").forEach(function(b){b.classList.remove("on");});
   el.classList.add("on");
   renderPrograms();
 }
 
 function pTab(tab,el){
-  document.querySelectorAll("#pros-nav .bnav-btn").forEach(b=>b.classList.remove("on"));
+  document.querySelectorAll("#pnav .tab").forEach(function(b){b.classList.remove("on");});
   el.classList.add("on");
-  document.querySelectorAll("#s-pros .tab-content").forEach(t=>t.style.display="none");
-  document.getElementById("pt-"+tab).style.display="block";
-  document.getElementById("pros-page").scrollTop=0;
+  document.querySelectorAll("#pros .pane").forEach(function(p){p.classList.remove("on");});
+  document.getElementById("p-"+tab).classList.add("on");
+  window.scrollTo(0,0);
 }
 
 function oTab(tab,el){
-  document.querySelectorAll("#org-nav .bnav-btn").forEach(b=>b.classList.remove("on"));
+  document.querySelectorAll("#onav .tab").forEach(function(b){b.classList.remove("on");});
   el.classList.add("on");
-  document.querySelectorAll("#s-org .tab-content").forEach(t=>t.style.display="none");
-  document.getElementById("ot-"+tab).style.display="block";
-  document.getElementById("org-page").scrollTop=0;
+  document.querySelectorAll("#org .pane").forEach(function(p){p.classList.remove("on");});
+  document.getElementById("o-"+tab).classList.add("on");
+  window.scrollTo(0,0);
 }
 
-function goProspect(){
-  document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
-  document.getElementById("s-pros").classList.add("active");
+function goPros(){
+  document.getElementById("land").classList.remove("on");
+  document.getElementById("pros").classList.add("on");
   renderPrograms();
+  window.scrollTo(0,0);
 }
 
 function goOrg(){
-  document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
-  document.getElementById("s-org").classList.add("active");
+  document.getElementById("land").classList.remove("on");
+  document.getElementById("org").classList.add("on");
+  window.scrollTo(0,0);
 }
 
 function goLand(){
-  document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
-  document.getElementById("s-land").classList.add("active");
-  // reset tabs
-  document.querySelectorAll("#s-pros .tab-content").forEach(t=>t.style.display="none");
-  document.getElementById("pt-discover").style.display="block";
-  document.querySelectorAll("#pros-nav .bnav-btn").forEach((b,i)=>b.classList.toggle("on",i===0));
-  document.querySelectorAll("#s-org .tab-content").forEach(t=>t.style.display="none");
-  document.getElementById("ot-dashboard").style.display="block";
-  document.querySelectorAll("#org-nav .bnav-btn").forEach((b,i)=>b.classList.toggle("on",i===0));
+  document.getElementById("land").classList.add("on");
+  document.getElementById("pros").classList.remove("on");
+  document.getElementById("org").classList.remove("on");
+  document.querySelectorAll("#pros .pane").forEach(function(p){p.classList.remove("on");});
+  document.getElementById("p-discover").classList.add("on");
+  document.querySelectorAll("#pnav .tab").forEach(function(b,i){b.classList.toggle("on",i===0);});
+  document.querySelectorAll("#org .pane").forEach(function(p){p.classList.remove("on");});
+  document.getElementById("o-dashboard").classList.add("on");
+  document.querySelectorAll("#onav .tab").forEach(function(b,i){b.classList.toggle("on",i===0);});
+  window.scrollTo(0,0);
 }
 
 function openModal(id){
   var p=programs.find(function(x){return x.id===id;});
-  document.getElementById("modal-prog-name").textContent=p.name;
-  document.getElementById("modal-form").style.display="block";
-  document.getElementById("modal-success").style.display="none";
-  document.getElementById("modal").classList.add("open");
+  document.getElementById("mprogname").textContent=p.name;
+  document.getElementById("mform").style.display="block";
+  document.getElementById("msucc").style.display="none";
+  document.getElementById("modal").classList.add("on");
 }
-function closeModal(){document.getElementById("modal").classList.remove("open");}
-function submitInterest(){document.getElementById("modal-form").style.display="none";document.getElementById("modal-success").style.display="block";}
+function closeModal(){document.getElementById("modal").classList.remove("on");}
+function submitInterest(){document.getElementById("mform").style.display="none";document.getElementById("msucc").style.display="block";}
 
-function delPill(el){el.parentElement.remove();}
-function addSkill(){var i=document.getElementById("skill-input");var v=i.value.trim();if(!v)return;var s=document.createElement("span");s.className="pill-item trade";s.innerHTML=v+'<span class="pill-del" onclick="delPill(this)">×</span>';document.getElementById("skills-list").appendChild(s);i.value="";}
-function addCert(){var i=document.getElementById("cert-input");var v=i.value.trim();if(!v)return;var s=document.createElement("span");s.className="pill-item cert";s.innerHTML=v+'<span class="pill-del" onclick="delPill(this)">×</span>';document.getElementById("certs-list").appendChild(s);i.value="";}
-document.addEventListener("keydown",function(e){if(e.key==="Enter"){if(document.activeElement.id==="skill-input")addSkill();if(document.activeElement.id==="cert-input")addCert();}});
-
-function addPhoto(inp){if(!inp.files||!inp.files[0])return;var r=new FileReader();r.onload=function(e){var t=document.createElement("div");t.className="photo-tile";t.style.cssText="background-image:url("+e.target.result+");background-size:cover;background-position:center;";document.getElementById("photo-grid").appendChild(t);};r.readAsDataURL(inp.files[0]);}
-
-function showAuthModal(type){
+function showAuth(type){
   document.getElementById("auth-form").style.display="block";
-  document.getElementById("auth-success").style.display="none";
-  if(type==="signup"){document.getElementById("auth-title").textContent="Sign up";document.getElementById("auth-sub").textContent="Create your TradesConnect account";document.getElementById("auth-name-row").style.display="block";document.getElementById("auth-submit-btn").textContent="Create account";document.getElementById("auth-success-title").textContent="Account created!";}
-  else if(type==="edit"){document.getElementById("auth-title").textContent="Edit profile";document.getElementById("auth-sub").textContent="Update your information";document.getElementById("auth-name-row").style.display="block";document.getElementById("auth-submit-btn").textContent="Save changes";document.getElementById("auth-success-title").textContent="Profile updated!";}
-  else{document.getElementById("auth-title").textContent="Log in";document.getElementById("auth-sub").textContent="Welcome back to TradesConnect";document.getElementById("auth-name-row").style.display="none";document.getElementById("auth-submit-btn").textContent="Log in";document.getElementById("auth-success-title").textContent="Welcome back!";}
-  document.getElementById("auth-modal").classList.add("open");
+  document.getElementById("auth-succ").style.display="none";
+  if(type==="signup"){document.getElementById("auth-title").textContent="Sign up";document.getElementById("auth-sub").textContent="Create your TradesConnect account";document.getElementById("auth-name-row").style.display="block";document.getElementById("auth-subbtn").textContent="Create account";document.getElementById("auth-succ-title").textContent="Account created!";}
+  else if(type==="edit"){document.getElementById("auth-title").textContent="Edit profile";document.getElementById("auth-sub").textContent="Update your information";document.getElementById("auth-name-row").style.display="block";document.getElementById("auth-subbtn").textContent="Save changes";document.getElementById("auth-succ-title").textContent="Profile updated!";}
+  else{document.getElementById("auth-title").textContent="Log in";document.getElementById("auth-sub").textContent="Welcome back to TradesConnect";document.getElementById("auth-name-row").style.display="none";document.getElementById("auth-subbtn").textContent="Log in";document.getElementById("auth-succ-title").textContent="Welcome back!";}
+  document.getElementById("auth-modal").classList.add("on");
 }
-function closeAuthModal(){document.getElementById("auth-modal").classList.remove("open");}
-function submitAuth(){document.getElementById("auth-form").style.display="none";document.getElementById("auth-success").style.display="block";}
+function closeAuth(){document.getElementById("auth-modal").classList.remove("on");}
+function submitAuth(){document.getElementById("auth-form").style.display="none";document.getElementById("auth-succ").style.display="block";}
 
-function showJobModal(){document.getElementById("job-form").style.display="block";document.getElementById("job-success").style.display="none";document.getElementById("job-modal").classList.add("open");}
-function closeJobModal(){document.getElementById("job-modal").classList.remove("open");}
+function showJobModal(){document.getElementById("job-form").style.display="block";document.getElementById("job-succ").style.display="none";document.getElementById("job-modal").classList.add("on");}
+function closeJob(){document.getElementById("job-modal").classList.remove("on");}
 function submitJob(){
   var t=document.getElementById("j-title").value.trim()||"New listing";
   var trade=document.getElementById("j-trade").value||"";
   var c=document.getElementById("j-city").value.trim()||"West Michigan";
-  var p=document.getElementById("j-pay").value.trim()||"TBD";
+  var p=document.getElementById("j-pay").value.trim()||"";
   var dur=document.getElementById("j-duration").value||"";
   var exp=document.getElementById("j-exp").value||"";
   var start=document.getElementById("j-start").value||"";
@@ -872,26 +708,31 @@ function submitJob(){
   if(document.getElementById("j-b-tools").checked)benefits.push("Tools provided");
   if(document.getElementById("j-b-training").checked)benefits.push("Paid training");
   if(document.getElementById("j-b-cert").checked)benefits.push("Cert assistance");
-  var tags="";
-  if(union)tags+="<span class='ptag pt-blue'>"+union+"</span>";
-  if(exp)tags+="<span class='ptag pt-green'>"+exp+"</span>";
-  benefits.forEach(function(b){tags+="<span class='ptag pt-green'>"+b+"</span>";});
   var meta="<span>📍 "+c+"</span>";
   if(p)meta+="<span>"+p+"</span>";
   if(spots)meta+="<span>"+spots+" spots</span>";
   if(dur)meta+="<span>"+dur+"</span>";
-  if(start)meta+="<span>Starts: "+start+"</span>";
-  if(trade)meta+="<span class='accepting'>"+trade+"</span>";
-  var card=document.createElement("div");card.className="job-card";
-  card.innerHTML="<div class='job-title'>"+t+"</div><div class='job-meta'>"+meta+"</div>"+(tags?"<div class='prog-tags' style='margin-bottom:10px;'>"+tags+"</div>":"")+(d?"<div class='job-desc'>"+d+"</div>":"")+"<div class='job-actions'><button class='job-edit'>Edit</button><button class='job-delete' onclick='this.closest(&quot;.job-card&quot;).remove()'>Delete</button></div>";
+  if(start)meta+="<span>"+start+"</span>";
+  if(trade)meta+="<span class='acc'>"+trade+"</span>";
+  var tags="";
+  if(union)tags+="<span class='ptag pt-blue'>"+union+"</span>";
+  if(exp)tags+="<span class='ptag pt-green'>"+exp+"</span>";
+  benefits.forEach(function(b){tags+="<span class='ptag pt-green'>"+b+"</span>";});
+  var card=document.createElement("div");card.className="jcard";
+  card.innerHTML="<div class='jtitle'>"+t+"</div><div class='jmeta'>"+meta+"</div>"+(tags?"<div class='pctags'>"+tags+"</div>":"")+(d?"<div class='jdesc'>"+d+"</div>":"")+"<div class='jbtns'><button class='jedit'>Edit</button><button class='jdel' onclick='this.closest(&quot;.jcard&quot;).remove()'>Delete</button></div>";
   document.getElementById("jobs-list").prepend(card);
   document.getElementById("job-form").style.display="none";
-  document.getElementById("job-success").style.display="block";
+  document.getElementById("job-succ").style.display="block";
 }
 
+function delPill(el){el.parentElement.remove();}
+function addSkill(){var i=document.getElementById("skill-inp");var v=i.value.trim();if(!v)return;var s=document.createElement("span");s.className="pill";s.innerHTML=v+'<span class="pdel" onclick="delPill(this)">×</span>';document.getElementById("skills-list").appendChild(s);i.value="";}
+function addCert(){var i=document.getElementById("cert-inp");var v=i.value.trim();if(!v)return;var s=document.createElement("span");s.className="pill";s.innerHTML=v+'<span class="pdel" onclick="delPill(this)">×</span>';document.getElementById("certs-list").appendChild(s);i.value="";}
+function addPhoto(inp){if(!inp.files||!inp.files[0])return;var r=new FileReader();r.onload=function(e){var t=document.createElement("div");t.className="ptile";t.style.cssText="background-image:url("+e.target.result+");background-size:cover;background-position:center;";document.getElementById("photo-grid").appendChild(t);};r.readAsDataURL(inp.files[0]);}
+
 document.getElementById("modal").addEventListener("click",function(e){if(e.target===this)closeModal();});
-document.getElementById("auth-modal").addEventListener("click",function(e){if(e.target===this)closeAuthModal();});
-document.getElementById("job-modal").addEventListener("click",function(e){if(e.target===this)closeJobModal();});
+document.getElementById("auth-modal").addEventListener("click",function(e){if(e.target===this)closeAuth();});
+document.getElementById("job-modal").addEventListener("click",function(e){if(e.target===this)closeJob();});
 </script>
 </body>
 </html>
