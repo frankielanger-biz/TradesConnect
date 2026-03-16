@@ -381,9 +381,9 @@ select.tinput{cursor:pointer;}
     </div>
     <div id="p-settings" class="pane">
       <div class="ssec"><div class="sstitle">Account</div>
-        <div class="srow"><div><div class="slbl">Name</div><div class="sdesc">Alex Rodriguez</div></div><button class="sbtn">Edit</button></div>
-        <div class="srow"><div><div class="slbl">Location</div><div class="sdesc">Kalamazoo, MI</div></div><button class="sbtn">Edit</button></div>
-        <div class="srow"><div><div class="slbl">Availability</div><div class="sdesc">Available June 2026</div></div><button class="sbtn">Edit</button></div>
+        <div class="srow"><div><div class="slbl">Name</div><div class="sdesc">Alex Rodriguez</div></div><button class="sbtn" onclick="showAuth('edit')">Edit</button></div>
+        <div class="srow"><div><div class="slbl">Location</div><div class="sdesc">Kalamazoo, MI</div></div><button class="sbtn" onclick="showAuth('edit')">Edit</button></div>
+        <div class="srow"><div><div class="slbl">Availability</div><div class="sdesc">Available June 2026</div></div><button class="sbtn" onclick="showAuth('edit')">Edit</button></div>
       </div>
       <div class="ssec"><div class="sstitle">Notifications</div>
         <div class="srow"><div><div class="slbl">Program responses</div><div class="sdesc">When a program responds to your interest</div></div><button class="tog on" onclick="this.classList.toggle('on')"><div class="togk"></div></button></div>
@@ -392,7 +392,7 @@ select.tinput{cursor:pointer;}
       </div>
       <div class="ssec"><div class="sstitle">Account Actions</div>
         <div class="srow"><div><div class="slbl">Switch role</div></div><button class="sbtn" onclick="goLand()">Switch</button></div>
-        <div class="srow"><div><div class="slbl">Sign out</div></div><button class="sbtn">Sign out</button></div>
+        <div class="srow"><div><div class="slbl">Sign out</div></div><button class="sbtn" onclick="goLand()">Sign out</button></div>
         <div class="srow"><div><div class="slbl">Delete account</div></div><button class="sbtn danger">Delete</button></div>
       </div>
     </div>
@@ -432,9 +432,9 @@ select.tinput{cursor:pointer;}
         <div class="prow"><span class="plbl">Offers</span><div class="ptrack"><div class="pfill" style="width:17%;background:var(--green)"></div></div><span class="pcnt">3</span></div>
       </div>
       <div class="sbox"><div class="stitle">Recent leads</div>
-        <div class="lrow"><div class="lav" style="background:var(--bluedim);color:var(--blue)">AR</div><div class="linfo"><div class="lname">Alex Rodriguez</div><div class="ldet">Age 18 · Kalamazoo, MI · Electrician</div><div class="lq">"Ready June 2026. Motivated to learn."</div><div class="lt">2 min ago</div></div><button class="invbtn" onclick="this.textContent='Invited ✓'">Invite</button></div>
-        <div class="lrow"><div class="lav" style="background:var(--greendim);color:var(--green)">ML</div><div class="linfo"><div class="lname">Marcus Lee</div><div class="ldet">Age 17 · Portage, MI · Electrician</div><div class="lq">"Graduating May 2026. CTE electrical."</div><div class="lt">14 min ago</div></div><button class="invbtn" onclick="this.textContent='Invited ✓'">Invite</button></div>
-        <div class="lrow"><div class="lav" style="background:var(--purpledim);color:var(--purple)">JE</div><div class="linfo"><div class="lname">Jordan Ellis</div><div class="ldet">Age 19 · Kalamazoo, MI · Electrician</div><div class="lq">"Career switcher. Available immediately."</div><div class="lt">31 min ago</div></div><button class="invbtn" onclick="this.textContent='Invited ✓'">Invite</button></div>
+        <div class="lrow"><div class="lav" style="background:var(--bluedim);color:var(--blue)">AR</div><div class="linfo"><div class="lname">Alex Rodriguez</div><div class="ldet">Age 18 · Kalamazoo, MI · Electrician</div><div class="lq">"Ready June 2026. Motivated to learn."</div><div class="lt">2 min ago</div></div><button class="invbtn" onclick="this.style.background='var(--greendim)';this.style.color='var(--green)';this.textContent='Invited ✓'">Invite</button></div>
+        <div class="lrow"><div class="lav" style="background:var(--greendim);color:var(--green)">ML</div><div class="linfo"><div class="lname">Marcus Lee</div><div class="ldet">Age 17 · Portage, MI · Electrician</div><div class="lq">"Graduating May 2026. CTE electrical."</div><div class="lt">14 min ago</div></div><button class="invbtn" onclick="this.style.background='var(--greendim)';this.style.color='var(--green)';this.textContent='Invited ✓'">Invite</button></div>
+        <div class="lrow"><div class="lav" style="background:var(--purpledim);color:var(--purple)">JE</div><div class="linfo"><div class="lname">Jordan Ellis</div><div class="ldet">Age 19 · Kalamazoo, MI · Electrician</div><div class="lq">"Career switcher. Available immediately."</div><div class="lt">31 min ago</div></div><button class="invbtn" onclick="this.style.background='var(--greendim)';this.style.color='var(--green)';this.textContent='Invited ✓'">Invite</button></div>
       </div>
     </div>
     <div id="o-candidates" class="pane">
@@ -445,14 +445,14 @@ select.tinput{cursor:pointer;}
         <button class="ftag">❄️ HVAC</button>
         <button class="ftag">🔧 Plumber</button>
       </div>
-      <div class="ccard"><div class="ctop"><div class="cav" style="background:var(--bluedim);color:var(--blue)">AR</div><div><div class="cname">Alex Rodriguez</div><div class="cmeta">Age 18 · Kalamazoo, MI · Available June 2026</div></div></div><div class="cbio">Shop and electrical fundamentals all four years. Reliable and ready to learn from day one.</div><div class="ctags"><span class="ctag">Electrician</span><span class="ctag">OSHA-10</span><span class="ctag">Entry-level</span></div><div class="cbtns"><button class="bmsg" onclick="this.textContent='Sent ✓'">Message</button><button class="binv" onclick="this.textContent='Invited ✓'">Invite</button></div></div>
-      <div class="ccard"><div class="ctop"><div class="cav" style="background:var(--greendim);color:var(--green)">ML</div><div><div class="cname">Marcus Lee</div><div class="cmeta">Age 17 · Portage, MI · Available May 2026</div></div></div><div class="cbio">CTE electrical fundamentals. Strong academic record and hands-on project work.</div><div class="ctags"><span class="ctag">Electrician</span><span class="ctag">CTE grad</span><span class="ctag">Entry-level</span></div><div class="cbtns"><button class="bmsg" onclick="this.textContent='Sent ✓'">Message</button><button class="binv" onclick="this.textContent='Invited ✓'">Invite</button></div></div>
-      <div class="ccard"><div class="ctop"><div class="cav" style="background:var(--purpledim);color:var(--purple)">JE</div><div><div class="cname">Jordan Ellis</div><div class="cmeta">Age 19 · Kalamazoo, MI · Available immediately</div></div></div><div class="cbio">Career switcher. Fully committed. Own transportation, available any shift.</div><div class="ctags"><span class="ctag">Electrician</span><span class="ctag">Available now</span><span class="ctag">Career switcher</span></div><div class="cbtns"><button class="bmsg" onclick="this.textContent='Sent ✓'">Message</button><button class="binv" onclick="this.textContent='Invited ✓'">Invite</button></div></div>
+      <div class="ccard"><div class="ctop"><div class="cav" style="background:var(--bluedim);color:var(--blue)">AR</div><div><div class="cname">Alex Rodriguez</div><div class="cmeta">Age 18 · Kalamazoo, MI · Available June 2026</div></div></div><div class="cbio">Shop and electrical fundamentals all four years. Reliable and ready to learn from day one.</div><div class="ctags"><span class="ctag">Electrician</span><span class="ctag">OSHA-10</span><span class="ctag">Entry-level</span></div><div class="cbtns"><button class="bmsg" onclick="openMsg(this)">Message</button><button class="binv" onclick="this.style.background='var(--greendim)';this.style.color='var(--green)';this.style.border='1px solid var(--greenborder)';this.textContent='Invited ✓'">Invite</button></div></div>
+      <div class="ccard"><div class="ctop"><div class="cav" style="background:var(--greendim);color:var(--green)">ML</div><div><div class="cname">Marcus Lee</div><div class="cmeta">Age 17 · Portage, MI · Available May 2026</div></div></div><div class="cbio">CTE electrical fundamentals. Strong academic record and hands-on project work.</div><div class="ctags"><span class="ctag">Electrician</span><span class="ctag">CTE grad</span><span class="ctag">Entry-level</span></div><div class="cbtns"><button class="bmsg" onclick="openMsg(this)">Message</button><button class="binv" onclick="this.style.background='var(--greendim)';this.style.color='var(--green)';this.style.border='1px solid var(--greenborder)';this.textContent='Invited ✓'">Invite</button></div></div>
+      <div class="ccard"><div class="ctop"><div class="cav" style="background:var(--purpledim);color:var(--purple)">JE</div><div><div class="cname">Jordan Ellis</div><div class="cmeta">Age 19 · Kalamazoo, MI · Available immediately</div></div></div><div class="cbio">Career switcher. Fully committed. Own transportation, available any shift.</div><div class="ctags"><span class="ctag">Electrician</span><span class="ctag">Available now</span><span class="ctag">Career switcher</span></div><div class="cbtns"><button class="bmsg" onclick="openMsg(this)">Message</button><button class="binv" onclick="this.style.background='var(--greendim)';this.style.color='var(--green)';this.style.border='1px solid var(--greenborder)';this.textContent='Invited ✓'">Invite</button></div></div>
     </div>
     <div id="o-myjobs" class="pane">
       <button class="postbtn" onclick="showJobModal()">+ Post a new listing</button>
       <div id="jobs-list">
-        <div class="jcard"><div class="jtitle">Electrical Apprentice — Kalamazoo</div><div class="jmeta"><span>📍 Kalamazoo, MI</span><span>$18–22/hr</span><span>8 spots</span><span>5-year apprenticeship</span><span class="acc">Electrician</span></div><div class="pctags"><span class="ptag pt-blue">Union</span><span class="ptag pt-green">No experience needed</span><span class="ptag pt-green">Health insurance</span><span class="ptag pt-green">Paid training</span></div><div class="jdesc">Motivated entry-level candidates. IBEW Local 131. No experience required — we train you.</div><div class="jbtns"><button class="jedit">Edit</button><button class="jdel" onclick="this.closest('.jcard').remove()">Delete</button></div></div>
+        <div class="jcard"><div class="jtitle">Electrical Apprentice — Kalamazoo</div><div class="jmeta"><span>📍 Kalamazoo, MI</span><span>$18–22/hr</span><span>8 spots</span><span>5-year apprenticeship</span><span class="acc">Electrician</span></div><div class="pctags"><span class="ptag pt-blue">Union</span><span class="ptag pt-green">No experience needed</span><span class="ptag pt-green">Health insurance</span><span class="ptag pt-green">Paid training</span></div><div class="jdesc">Motivated entry-level candidates. IBEW Local 131. No experience required — we train you.</div><div class="jbtns"><button class="jedit" onclick="showJobModal()">Edit</button><button class="jdel" onclick="this.closest('.jcard').remove()">Delete</button></div></div>
       </div>
     </div>
     <div id="o-roadmap" class="pane">
@@ -474,9 +474,9 @@ select.tinput{cursor:pointer;}
     </div>
     <div id="o-settings" class="pane">
       <div class="ssec"><div class="sstitle">Organization</div>
-        <div class="srow"><div><div class="slbl">Org name</div><div class="sdesc">Kalamazoo Electrical Training Alliance</div></div><button class="sbtn">Edit</button></div>
-        <div class="srow"><div><div class="slbl">Location</div><div class="sdesc">Kalamazoo, MI</div></div><button class="sbtn">Edit</button></div>
-        <div class="srow"><div><div class="slbl">Trade focus</div><div class="sdesc">Electrician</div></div><button class="sbtn">Edit</button></div>
+        <div class="srow"><div><div class="slbl">Org name</div><div class="sdesc">Kalamazoo Electrical Training Alliance</div></div><button class="sbtn" onclick="showAuth('edit')">Edit</button></div>
+        <div class="srow"><div><div class="slbl">Location</div><div class="sdesc">Kalamazoo, MI</div></div><button class="sbtn" onclick="showAuth('edit')">Edit</button></div>
+        <div class="srow"><div><div class="slbl">Trade focus</div><div class="sdesc">Electrician</div></div><button class="sbtn" onclick="showAuth('edit')">Edit</button></div>
       </div>
       <div class="ssec"><div class="sstitle">Notifications</div>
         <div class="srow"><div><div class="slbl">New candidate leads</div><div class="sdesc">When a prospect expresses interest</div></div><button class="tog on" onclick="this.classList.toggle('on')"><div class="togk"></div></button></div>
@@ -484,7 +484,7 @@ select.tinput{cursor:pointer;}
       </div>
       <div class="ssec"><div class="sstitle">Account Actions</div>
         <div class="srow"><div><div class="slbl">Switch role</div></div><button class="sbtn" onclick="goLand()">Switch</button></div>
-        <div class="srow"><div><div class="slbl">Sign out</div></div><button class="sbtn">Sign out</button></div>
+        <div class="srow"><div><div class="slbl">Sign out</div></div><button class="sbtn" onclick="goLand()">Sign out</button></div>
       </div>
     </div>
   </div>
@@ -731,7 +731,40 @@ function addPhoto(inp){if(!inp.files||!inp.files[0])return;var r=new FileReader(
 document.getElementById("modal").addEventListener("click",function(e){if(e.target===this)closeModal();});
 document.getElementById("auth-modal").addEventListener("click",function(e){if(e.target===this)closeAuth();});
 document.getElementById("job-modal").addEventListener("click",function(e){if(e.target===this)closeJob();});
+
+function openMsg(btn){
+  var name=btn.closest(".ccard").querySelector(".cname").textContent;
+  document.getElementById("msg-to").textContent="To: "+name;
+  document.getElementById("msg-form").style.display="block";
+  document.getElementById("msg-succ").style.display="none";
+  document.getElementById("msg-modal").classList.add("on");
+}
+function closeMsg(){document.getElementById("msg-modal").classList.remove("on");}
+function submitMsg(){document.getElementById("msg-form").style.display="none";document.getElementById("msg-succ").style.display="block";}
+document.getElementById("msg-modal").addEventListener("click",function(e){if(e.target===this)closeMsg();});
+
 </script>
+
+<!-- MESSAGE MODAL -->
+<div class="moverlay" id="msg-modal">
+  <div class="mbox">
+    <div class="mhandle"></div>
+    <div id="msg-form">
+      <div class="mtitle">Send a message</div>
+      <div class="mprog" id="msg-to"></div>
+      <div class="irow"><label class="ilbl">Your message</label><textarea class="tinput" id="msg-text" rows="4" placeholder="Hi, we reviewed your profile and would love to connect about our apprenticeship program..."></textarea></div>
+      <div class="irow"><label class="ilbl">Best way to reach you</label><input class="tinput" id="msg-contact" placeholder="Phone or email"></div>
+      <button class="subbtn" onclick="submitMsg()">Send message</button>
+      <span class="canlnk" onclick="closeMsg()">Cancel</span>
+    </div>
+    <div id="msg-succ" style="display:none" class="succv">
+      <div class="succk">✓</div>
+      <div class="succt">Message sent!</div>
+      <div class="succs">The candidate will be notified. They'll respond directly to your contact info.</div>
+      <button class="subbtn" onclick="closeMsg()">Back to candidates</button>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
-
