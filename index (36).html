@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>TradesConnect</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
@@ -43,9 +45,9 @@ html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-seri
 .land-sub{font-size:15px;color:var(--text3);text-align:center;line-height:1.7;margin-bottom:40px;max-width:300px;}
 .role-cards{display:flex;flex-direction:column;gap:12px;width:100%;max-width:340px;}
 .role-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px 20px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:16px;}
+.role-card:hover{border-color:var(--blue-border);background:var(--card2);}
 .role-card:active{transform:scale(.98);border-color:var(--blue);}
 .role-card-icon{font-size:28px;width:52px;height:52px;background:var(--blue-dim);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.role-card-text{}
 .role-card-title{font-size:16px;font-weight:700;color:var(--text);margin-bottom:3px;}
 .role-card-desc{font-size:13px;color:var(--text3);line-height:1.5;}
 .land-auth{display:flex;gap:10px;margin-top:24px;width:100%;max-width:340px;}
@@ -61,6 +63,7 @@ html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-seri
 .nav-badge-org{background:var(--purple-dim);color:var(--purple);border-color:#2a1f50;}
 .nav-right{display:flex;align-items:center;gap:8px;}
 .nav-switch{font-size:11px;color:var(--text3);background:none;border:none;font-family:'DM Sans',sans-serif;text-decoration:underline;cursor:pointer;}
+.nav-login-btn{padding:6px 12px;border-radius:7px;font-size:12px;font-weight:500;cursor:pointer;background:transparent;border:1px solid var(--blue-border);color:var(--blue);font-family:'DM Sans',sans-serif;}
 
 /* ── BOTTOM NAV ── */
 .bottomnav{position:fixed;bottom:0;left:0;right:0;background:#0a0e18;border-top:1px solid var(--border);display:flex;height:64px;z-index:100;padding-bottom:env(safe-area-inset-bottom);}
@@ -123,7 +126,6 @@ html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-seri
 .add-input:focus{border-color:var(--blue);}
 .add-btn{padding:8px 14px;border-radius:8px;background:var(--blue);color:#fff;border:none;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;}
 .profile-bio{font-size:14px;color:var(--text2);line-height:1.7;}
-.cert-pills{display:flex;gap:7px;flex-wrap:wrap;}
 .photo-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
 .photo-tile{border-radius:9px;height:80px;display:flex;align-items:flex-end;padding:7px;font-size:11px;color:var(--text4);border:1px solid var(--border);}
 .upload-label{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:8px;border:1px solid var(--border);color:var(--text3);font-size:13px;font-weight:500;cursor:pointer;margin-top:10px;}
@@ -261,14 +263,14 @@ html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-seri
   <div class="land-logo">Trades<em>Connect</em></div>
   <div class="land-sub">One tap. Built for Gen Z entering the skilled trades — discover local programs, show your interest, get hired.</div>
   <div class="role-cards">
-    <div class="role-card" onclick="goProspect()">
+    <div class="role-card" id="btn-prospect">
       <div class="role-card-icon">🪖</div>
       <div class="role-card-text">
         <div class="role-card-title">I'm a prospect</div>
         <div class="role-card-desc">Find programs and trade jobs near you</div>
       </div>
     </div>
-    <div class="role-card" onclick="goOrg()">
+    <div class="role-card" id="btn-org">
       <div class="role-card-icon">🏗️</div>
       <div class="role-card-text">
         <div class="role-card-title">I'm an organization</div>
@@ -277,8 +279,8 @@ html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-seri
     </div>
   </div>
   <div class="land-auth">
-    <button class="btn-login" onclick="showAuthModal('login')">Log in</button>
-    <button class="btn-signup" onclick="showAuthModal('signup')">Sign up free</button>
+    <button class="btn-login" id="land-login-btn">Log in</button>
+    <button class="btn-signup" id="land-signup-btn">Sign up free</button>
   </div>
   <div class="land-foot">Kalamazoo · Grand Rapids · 2026</div>
 </div>
@@ -286,28 +288,28 @@ html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-seri
 <!-- PROSPECT -->
 <div id="s-pros" class="screen">
   <div class="topnav">
-    <div class="nav-logo" onclick="goLand()">Trades<em>Connect</em></div>
+    <div class="nav-logo" id="pros-logo">Trades<em>Connect</em></div>
     <div class="nav-right">
-      <button class="nav-login" onclick="showAuthModal('login')" style="padding:6px 12px;border-radius:7px;font-size:12px;font-weight:500;cursor:pointer;background:transparent;border:1px solid var(--blue-border);color:var(--blue);font-family:'DM Sans',sans-serif;">Log in</button>
+      <button class="nav-login-btn" id="pros-login-btn">Log in</button>
       <span class="nav-badge">Prospect</span>
-      <button class="nav-switch" onclick="goLand()">switch</button>
+      <button class="nav-switch" id="pros-switch-btn">switch</button>
     </div>
   </div>
   <div class="page" id="pros-page">
     <div id="pt-discover" class="tab-content">
-      <div class="filter-row">
-        <button class="ftag on" onclick="filt('all',this)">All trades</button>
-        <button class="ftag" onclick="filt('Electrician',this)">⚡ Electrician</button>
-        <button class="ftag" onclick="filt('Welder',this)">🔥 Welder</button>
-        <button class="ftag" onclick="filt('HVAC',this)">❄️ HVAC</button>
-        <button class="ftag" onclick="filt('Plumber',this)">🔧 Plumber</button>
-        <button class="ftag" onclick="filt('Carpenter',this)">🪵 Carpenter</button>
+      <div class="filter-row" id="filter-row">
+        <button class="ftag on" data-trade="all">All trades</button>
+        <button class="ftag" data-trade="Electrician">⚡ Electrician</button>
+        <button class="ftag" data-trade="Welder">🔥 Welder</button>
+        <button class="ftag" data-trade="HVAC">❄️ HVAC</button>
+        <button class="ftag" data-trade="Plumber">🔧 Plumber</button>
+        <button class="ftag" data-trade="Carpenter">🪵 Carpenter</button>
       </div>
       <div id="prog-list"></div>
     </div>
     <div id="pt-profile" class="tab-content" style="display:none;">
       <div class="profile-wrap">
-        <div class="profile-cover"><button class="edit-profile-btn" onclick="showAuthModal('edit')">Edit profile</button></div>
+        <div class="profile-cover"><button class="edit-profile-btn" id="edit-profile-btn">Edit profile</button></div>
         <div class="profile-body">
           <div class="profile-av">AR</div>
           <div class="profile-name">Alex Rodriguez</div>
@@ -321,10 +323,10 @@ html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-seri
           <div class="psec">
             <div class="psec-title">Trades &amp; Skills</div>
             <div class="pills-editable" id="skills-list">
-              <span class="pill-item trade">⚡ Electrician<span class="pill-del" onclick="delPill(this)">×</span></span>
-              <span class="pill-item trade">🔥 Welder<span class="pill-del" onclick="delPill(this)">×</span></span>
+              <span class="pill-item trade">⚡ Electrician<span class="pill-del">×</span></span>
+              <span class="pill-item trade">🔥 Welder<span class="pill-del">×</span></span>
             </div>
-            <div class="add-row"><input id="skill-input" class="add-input" placeholder="Add a skill..."><button class="add-btn" onclick="addSkill()">+ Add</button></div>
+            <div class="add-row"><input id="skill-input" class="add-input" placeholder="Add a skill..."><button class="add-btn" id="add-skill-btn">+ Add</button></div>
           </div>
           <div class="psec">
             <div class="psec-title">About</div>
@@ -333,11 +335,11 @@ html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-seri
           <div class="psec">
             <div class="psec-title">Certifications</div>
             <div class="pills-editable" id="certs-list">
-              <span class="pill-item cert">OSHA-10<span class="pill-del" onclick="delPill(this)">×</span></span>
-              <span class="pill-item cert">Construction Safety<span class="pill-del" onclick="delPill(this)">×</span></span>
-              <span class="pill-item cert">Electrical Fundamentals<span class="pill-del" onclick="delPill(this)">×</span></span>
+              <span class="pill-item cert">OSHA-10<span class="pill-del">×</span></span>
+              <span class="pill-item cert">Construction Safety<span class="pill-del">×</span></span>
+              <span class="pill-item cert">Electrical Fundamentals<span class="pill-del">×</span></span>
             </div>
-            <div class="add-row"><input id="cert-input" class="add-input" placeholder="Add a certification..."><button class="add-btn" onclick="addCert()">+ Add</button></div>
+            <div class="add-row"><input id="cert-input" class="add-input" placeholder="Add a certification..."><button class="add-btn" id="add-cert-btn">+ Add</button></div>
           </div>
           <div class="psec">
             <div class="psec-title">Project Portfolio</div>
@@ -349,7 +351,7 @@ html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-seri
               <div class="photo-tile" style="background:#1a0d10;">Lab</div>
               <div class="photo-tile" style="background:#0d1520;">Blueprints</div>
             </div>
-            <label class="upload-label" for="photo-upload">📷 Upload photo<input type="file" id="photo-upload" accept="image/*" style="display:none;" onchange="addPhoto(this)"></label>
+            <label class="upload-label" for="photo-upload">📷 Upload photo<input type="file" id="photo-upload" accept="image/*" style="display:none;"></label>
           </div>
         </div>
       </div>
@@ -411,38 +413,38 @@ html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-seri
       </div>
       <div class="ssec">
         <div class="ssec-title">Notifications</div>
-        <div class="srow"><div><div class="slbl">Program responses</div><div class="sdesc">When a program responds to your interest</div></div><button class="toggle on" onclick="this.classList.toggle('on')"><div class="togk"></div></button></div>
-        <div class="srow"><div><div class="slbl">New programs nearby</div><div class="sdesc">Alert when new programs open near you</div></div><button class="toggle on" onclick="this.classList.toggle('on')"><div class="togk"></div></button></div>
-        <div class="srow"><div><div class="slbl">Messages</div><div class="sdesc">New messages from organizations</div></div><button class="toggle on" onclick="this.classList.toggle('on')"><div class="togk"></div></button></div>
-        <div class="srow"><div><div class="slbl">Weekly digest</div><div class="sdesc">Weekly summary of activity</div></div><button class="toggle" onclick="this.classList.toggle('on')"><div class="togk"></div></button></div>
+        <div class="srow"><div><div class="slbl">Program responses</div><div class="sdesc">When a program responds to your interest</div></div><button class="toggle on"><div class="togk"></div></button></div>
+        <div class="srow"><div><div class="slbl">New programs nearby</div><div class="sdesc">Alert when new programs open near you</div></div><button class="toggle on"><div class="togk"></div></button></div>
+        <div class="srow"><div><div class="slbl">Messages</div><div class="sdesc">New messages from organizations</div></div><button class="toggle on"><div class="togk"></div></button></div>
+        <div class="srow"><div><div class="slbl">Weekly digest</div><div class="sdesc">Weekly summary of activity</div></div><button class="toggle"><div class="togk"></div></button></div>
       </div>
       <div class="ssec">
         <div class="ssec-title">Privacy</div>
-        <div class="srow"><div><div class="slbl">Profile visibility</div><div class="sdesc">Allow orgs to find your profile</div></div><button class="toggle on" onclick="this.classList.toggle('on')"><div class="togk"></div></button></div>
-        <div class="srow"><div><div class="slbl">Show availability</div><div class="sdesc">Display availability to organizations</div></div><button class="toggle on" onclick="this.classList.toggle('on')"><div class="togk"></div></button></div>
+        <div class="srow"><div><div class="slbl">Profile visibility</div><div class="sdesc">Allow orgs to find your profile</div></div><button class="toggle on"><div class="togk"></div></button></div>
+        <div class="srow"><div><div class="slbl">Show availability</div><div class="sdesc">Display availability to organizations</div></div><button class="toggle on"><div class="togk"></div></button></div>
       </div>
       <div class="ssec">
         <div class="ssec-title">Account actions</div>
-        <div class="srow"><div><div class="slbl">Switch role</div><div class="sdesc">Go back to role selection</div></div><button class="sbtn" onclick="goLand()">Switch</button></div>
+        <div class="srow"><div><div class="slbl">Switch role</div><div class="sdesc">Go back to role selection</div></div><button class="sbtn" id="pros-switch-role-btn">Switch</button></div>
         <div class="srow"><div><div class="slbl">Sign out</div><div class="sdesc">Sign out of TradesConnect</div></div><button class="sbtn">Sign out</button></div>
         <div class="srow"><div><div class="slbl">Delete account</div><div class="sdesc">Permanently delete your profile</div></div><button class="sbtn danger">Delete</button></div>
       </div>
     </div>
   </div>
   <nav class="bottomnav" id="pros-nav">
-    <button class="bnav-btn on" onclick="pTab('discover',this)" id="pnav-discover">
+    <button class="bnav-btn on" data-tab="discover">
       <span class="bnav-icon">🔍</span><span class="bnav-label">Discover</span>
     </button>
-    <button class="bnav-btn" onclick="pTab('profile',this)" id="pnav-profile">
+    <button class="bnav-btn" data-tab="profile">
       <span class="bnav-icon">👤</span><span class="bnav-label">Profile</span>
     </button>
-    <button class="bnav-btn" onclick="pTab('about',this)" id="pnav-about">
+    <button class="bnav-btn" data-tab="about">
       <span class="bnav-icon">ℹ️</span><span class="bnav-label">About</span>
     </button>
-    <button class="bnav-btn" onclick="pTab('roadmap',this)" id="pnav-roadmap">
+    <button class="bnav-btn" data-tab="roadmap">
       <span class="bnav-icon">🗺️</span><span class="bnav-label">Roadmap</span>
     </button>
-    <button class="bnav-btn" onclick="pTab('settings',this)" id="pnav-settings">
+    <button class="bnav-btn" data-tab="settings">
       <span class="bnav-icon">⚙️</span><span class="bnav-label">Settings</span>
     </button>
   </nav>
@@ -451,11 +453,11 @@ html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-seri
 <!-- ORG -->
 <div id="s-org" class="screen">
   <div class="topnav">
-    <div class="nav-logo" onclick="goLand()">Trades<em>Connect</em></div>
+    <div class="nav-logo" id="org-logo">Trades<em>Connect</em></div>
     <div class="nav-right">
-      <button class="nav-login" onclick="showAuthModal('login')" style="padding:6px 12px;border-radius:7px;font-size:12px;font-weight:500;cursor:pointer;background:transparent;border:1px solid var(--blue-border);color:var(--blue);font-family:'DM Sans',sans-serif;">Log in</button>
+      <button class="nav-login-btn" id="org-login-btn">Log in</button>
       <span class="nav-badge nav-badge-org">Org</span>
-      <button class="nav-switch" onclick="goLand()">switch</button>
+      <button class="nav-switch" id="org-switch-btn">switch</button>
     </div>
   </div>
   <div class="org-sub">Kalamazoo Electrical Training Alliance</div>
@@ -480,17 +482,17 @@ html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-seri
         <div class="lead-row">
           <div class="lead-av" style="background:var(--blue-dim);color:var(--blue);">AR</div>
           <div class="lead-info"><div class="lead-name">Alex Rodriguez</div><div class="lead-detail">Age 18 · Kalamazoo, MI · Electrician</div><div class="lead-quote">"Ready June 2026. Motivated to learn."</div><div class="lead-time">2 min ago</div></div>
-          <button class="invite-btn" onclick="this.textContent='Invited ✓';this.style.background='var(--green-dim)';this.style.color='var(--green)';">Invite</button>
+          <button class="invite-btn">Invite</button>
         </div>
         <div class="lead-row">
           <div class="lead-av" style="background:var(--green-dim);color:var(--green);">ML</div>
           <div class="lead-info"><div class="lead-name">Marcus Lee</div><div class="lead-detail">Age 17 · Portage, MI · Electrician</div><div class="lead-quote">"Graduating May 2026. CTE electrical."</div><div class="lead-time">14 min ago</div></div>
-          <button class="invite-btn" onclick="this.textContent='Invited ✓';this.style.background='var(--green-dim)';this.style.color='var(--green)';">Invite</button>
+          <button class="invite-btn">Invite</button>
         </div>
         <div class="lead-row">
           <div class="lead-av" style="background:var(--purple-dim);color:var(--purple);">JE</div>
           <div class="lead-info"><div class="lead-name">Jordan Ellis</div><div class="lead-detail">Age 19 · Kalamazoo, MI · Electrician</div><div class="lead-quote">"Career switcher. Available immediately."</div><div class="lead-time">31 min ago</div></div>
-          <button class="invite-btn" onclick="this.textContent='Invited ✓';this.style.background='var(--green-dim)';this.style.color='var(--green)';">Invite</button>
+          <button class="invite-btn">Invite</button>
         </div>
       </div>
     </div>
@@ -506,29 +508,29 @@ html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-seri
         <div class="cand-top"><div class="cand-av" style="background:var(--blue-dim);color:var(--blue);">AR</div><div class="cand-info"><div class="cand-name">Alex Rodriguez</div><div class="cand-meta">Age 18 · Kalamazoo, MI · Available June 2026</div></div></div>
         <div class="cand-bio">Shop and electrical fundamentals all four years. Reliable and ready to learn from day one.</div>
         <div class="cand-tags"><span class="cand-tag">Electrician</span><span class="cand-tag">OSHA-10</span><span class="cand-tag">Entry-level</span></div>
-        <div class="cand-btns"><button class="btn-msg" onclick="this.textContent='Sent ✓'">Message</button><button class="btn-inv" onclick="this.textContent='Invited ✓'">Invite</button></div>
+        <div class="cand-btns"><button class="btn-msg">Message</button><button class="btn-inv">Invite</button></div>
       </div>
       <div class="cand-card">
         <div class="cand-top"><div class="cand-av" style="background:var(--green-dim);color:var(--green);">ML</div><div class="cand-info"><div class="cand-name">Marcus Lee</div><div class="cand-meta">Age 17 · Portage, MI · Available May 2026</div></div></div>
         <div class="cand-bio">CTE electrical fundamentals. Strong academic record and hands-on project work.</div>
         <div class="cand-tags"><span class="cand-tag">Electrician</span><span class="cand-tag">CTE grad</span><span class="cand-tag">Entry-level</span></div>
-        <div class="cand-btns"><button class="btn-msg" onclick="this.textContent='Sent ✓'">Message</button><button class="btn-inv" onclick="this.textContent='Invited ✓'">Invite</button></div>
+        <div class="cand-btns"><button class="btn-msg">Message</button><button class="btn-inv">Invite</button></div>
       </div>
       <div class="cand-card">
         <div class="cand-top"><div class="cand-av" style="background:var(--purple-dim);color:var(--purple);">JE</div><div class="cand-info"><div class="cand-name">Jordan Ellis</div><div class="cand-meta">Age 19 · Kalamazoo, MI · Available immediately</div></div></div>
         <div class="cand-bio">Career switcher. Fully committed to trades. Own transportation, available any shift.</div>
         <div class="cand-tags"><span class="cand-tag">Electrician</span><span class="cand-tag">Available now</span><span class="cand-tag">Career switcher</span></div>
-        <div class="cand-btns"><button class="btn-msg" onclick="this.textContent='Sent ✓'">Message</button><button class="btn-inv" onclick="this.textContent='Invited ✓'">Invite</button></div>
+        <div class="cand-btns"><button class="btn-msg">Message</button><button class="btn-inv">Invite</button></div>
       </div>
     </div>
     <div id="ot-myjobs" class="tab-content" style="display:none;">
-      <button class="post-job-btn" onclick="showJobModal()">+ Post a new job</button>
+      <button class="post-job-btn" id="post-job-btn">+ Post a new job</button>
       <div id="jobs-list">
         <div class="job-card">
           <div class="job-title">Electrical Apprentice — Kalamazoo</div>
           <div class="job-meta"><span>Kalamazoo, MI</span><span>$18–22/hr</span><span>5-year apprenticeship</span><span class="accepting">Accepting now</span></div>
           <div class="job-desc">Motivated entry-level candidates to join our IBEW apprenticeship program. No experience required.</div>
-          <div class="job-actions"><button class="job-edit">Edit</button><button class="job-delete" onclick="this.closest('.job-card').remove()">Delete</button></div>
+          <div class="job-actions"><button class="job-edit">Edit</button><button class="job-delete">Delete</button></div>
         </div>
       </div>
     </div>
@@ -565,31 +567,31 @@ html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-seri
       </div>
       <div class="ssec">
         <div class="ssec-title">Notifications</div>
-        <div class="srow"><div><div class="slbl">New candidate leads</div><div class="sdesc">When a prospect expresses interest</div></div><button class="toggle on" onclick="this.classList.toggle('on')"><div class="togk"></div></button></div>
-        <div class="srow"><div><div class="slbl">Daily lead digest</div><div class="sdesc">Morning summary of new leads</div></div><button class="toggle on" onclick="this.classList.toggle('on')"><div class="togk"></div></button></div>
-        <div class="srow"><div><div class="slbl">Interview reminders</div><div class="sdesc">Before scheduled interviews</div></div><button class="toggle" onclick="this.classList.toggle('on')"><div class="togk"></div></button></div>
+        <div class="srow"><div><div class="slbl">New candidate leads</div><div class="sdesc">When a prospect expresses interest</div></div><button class="toggle on"><div class="togk"></div></button></div>
+        <div class="srow"><div><div class="slbl">Daily lead digest</div><div class="sdesc">Morning summary of new leads</div></div><button class="toggle on"><div class="togk"></div></button></div>
+        <div class="srow"><div><div class="slbl">Interview reminders</div><div class="sdesc">Before scheduled interviews</div></div><button class="toggle"><div class="togk"></div></button></div>
       </div>
       <div class="ssec">
         <div class="ssec-title">Account actions</div>
-        <div class="srow"><div><div class="slbl">Switch role</div><div class="sdesc">Go back to role selection</div></div><button class="sbtn" onclick="goLand()">Switch</button></div>
+        <div class="srow"><div><div class="slbl">Switch role</div><div class="sdesc">Go back to role selection</div></div><button class="sbtn" id="org-switch-role-btn">Switch</button></div>
         <div class="srow"><div><div class="slbl">Sign out</div><div class="sdesc">Sign out of TradesConnect</div></div><button class="sbtn">Sign out</button></div>
       </div>
     </div>
   </div>
   <nav class="bottomnav" id="org-nav">
-    <button class="bnav-btn on" onclick="oTab('dashboard',this)">
+    <button class="bnav-btn on" data-tab="dashboard">
       <span class="bnav-icon">📊</span><span class="bnav-label">Dashboard</span>
     </button>
-    <button class="bnav-btn" onclick="oTab('candidates',this)">
+    <button class="bnav-btn" data-tab="candidates">
       <span class="bnav-icon">👥</span><span class="bnav-label">Candidates</span>
     </button>
-    <button class="bnav-btn" onclick="oTab('myjobs',this)">
+    <button class="bnav-btn" data-tab="myjobs">
       <span class="bnav-icon">📋</span><span class="bnav-label">My Jobs</span>
     </button>
-    <button class="bnav-btn" onclick="oTab('roadmap',this)">
+    <button class="bnav-btn" data-tab="roadmap">
       <span class="bnav-icon">🗺️</span><span class="bnav-label">Roadmap</span>
     </button>
-    <button class="bnav-btn" onclick="oTab('settings',this)">
+    <button class="bnav-btn" data-tab="settings">
       <span class="bnav-icon">⚙️</span><span class="bnav-label">Settings</span>
     </button>
   </nav>
@@ -609,14 +611,14 @@ html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-seri
       <div class="input-row"><label class="input-label">City or zip</label><input class="text-input" placeholder="Kalamazoo, MI" id="f-city"></div>
       <div class="input-row"><label class="input-label">Available to start</label><input class="text-input" placeholder="June 2026" id="f-start"></div>
       <div class="input-row"><label class="input-label">Short note (optional)</label><input class="text-input" placeholder="Motivated and ready to learn..." id="f-note"></div>
-      <button class="submit-btn" onclick="submitInterest()">Send interest</button>
-      <span class="cancel-lnk" onclick="closeModal()">Cancel</span>
+      <button class="submit-btn" id="submit-interest-btn">Send interest</button>
+      <span class="cancel-lnk" id="cancel-interest-btn">Cancel</span>
     </div>
     <div id="modal-success" class="success-view" style="display:none;">
       <div class="success-check">✓</div>
       <div class="success-title">Interest sent!</div>
       <div class="success-sub">The program received your profile. They'll reach out — no formal application required yet.</div>
-      <button class="submit-btn" onclick="closeModal()">Back to discover</button>
+      <button class="submit-btn" id="modal-back-btn">Back to discover</button>
     </div>
   </div>
 </div>
@@ -631,14 +633,14 @@ html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-seri
       <div class="input-row"><label class="input-label">Email</label><input class="text-input" placeholder="your email address" id="auth-email"></div>
       <div class="input-row" id="auth-name-row" style="display:none;"><label class="input-label">Full name</label><input class="text-input" placeholder="Alex Rodriguez" id="auth-name"></div>
       <div class="input-row"><label class="input-label">Password</label><input class="text-input" type="password" placeholder="password" id="auth-pass"></div>
-      <button class="submit-btn" id="auth-submit-btn" onclick="submitAuth()">Log in</button>
-      <span class="cancel-lnk" onclick="closeAuthModal()">Cancel</span>
+      <button class="submit-btn" id="auth-submit-btn">Log in</button>
+      <span class="cancel-lnk" id="auth-cancel-btn">Cancel</span>
     </div>
     <div id="auth-success" style="display:none;" class="success-view">
       <div class="success-check">✓</div>
       <div class="success-title" id="auth-success-title">Welcome back!</div>
       <div class="success-sub">You are now logged in to TradesConnect.</div>
-      <button class="submit-btn" onclick="closeAuthModal()">Continue</button>
+      <button class="submit-btn" id="auth-continue-btn">Continue</button>
     </div>
   </div>
 </div>
@@ -650,75 +652,54 @@ html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-seri
     <div id="job-form">
       <div class="modal-title">Post a listing</div>
       <div class="modal-prog">Visible to all prospects in West Michigan</div>
-
       <div class="input-row"><label class="input-label">Position title</label><input class="text-input" placeholder="Electrical Apprentice" id="j-title"></div>
-
       <div class="input-grid">
         <div><label class="input-label">Trade</label>
           <select class="text-input" id="j-trade">
             <option value="">Select trade...</option>
-            <option>Electrician</option>
-            <option>Plumber</option>
-            <option>HVAC</option>
-            <option>Welder</option>
-            <option>Carpenter</option>
-            <option>Pipefitter</option>
-            <option>Other</option>
+            <option>Electrician</option><option>Plumber</option><option>HVAC</option>
+            <option>Welder</option><option>Carpenter</option><option>Pipefitter</option><option>Other</option>
           </select>
         </div>
         <div><label class="input-label">City</label><input class="text-input" placeholder="Kalamazoo, MI" id="j-city"></div>
       </div>
-
       <div class="input-grid">
         <div><label class="input-label">Pay rate</label><input class="text-input" placeholder="$18–22/hr" id="j-pay"></div>
         <div><label class="input-label">Program duration</label>
           <select class="text-input" id="j-duration">
             <option value="">Select...</option>
-            <option>2-year certificate</option>
-            <option>3-year apprenticeship</option>
-            <option>4-year apprenticeship</option>
-            <option>5-year apprenticeship</option>
-            <option>Full-time position</option>
-            <option>Part-time / seasonal</option>
+            <option>2-year certificate</option><option>3-year apprenticeship</option>
+            <option>4-year apprenticeship</option><option>5-year apprenticeship</option>
+            <option>Full-time position</option><option>Part-time / seasonal</option>
           </select>
         </div>
       </div>
-
       <div class="input-grid">
         <div><label class="input-label">Experience level</label>
           <select class="text-input" id="j-exp">
             <option value="">Select...</option>
-            <option>No experience needed</option>
-            <option>Some exposure preferred</option>
-            <option>1–2 years required</option>
-            <option>Journeyman level</option>
+            <option>No experience needed</option><option>Some exposure preferred</option>
+            <option>1–2 years required</option><option>Journeyman level</option>
           </select>
         </div>
         <div><label class="input-label">Start date</label>
           <select class="text-input" id="j-start">
             <option value="">Select...</option>
-            <option>Immediate / rolling</option>
-            <option>Spring 2026</option>
-            <option>Summer 2026</option>
-            <option>Fall 2026</option>
-            <option>January 2027</option>
-            <option>Flexible</option>
+            <option>Immediate / rolling</option><option>Spring 2026</option>
+            <option>Summer 2026</option><option>Fall 2026</option>
+            <option>January 2027</option><option>Flexible</option>
           </select>
         </div>
       </div>
-
       <div class="input-grid">
         <div><label class="input-label">Spots available</label><input class="text-input" type="number" placeholder="8" id="j-spots" min="1"></div>
         <div><label class="input-label">Union / Non-union</label>
           <select class="text-input" id="j-union">
             <option value="">Select...</option>
-            <option>Union</option>
-            <option>Non-union</option>
-            <option>Either</option>
+            <option>Union</option><option>Non-union</option><option>Either</option>
           </select>
         </div>
       </div>
-
       <div class="input-row"><label class="input-label">Benefits included</label>
         <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px;">
           <label style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text2);cursor:pointer;"><input type="checkbox" id="j-b-health"> Health insurance</label>
@@ -728,170 +709,344 @@ html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-seri
           <label style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text2);cursor:pointer;"><input type="checkbox" id="j-b-cert"> Cert assistance</label>
         </div>
       </div>
-
       <div class="input-row"><label class="input-label">Description</label><textarea class="text-input" placeholder="What the role involves, what you're looking for in a candidate..." id="j-desc" rows="3" style="resize:vertical;"></textarea></div>
-
-      <button class="submit-btn" onclick="submitJob()">Post listing</button>
-      <span class="cancel-lnk" onclick="closeJobModal()">Cancel</span>
+      <button class="submit-btn" id="submit-job-btn">Post listing</button>
+      <span class="cancel-lnk" id="cancel-job-btn">Cancel</span>
     </div>
     <div id="job-success" style="display:none;" class="success-view">
       <div class="success-check">✓</div>
       <div class="success-title">Listing posted!</div>
       <div class="success-sub">Your listing is live and visible to all prospects in West Michigan.</div>
-      <button class="submit-btn" onclick="closeJobModal()">Back to my jobs</button>
+      <button class="submit-btn" id="job-back-btn">Back to my jobs</button>
     </div>
   </div>
 </div>
 
 <script>
-const programs=[
-  {id:1,name:"Kalamazoo Electrical Training Alliance",city:"Kalamazoo",trade:"Electrician",icon:"⚡",spots:8,rate:"$18–24/hr",duration:"5-year apprenticeship",tags:[{l:"IBEW Local 131",c:"pt-blue"},{l:"Paid training",c:"pt-green"},{l:"Benefits included",c:"pt-green"}],desc:"IBEW Local 131's JATC — highly competitive, state-of-the-art facility. Trains electricians and technicians for the Kalamazoo division."},
-  {id:2,name:"KVCC Electrical Construction Program",city:"Kalamazoo",trade:"Electrician",icon:"⚡",spots:14,rate:"$16–20/hr",duration:"2-year certificate",tags:[{l:"College program",c:"pt-blue"},{l:"No experience needed",c:"pt-green"},{l:"DOL approved",c:"pt-green"}],desc:"Kalamazoo Valley Community College's DOL-approved apprenticeship. NEC code, conduit bending, electrical theory, hands-on lab."},
-  {id:3,name:"West Michigan Electrical — IBEW 275",city:"Grand Rapids",trade:"Electrician",icon:"⚡",spots:10,rate:"$17–23/hr",duration:"5-year apprenticeship",tags:[{l:"IBEW Local 275",c:"pt-blue"},{l:"Union benefits",c:"pt-green"},{l:"Paid apprenticeship",c:"pt-green"}],desc:"West Michigan's premier union electrical training. Residential, commercial and industrial work across the Grand Rapids region."},
-  {id:4,name:"GRCC Welding Technology",city:"Grand Rapids",trade:"Welder",icon:"🔥",spots:12,rate:"$16–21/hr",duration:"2-year program",tags:[{l:"College program",c:"pt-blue"},{l:"No experience needed",c:"pt-green"},{l:"AWS certification",c:"pt-purple"}],desc:"GRCC is West Michigan's #1 construction trainer. MIG, TIG, and stick welding. AWS certification included. 90%+ placement rate."},
-  {id:5,name:"KVCC Welding Technology",city:"Kalamazoo",trade:"Welder",icon:"🔥",spots:10,rate:"$15–20/hr",duration:"2-year certificate",tags:[{l:"College program",c:"pt-blue"},{l:"No experience needed",c:"pt-green"}],desc:"KVCC's welding program covering MIG, TIG, stick and advanced techniques. DOL-approved and articulated with regional employers."},
-  {id:6,name:"UA Local 357 — Plumbers & Pipefitters",city:"Kalamazoo",trade:"Plumber",icon:"🔧",spots:6,rate:"$19–26/hr",duration:"5-year apprenticeship",tags:[{l:"Union",c:"pt-blue"},{l:"Top wages",c:"pt-green"},{l:"Benefits included",c:"pt-green"}],desc:"Union pipe trades covering plumbing, pipefitting, welding and HVAC-R. 18,000 sq ft training facility in Schoolcraft, MI."},
-  {id:7,name:"UA Local 357 — HVAC-R Apprenticeship",city:"Kalamazoo",trade:"HVAC",icon:"❄️",spots:7,rate:"$18–24/hr",duration:"5-year apprenticeship",tags:[{l:"Union",c:"pt-blue"},{l:"Paid apprenticeship",c:"pt-green"},{l:"EPA 608 included",c:"pt-green"}],desc:"Train as an HVAC-Refrigeration specialist. Covers residential and commercial systems, refrigerants, and service tech skills."},
-  {id:8,name:"KVCC HVAC Technician Program",city:"Kalamazoo",trade:"HVAC",icon:"❄️",spots:9,rate:"$15–19/hr",duration:"2-year certificate",tags:[{l:"College program",c:"pt-blue"},{l:"EPA 608 included",c:"pt-green"},{l:"No experience needed",c:"pt-green"}],desc:"DOL-approved HVAC program covering refrigerants, sheet metal, system design and EPA 608 certification."},
-  {id:9,name:"GRCC Construction Electrical Apprenticeship",city:"Grand Rapids",trade:"Electrician",icon:"⚡",spots:8,rate:"$17–22/hr",duration:"4-year apprenticeship",tags:[{l:"College program",c:"pt-blue"},{l:"Earn while you learn",c:"pt-green"},{l:"DOL registered",c:"pt-purple"}],desc:"DOL-registered electrical apprenticeship. On-the-job training plus classroom instruction. Qualifies for college credit."},
-  {id:10,name:"Michigan Carpenters Apprenticeship — Local 1510",city:"Grand Rapids",trade:"Carpenter",icon:"🪵",spots:8,rate:"$17–22/hr",duration:"4-year apprenticeship",tags:[{l:"Union",c:"pt-blue"},{l:"Paid apprenticeship",c:"pt-green"}],desc:"UBC-affiliated carpenters apprenticeship. Framing, finish work, commercial builds across West Michigan."},
-];
+document.addEventListener('DOMContentLoaded', function() {
 
-let cf="all";
+  /* ── DATA ── */
+  var programs = [
+    {id:1,name:"Kalamazoo Electrical Training Alliance",city:"Kalamazoo",trade:"Electrician",icon:"⚡",spots:8,rate:"$18–24/hr",duration:"5-year apprenticeship",tags:[{l:"IBEW Local 131",c:"pt-blue"},{l:"Paid training",c:"pt-green"},{l:"Benefits included",c:"pt-green"}],desc:"IBEW Local 131's JATC — highly competitive, state-of-the-art facility. Trains electricians and technicians for the Kalamazoo division."},
+    {id:2,name:"KVCC Electrical Construction Program",city:"Kalamazoo",trade:"Electrician",icon:"⚡",spots:14,rate:"$16–20/hr",duration:"2-year certificate",tags:[{l:"College program",c:"pt-blue"},{l:"No experience needed",c:"pt-green"},{l:"DOL approved",c:"pt-green"}],desc:"Kalamazoo Valley Community College's DOL-approved apprenticeship. NEC code, conduit bending, electrical theory, hands-on lab."},
+    {id:3,name:"West Michigan Electrical — IBEW 275",city:"Grand Rapids",trade:"Electrician",icon:"⚡",spots:10,rate:"$17–23/hr",duration:"5-year apprenticeship",tags:[{l:"IBEW Local 275",c:"pt-blue"},{l:"Union benefits",c:"pt-green"},{l:"Paid apprenticeship",c:"pt-green"}],desc:"West Michigan's premier union electrical training. Residential, commercial and industrial work across the Grand Rapids region."},
+    {id:4,name:"GRCC Welding Technology",city:"Grand Rapids",trade:"Welder",icon:"🔥",spots:12,rate:"$16–21/hr",duration:"2-year program",tags:[{l:"College program",c:"pt-blue"},{l:"No experience needed",c:"pt-green"},{l:"AWS certification",c:"pt-purple"}],desc:"GRCC is West Michigan's #1 construction trainer. MIG, TIG, and stick welding. AWS certification included. 90%+ placement rate."},
+    {id:5,name:"KVCC Welding Technology",city:"Kalamazoo",trade:"Welder",icon:"🔥",spots:10,rate:"$15–20/hr",duration:"2-year certificate",tags:[{l:"College program",c:"pt-blue"},{l:"No experience needed",c:"pt-green"}],desc:"KVCC's welding program covering MIG, TIG, stick and advanced techniques. DOL-approved and articulated with regional employers."},
+    {id:6,name:"UA Local 357 — Plumbers & Pipefitters",city:"Kalamazoo",trade:"Plumber",icon:"🔧",spots:6,rate:"$19–26/hr",duration:"5-year apprenticeship",tags:[{l:"Union",c:"pt-blue"},{l:"Top wages",c:"pt-green"},{l:"Benefits included",c:"pt-green"}],desc:"Union pipe trades covering plumbing, pipefitting, welding and HVAC-R. 18,000 sq ft training facility in Schoolcraft, MI."},
+    {id:7,name:"UA Local 357 — HVAC-R Apprenticeship",city:"Kalamazoo",trade:"HVAC",icon:"❄️",spots:7,rate:"$18–24/hr",duration:"5-year apprenticeship",tags:[{l:"Union",c:"pt-blue"},{l:"Paid apprenticeship",c:"pt-green"},{l:"EPA 608 included",c:"pt-green"}],desc:"Train as an HVAC-Refrigeration specialist. Covers residential and commercial systems, refrigerants, and service tech skills."},
+    {id:8,name:"KVCC HVAC Technician Program",city:"Kalamazoo",trade:"HVAC",icon:"❄️",spots:9,rate:"$15–19/hr",duration:"2-year certificate",tags:[{l:"College program",c:"pt-blue"},{l:"EPA 608 included",c:"pt-green"},{l:"No experience needed",c:"pt-green"}],desc:"DOL-approved HVAC program covering refrigerants, sheet metal, system design and EPA 608 certification."},
+    {id:9,name:"GRCC Construction Electrical Apprenticeship",city:"Grand Rapids",trade:"Electrician",icon:"⚡",spots:8,rate:"$17–22/hr",duration:"4-year apprenticeship",tags:[{l:"College program",c:"pt-blue"},{l:"Earn while you learn",c:"pt-green"},{l:"DOL registered",c:"pt-purple"}],desc:"DOL-registered electrical apprenticeship. On-the-job training plus classroom instruction. Qualifies for college credit."},
+    {id:10,name:"Michigan Carpenters Apprenticeship — Local 1510",city:"Grand Rapids",trade:"Carpenter",icon:"🪵",spots:8,rate:"$17–22/hr",duration:"4-year apprenticeship",tags:[{l:"Union",c:"pt-blue"},{l:"Paid apprenticeship",c:"pt-green"}],desc:"UBC-affiliated carpenters apprenticeship. Framing, finish work, commercial builds across West Michigan."}
+  ];
 
-function renderPrograms(){
-  const filtered=cf==="all"?programs:programs.filter(p=>p.trade===cf);
-  document.getElementById("prog-list").innerHTML=filtered.map(p=>`
-    <div class="prog-card">
-      <div class="prog-top">
-        <div class="prog-left">
-          <div class="prog-ico">${p.icon}</div>
-          <div>
-            <div class="prog-name">${p.name}</div>
-            <div class="prog-meta"><span>📍 ${p.city}, MI</span><span>${p.spots} spots</span><span>${p.rate}</span><span>${p.duration}</span></div>
-          </div>
-        </div>
-        <span class="accepting">Open</span>
-      </div>
-      <div class="prog-tags">${p.tags.map(t=>`<span class="ptag ${t.c}">${t.l}</span>`).join("")}</div>
-      <div class="prog-desc">${p.desc}</div>
-      <button class="express-btn" onclick="openModal(${p.id})">Express interest</button>
-    </div>`).join("");
-}
+  var currentFilter = 'all';
 
-function filt(trade,el){
-  cf=trade;
-  document.querySelectorAll("#pt-discover .ftag").forEach(c=>c.classList.remove("on"));
-  el.classList.add("on");
+  /* ── SCREEN NAVIGATION ── */
+  function showScreen(id) {
+    document.querySelectorAll('.screen').forEach(function(s) {
+      s.classList.remove('active');
+    });
+    document.getElementById(id).classList.add('active');
+  }
+
+  function goLand() {
+    showScreen('s-land');
+    // Reset prospect tabs
+    document.querySelectorAll('#s-pros .tab-content').forEach(function(t) { t.style.display = 'none'; });
+    document.getElementById('pt-discover').style.display = 'block';
+    document.querySelectorAll('#pros-nav .bnav-btn').forEach(function(b, i) { b.classList.toggle('on', i === 0); });
+    // Reset org tabs
+    document.querySelectorAll('#s-org .tab-content').forEach(function(t) { t.style.display = 'none'; });
+    document.getElementById('ot-dashboard').style.display = 'block';
+    document.querySelectorAll('#org-nav .bnav-btn').forEach(function(b, i) { b.classList.toggle('on', i === 0); });
+  }
+
+  function goProspect() {
+    showScreen('s-pros');
+    renderPrograms();
+  }
+
+  function goOrg() {
+    showScreen('s-org');
+  }
+
+  /* ── LANDING BUTTONS ── */
+  document.getElementById('btn-prospect').addEventListener('click', goProspect);
+  document.getElementById('btn-org').addEventListener('click', goOrg);
+  document.getElementById('land-login-btn').addEventListener('click', function() { showAuthModal('login'); });
+  document.getElementById('land-signup-btn').addEventListener('click', function() { showAuthModal('signup'); });
+
+  /* ── PROSPECT NAV ── */
+  document.getElementById('pros-logo').addEventListener('click', goLand);
+  document.getElementById('pros-login-btn').addEventListener('click', function() { showAuthModal('login'); });
+  document.getElementById('pros-switch-btn').addEventListener('click', goLand);
+  document.getElementById('pros-switch-role-btn').addEventListener('click', goLand);
+  document.getElementById('edit-profile-btn').addEventListener('click', function() { showAuthModal('edit'); });
+  document.getElementById('add-skill-btn').addEventListener('click', addSkill);
+  document.getElementById('add-cert-btn').addEventListener('click', addCert);
+  document.getElementById('photo-upload').addEventListener('change', function() { addPhoto(this); });
+
+  document.querySelectorAll('#pros-nav .bnav-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var tab = this.getAttribute('data-tab');
+      document.querySelectorAll('#pros-nav .bnav-btn').forEach(function(b) { b.classList.remove('on'); });
+      this.classList.add('on');
+      document.querySelectorAll('#s-pros .tab-content').forEach(function(t) { t.style.display = 'none'; });
+      document.getElementById('pt-' + tab).style.display = 'block';
+      document.getElementById('pros-page').scrollTop = 0;
+    });
+  });
+
+  /* ── ORG NAV ── */
+  document.getElementById('org-logo').addEventListener('click', goLand);
+  document.getElementById('org-login-btn').addEventListener('click', function() { showAuthModal('login'); });
+  document.getElementById('org-switch-btn').addEventListener('click', goLand);
+  document.getElementById('org-switch-role-btn').addEventListener('click', goLand);
+  document.getElementById('post-job-btn').addEventListener('click', showJobModal);
+
+  document.querySelectorAll('#org-nav .bnav-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var tab = this.getAttribute('data-tab');
+      document.querySelectorAll('#org-nav .bnav-btn').forEach(function(b) { b.classList.remove('on'); });
+      this.classList.add('on');
+      document.querySelectorAll('#s-org .tab-content').forEach(function(t) { t.style.display = 'none'; });
+      document.getElementById('ot-' + tab).style.display = 'block';
+      document.getElementById('org-page').scrollTop = 0;
+    });
+  });
+
+  /* ── TOGGLE BUTTONS ── */
+  document.querySelectorAll('.toggle').forEach(function(btn) {
+    btn.addEventListener('click', function() { this.classList.toggle('on'); });
+  });
+
+  /* ── INVITE BUTTONS ── */
+  document.querySelectorAll('.invite-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      this.textContent = 'Invited ✓';
+      this.style.background = 'var(--green-dim)';
+      this.style.color = 'var(--green)';
+      this.style.border = '1px solid var(--green-border)';
+    });
+  });
+
+  /* ── CANDIDATE BUTTONS ── */
+  document.querySelectorAll('.btn-msg').forEach(function(btn) {
+    btn.addEventListener('click', function() { this.textContent = 'Sent ✓'; });
+  });
+  document.querySelectorAll('.btn-inv').forEach(function(btn) {
+    btn.addEventListener('click', function() { this.textContent = 'Invited ✓'; });
+  });
+
+  /* ── JOB DELETE ── */
+  document.querySelectorAll('.job-delete').forEach(function(btn) {
+    btn.addEventListener('click', function() { this.closest('.job-card').remove(); });
+  });
+
+  /* ── FILTER PILLS ── */
+  document.querySelectorAll('#filter-row .ftag').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      currentFilter = this.getAttribute('data-trade');
+      document.querySelectorAll('#filter-row .ftag').forEach(function(b) { b.classList.remove('on'); });
+      this.classList.add('on');
+      renderPrograms();
+    });
+  });
+
+  /* ── PILL DEL ── */
+  document.querySelectorAll('.pill-del').forEach(function(btn) {
+    btn.addEventListener('click', function() { this.parentElement.remove(); });
+  });
+
+  /* ── RENDER PROGRAMS ── */
+  function renderPrograms() {
+    var filtered = currentFilter === 'all' ? programs : programs.filter(function(p) { return p.trade === currentFilter; });
+    document.getElementById('prog-list').innerHTML = filtered.map(function(p) {
+      return '<div class="prog-card">' +
+        '<div class="prog-top">' +
+          '<div class="prog-left">' +
+            '<div class="prog-ico">' + p.icon + '</div>' +
+            '<div>' +
+              '<div class="prog-name">' + p.name + '</div>' +
+              '<div class="prog-meta"><span>📍 ' + p.city + ', MI</span><span>' + p.spots + ' spots</span><span>' + p.rate + '</span><span>' + p.duration + '</span></div>' +
+            '</div>' +
+          '</div>' +
+          '<span class="accepting">Open</span>' +
+        '</div>' +
+        '<div class="prog-tags">' + p.tags.map(function(t) { return '<span class="ptag ' + t.c + '">' + t.l + '</span>'; }).join('') + '</div>' +
+        '<div class="prog-desc">' + p.desc + '</div>' +
+        '<button class="express-btn" data-prog-id="' + p.id + '">Express interest</button>' +
+      '</div>';
+    }).join('');
+
+    // Attach express interest listeners after render
+    document.querySelectorAll('.express-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var id = parseInt(this.getAttribute('data-prog-id'));
+        openModal(id);
+      });
+    });
+  }
+
+  /* ── EXPRESS INTEREST MODAL ── */
+  function openModal(id) {
+    var p = programs.find(function(x) { return x.id === id; });
+    document.getElementById('modal-prog-name').textContent = p.name;
+    document.getElementById('modal-form').style.display = 'block';
+    document.getElementById('modal-success').style.display = 'none';
+    document.getElementById('modal').classList.add('open');
+  }
+
+  function closeModal() {
+    document.getElementById('modal').classList.remove('open');
+  }
+
+  document.getElementById('submit-interest-btn').addEventListener('click', function() {
+    document.getElementById('modal-form').style.display = 'none';
+    document.getElementById('modal-success').style.display = 'block';
+  });
+  document.getElementById('cancel-interest-btn').addEventListener('click', closeModal);
+  document.getElementById('modal-back-btn').addEventListener('click', closeModal);
+  document.getElementById('modal').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
+
+  /* ── AUTH MODAL ── */
+  function showAuthModal(type) {
+    document.getElementById('auth-form').style.display = 'block';
+    document.getElementById('auth-success').style.display = 'none';
+    if (type === 'signup') {
+      document.getElementById('auth-title').textContent = 'Sign up';
+      document.getElementById('auth-sub').textContent = 'Create your TradesConnect account';
+      document.getElementById('auth-name-row').style.display = 'block';
+      document.getElementById('auth-submit-btn').textContent = 'Create account';
+      document.getElementById('auth-success-title').textContent = 'Account created!';
+    } else if (type === 'edit') {
+      document.getElementById('auth-title').textContent = 'Edit profile';
+      document.getElementById('auth-sub').textContent = 'Update your information';
+      document.getElementById('auth-name-row').style.display = 'block';
+      document.getElementById('auth-submit-btn').textContent = 'Save changes';
+      document.getElementById('auth-success-title').textContent = 'Profile updated!';
+    } else {
+      document.getElementById('auth-title').textContent = 'Log in';
+      document.getElementById('auth-sub').textContent = 'Welcome back to TradesConnect';
+      document.getElementById('auth-name-row').style.display = 'none';
+      document.getElementById('auth-submit-btn').textContent = 'Log in';
+      document.getElementById('auth-success-title').textContent = 'Welcome back!';
+    }
+    document.getElementById('auth-modal').classList.add('open');
+  }
+
+  function closeAuthModal() {
+    document.getElementById('auth-modal').classList.remove('open');
+  }
+
+  document.getElementById('auth-submit-btn').addEventListener('click', function() {
+    document.getElementById('auth-form').style.display = 'none';
+    document.getElementById('auth-success').style.display = 'block';
+  });
+  document.getElementById('auth-cancel-btn').addEventListener('click', closeAuthModal);
+  document.getElementById('auth-continue-btn').addEventListener('click', closeAuthModal);
+  document.getElementById('auth-modal').addEventListener('click', function(e) { if (e.target === this) closeAuthModal(); });
+
+  /* ── JOB MODAL ── */
+  function showJobModal() {
+    document.getElementById('job-form').style.display = 'block';
+    document.getElementById('job-success').style.display = 'none';
+    document.getElementById('job-modal').classList.add('open');
+  }
+
+  function closeJobModal() {
+    document.getElementById('job-modal').classList.remove('open');
+  }
+
+  document.getElementById('cancel-job-btn').addEventListener('click', closeJobModal);
+  document.getElementById('job-back-btn').addEventListener('click', closeJobModal);
+  document.getElementById('job-modal').addEventListener('click', function(e) { if (e.target === this) closeJobModal(); });
+
+  document.getElementById('submit-job-btn').addEventListener('click', function() {
+    var t = document.getElementById('j-title').value.trim() || 'New listing';
+    var trade = document.getElementById('j-trade').value || '';
+    var c = document.getElementById('j-city').value.trim() || 'West Michigan';
+    var p = document.getElementById('j-pay').value.trim() || 'TBD';
+    var dur = document.getElementById('j-duration').value || '';
+    var exp = document.getElementById('j-exp').value || '';
+    var start = document.getElementById('j-start').value || '';
+    var spots = document.getElementById('j-spots').value || '';
+    var union = document.getElementById('j-union').value || '';
+    var d = document.getElementById('j-desc').value.trim() || '';
+    var benefits = [];
+    if (document.getElementById('j-b-health').checked) benefits.push('Health insurance');
+    if (document.getElementById('j-b-pension').checked) benefits.push('Pension / 401k');
+    if (document.getElementById('j-b-tools').checked) benefits.push('Tools provided');
+    if (document.getElementById('j-b-training').checked) benefits.push('Paid training');
+    if (document.getElementById('j-b-cert').checked) benefits.push('Cert assistance');
+    var tags = '';
+    if (union) tags += "<span class='ptag pt-blue'>" + union + "</span>";
+    if (exp) tags += "<span class='ptag pt-green'>" + exp + "</span>";
+    benefits.forEach(function(b) { tags += "<span class='ptag pt-green'>" + b + "</span>"; });
+    var meta = "<span>📍 " + c + "</span>";
+    if (p) meta += "<span>" + p + "</span>";
+    if (spots) meta += "<span>" + spots + " spots</span>";
+    if (dur) meta += "<span>" + dur + "</span>";
+    if (start) meta += "<span>Starts: " + start + "</span>";
+    if (trade) meta += "<span class='accepting'>" + trade + "</span>";
+    var card = document.createElement('div');
+    card.className = 'job-card';
+    card.innerHTML = "<div class='job-title'>" + t + "</div>" +
+      "<div class='job-meta'>" + meta + "</div>" +
+      (tags ? "<div class='prog-tags' style='margin-bottom:10px;'>" + tags + "</div>" : "") +
+      (d ? "<div class='job-desc'>" + d + "</div>" : "") +
+      "<div class='job-actions'><button class='job-edit'>Edit</button><button class='job-delete'>Delete</button></div>";
+    card.querySelector('.job-delete').addEventListener('click', function() { card.remove(); });
+    document.getElementById('jobs-list').prepend(card);
+    document.getElementById('job-form').style.display = 'none';
+    document.getElementById('job-success').style.display = 'block';
+  });
+
+  /* ── SKILLS / CERTS ── */
+  function addSkill() {
+    var input = document.getElementById('skill-input');
+    var v = input.value.trim();
+    if (!v) return;
+    var s = document.createElement('span');
+    s.className = 'pill-item trade';
+    s.innerHTML = v + '<span class="pill-del">×</span>';
+    s.querySelector('.pill-del').addEventListener('click', function() { s.remove(); });
+    document.getElementById('skills-list').appendChild(s);
+    input.value = '';
+  }
+
+  function addCert() {
+    var input = document.getElementById('cert-input');
+    var v = input.value.trim();
+    if (!v) return;
+    var s = document.createElement('span');
+    s.className = 'pill-item cert';
+    s.innerHTML = v + '<span class="pill-del">×</span>';
+    s.querySelector('.pill-del').addEventListener('click', function() { s.remove(); });
+    document.getElementById('certs-list').appendChild(s);
+    input.value = '';
+  }
+
+  document.getElementById('skill-input').addEventListener('keydown', function(e) { if (e.key === 'Enter') addSkill(); });
+  document.getElementById('cert-input').addEventListener('keydown', function(e) { if (e.key === 'Enter') addCert(); });
+
+  /* ── PHOTO UPLOAD ── */
+  function addPhoto(inp) {
+    if (!inp.files || !inp.files[0]) return;
+    var r = new FileReader();
+    r.onload = function(e) {
+      var t = document.createElement('div');
+      t.className = 'photo-tile';
+      t.style.cssText = 'background-image:url(' + e.target.result + ');background-size:cover;background-position:center;';
+      document.getElementById('photo-grid').appendChild(t);
+    };
+    r.readAsDataURL(inp.files[0]);
+  }
+
+  /* ── INIT ── */
   renderPrograms();
-}
 
-function pTab(tab,el){
-  document.querySelectorAll("#pros-nav .bnav-btn").forEach(b=>b.classList.remove("on"));
-  el.classList.add("on");
-  document.querySelectorAll("#s-pros .tab-content").forEach(t=>t.style.display="none");
-  document.getElementById("pt-"+tab).style.display="block";
-  document.getElementById("pros-page").scrollTop=0;
-}
-
-function oTab(tab,el){
-  document.querySelectorAll("#org-nav .bnav-btn").forEach(b=>b.classList.remove("on"));
-  el.classList.add("on");
-  document.querySelectorAll("#s-org .tab-content").forEach(t=>t.style.display="none");
-  document.getElementById("ot-"+tab).style.display="block";
-  document.getElementById("org-page").scrollTop=0;
-}
-
-function goProspect(){
-  document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
-  document.getElementById("s-pros").classList.add("active");
-  renderPrograms();
-}
-
-function goOrg(){
-  document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
-  document.getElementById("s-org").classList.add("active");
-}
-
-function goLand(){
-  document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
-  document.getElementById("s-land").classList.add("active");
-  // reset tabs
-  document.querySelectorAll("#s-pros .tab-content").forEach(t=>t.style.display="none");
-  document.getElementById("pt-discover").style.display="block";
-  document.querySelectorAll("#pros-nav .bnav-btn").forEach((b,i)=>b.classList.toggle("on",i===0));
-  document.querySelectorAll("#s-org .tab-content").forEach(t=>t.style.display="none");
-  document.getElementById("ot-dashboard").style.display="block";
-  document.querySelectorAll("#org-nav .bnav-btn").forEach((b,i)=>b.classList.toggle("on",i===0));
-}
-
-function openModal(id){
-  var p=programs.find(function(x){return x.id===id;});
-  document.getElementById("modal-prog-name").textContent=p.name;
-  document.getElementById("modal-form").style.display="block";
-  document.getElementById("modal-success").style.display="none";
-  document.getElementById("modal").classList.add("open");
-}
-function closeModal(){document.getElementById("modal").classList.remove("open");}
-function submitInterest(){document.getElementById("modal-form").style.display="none";document.getElementById("modal-success").style.display="block";}
-
-function delPill(el){el.parentElement.remove();}
-function addSkill(){var i=document.getElementById("skill-input");var v=i.value.trim();if(!v)return;var s=document.createElement("span");s.className="pill-item trade";s.innerHTML=v+'<span class="pill-del" onclick="delPill(this)">×</span>';document.getElementById("skills-list").appendChild(s);i.value="";}
-function addCert(){var i=document.getElementById("cert-input");var v=i.value.trim();if(!v)return;var s=document.createElement("span");s.className="pill-item cert";s.innerHTML=v+'<span class="pill-del" onclick="delPill(this)">×</span>';document.getElementById("certs-list").appendChild(s);i.value="";}
-document.addEventListener("keydown",function(e){if(e.key==="Enter"){if(document.activeElement.id==="skill-input")addSkill();if(document.activeElement.id==="cert-input")addCert();}});
-
-function addPhoto(inp){if(!inp.files||!inp.files[0])return;var r=new FileReader();r.onload=function(e){var t=document.createElement("div");t.className="photo-tile";t.style.cssText="background-image:url("+e.target.result+");background-size:cover;background-position:center;";document.getElementById("photo-grid").appendChild(t);};r.readAsDataURL(inp.files[0]);}
-
-function showAuthModal(type){
-  document.getElementById("auth-form").style.display="block";
-  document.getElementById("auth-success").style.display="none";
-  if(type==="signup"){document.getElementById("auth-title").textContent="Sign up";document.getElementById("auth-sub").textContent="Create your TradesConnect account";document.getElementById("auth-name-row").style.display="block";document.getElementById("auth-submit-btn").textContent="Create account";document.getElementById("auth-success-title").textContent="Account created!";}
-  else if(type==="edit"){document.getElementById("auth-title").textContent="Edit profile";document.getElementById("auth-sub").textContent="Update your information";document.getElementById("auth-name-row").style.display="block";document.getElementById("auth-submit-btn").textContent="Save changes";document.getElementById("auth-success-title").textContent="Profile updated!";}
-  else{document.getElementById("auth-title").textContent="Log in";document.getElementById("auth-sub").textContent="Welcome back to TradesConnect";document.getElementById("auth-name-row").style.display="none";document.getElementById("auth-submit-btn").textContent="Log in";document.getElementById("auth-success-title").textContent="Welcome back!";}
-  document.getElementById("auth-modal").classList.add("open");
-}
-function closeAuthModal(){document.getElementById("auth-modal").classList.remove("open");}
-function submitAuth(){document.getElementById("auth-form").style.display="none";document.getElementById("auth-success").style.display="block";}
-
-function showJobModal(){document.getElementById("job-form").style.display="block";document.getElementById("job-success").style.display="none";document.getElementById("job-modal").classList.add("open");}
-function closeJobModal(){document.getElementById("job-modal").classList.remove("open");}
-function submitJob(){
-  var t=document.getElementById("j-title").value.trim()||"New listing";
-  var trade=document.getElementById("j-trade").value||"";
-  var c=document.getElementById("j-city").value.trim()||"West Michigan";
-  var p=document.getElementById("j-pay").value.trim()||"TBD";
-  var dur=document.getElementById("j-duration").value||"";
-  var exp=document.getElementById("j-exp").value||"";
-  var start=document.getElementById("j-start").value||"";
-  var spots=document.getElementById("j-spots").value||"";
-  var union=document.getElementById("j-union").value||"";
-  var d=document.getElementById("j-desc").value.trim()||"";
-  var benefits=[];
-  if(document.getElementById("j-b-health").checked)benefits.push("Health insurance");
-  if(document.getElementById("j-b-pension").checked)benefits.push("Pension / 401k");
-  if(document.getElementById("j-b-tools").checked)benefits.push("Tools provided");
-  if(document.getElementById("j-b-training").checked)benefits.push("Paid training");
-  if(document.getElementById("j-b-cert").checked)benefits.push("Cert assistance");
-  var tags="";
-  if(union)tags+="<span class='ptag pt-blue'>"+union+"</span>";
-  if(exp)tags+="<span class='ptag pt-green'>"+exp+"</span>";
-  benefits.forEach(function(b){tags+="<span class='ptag pt-green'>"+b+"</span>";});
-  var meta="<span>📍 "+c+"</span>";
-  if(p)meta+="<span>"+p+"</span>";
-  if(spots)meta+="<span>"+spots+" spots</span>";
-  if(dur)meta+="<span>"+dur+"</span>";
-  if(start)meta+="<span>Starts: "+start+"</span>";
-  if(trade)meta+="<span class='accepting'>"+trade+"</span>";
-  var card=document.createElement("div");card.className="job-card";
-  card.innerHTML="<div class='job-title'>"+t+"</div><div class='job-meta'>"+meta+"</div>"+(tags?"<div class='prog-tags' style='margin-bottom:10px;'>"+tags+"</div>":"")+(d?"<div class='job-desc'>"+d+"</div>":"")+"<div class='job-actions'><button class='job-edit'>Edit</button><button class='job-delete' onclick='this.closest(&quot;.job-card&quot;).remove()'>Delete</button></div>";
-  document.getElementById("jobs-list").prepend(card);
-  document.getElementById("job-form").style.display="none";
-  document.getElementById("job-success").style.display="block";
-}
-
-document.getElementById("modal").addEventListener("click",function(e){if(e.target===this)closeModal();});
-document.getElementById("auth-modal").addEventListener("click",function(e){if(e.target===this)closeAuthModal();});
-document.getElementById("job-modal").addEventListener("click",function(e){if(e.target===this)closeJobModal();});
+}); // end DOMContentLoaded
 </script>
 </body>
 </html>
