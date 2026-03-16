@@ -92,10 +92,10 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
 
 /* PROFILE */
 .profwrap{background:var(--card);border-radius:14px;border:1px solid var(--border);overflow:hidden;margin-bottom:20px;}
-.profcov{height:110px;background:linear-gradient(135deg,var(--bluedim),#0a1020);position:relative;}
+.profcov{height:130px;background:linear-gradient(135deg,var(--bluedim),#0a1020);position:relative;}
 .editbtn{position:absolute;top:12px;right:12px;padding:6px 14px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;background:rgba(13,31,58,.9);border:1px solid var(--blueborder);color:var(--blue);font-family:'DM Sans',sans-serif;}
 .profbody{padding:0 20px 24px;}
-.profav{width:68px;height:68px;border-radius:50%;background:var(--bluedim);color:var(--blue);font-size:22px;font-weight:800;display:flex;align-items:center;justify-content:center;border:4px solid var(--card);margin-top:-34px;margin-bottom:14px;}
+.profav{width:72px;height:72px;border-radius:50%;background:var(--bluedim);color:var(--blue);font-size:22px;font-weight:800;display:flex;align-items:center;justify-content:center;border:4px solid var(--card);margin-top:-36px;margin-bottom:14px;position:relative;z-index:1;}
 .profname{font-size:22px;font-weight:800;color:var(--text);margin-bottom:3px;}
 .profsub{font-size:13px;color:var(--text3);margin-bottom:12px;}
 .availpill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:5px 13px;border-radius:20px;background:var(--greendim);color:var(--green);border:1px solid var(--greenborder);margin-bottom:20px;}
@@ -439,15 +439,13 @@ select.tinput{cursor:pointer;}
     </div>
     <div id="o-candidates" class="pane">
       <div class="filters">
-        <button class="ftag on">All trades</button>
-        <button class="ftag">⚡ Electrician</button>
-        <button class="ftag">🔥 Welder</button>
-        <button class="ftag">❄️ HVAC</button>
-        <button class="ftag">🔧 Plumber</button>
+        <button class="ftag on" onclick="cfilt('all',this)">All trades</button>
+        <button class="ftag" onclick="cfilt('Electrician',this)">⚡ Electrician</button>
+        <button class="ftag" onclick="cfilt('Welder',this)">🔥 Welder</button>
+        <button class="ftag" onclick="cfilt('HVAC',this)">❄️ HVAC</button>
+        <button class="ftag" onclick="cfilt('Plumber',this)">🔧 Plumber</button>
       </div>
-      <div class="ccard"><div class="ctop"><div class="cav" style="background:var(--bluedim);color:var(--blue)">AR</div><div><div class="cname">Alex Rodriguez</div><div class="cmeta">Age 18 · Kalamazoo, MI · Available June 2026</div></div></div><div class="cbio">Shop and electrical fundamentals all four years. Reliable and ready to learn from day one.</div><div class="ctags"><span class="ctag">Electrician</span><span class="ctag">OSHA-10</span><span class="ctag">Entry-level</span></div><div class="cbtns"><button class="bmsg" onclick="openMsg(this)">Message</button><button class="binv" onclick="this.style.background='var(--greendim)';this.style.color='var(--green)';this.style.border='1px solid var(--greenborder)';this.textContent='Invited ✓'">Invite</button></div></div>
-      <div class="ccard"><div class="ctop"><div class="cav" style="background:var(--greendim);color:var(--green)">ML</div><div><div class="cname">Marcus Lee</div><div class="cmeta">Age 17 · Portage, MI · Available May 2026</div></div></div><div class="cbio">CTE electrical fundamentals. Strong academic record and hands-on project work.</div><div class="ctags"><span class="ctag">Electrician</span><span class="ctag">CTE grad</span><span class="ctag">Entry-level</span></div><div class="cbtns"><button class="bmsg" onclick="openMsg(this)">Message</button><button class="binv" onclick="this.style.background='var(--greendim)';this.style.color='var(--green)';this.style.border='1px solid var(--greenborder)';this.textContent='Invited ✓'">Invite</button></div></div>
-      <div class="ccard"><div class="ctop"><div class="cav" style="background:var(--purpledim);color:var(--purple)">JE</div><div><div class="cname">Jordan Ellis</div><div class="cmeta">Age 19 · Kalamazoo, MI · Available immediately</div></div></div><div class="cbio">Career switcher. Fully committed. Own transportation, available any shift.</div><div class="ctags"><span class="ctag">Electrician</span><span class="ctag">Available now</span><span class="ctag">Career switcher</span></div><div class="cbtns"><button class="bmsg" onclick="openMsg(this)">Message</button><button class="binv" onclick="this.style.background='var(--greendim)';this.style.color='var(--green)';this.style.border='1px solid var(--greenborder)';this.textContent='Invited ✓'">Invite</button></div></div>
+      <div id="cand-list"></div>
     </div>
     <div id="o-myjobs" class="pane">
       <button class="postbtn" onclick="showJobModal()">+ Post a new listing</button>
@@ -650,6 +648,7 @@ function goPros(){
 function goOrg(){
   document.getElementById("land").classList.remove("on");
   document.getElementById("org").classList.add("on");
+  renderCandidates();
   window.scrollTo(0,0);
 }
 
@@ -727,6 +726,31 @@ function delPill(el){el.parentElement.remove();}
 function addSkill(){var i=document.getElementById("skill-inp");var v=i.value.trim();if(!v)return;var s=document.createElement("span");s.className="pill";s.innerHTML=v+'<span class="pdel" onclick="delPill(this)">×</span>';document.getElementById("skills-list").appendChild(s);i.value="";}
 function addCert(){var i=document.getElementById("cert-inp");var v=i.value.trim();if(!v)return;var s=document.createElement("span");s.className="pill";s.innerHTML=v+'<span class="pdel" onclick="delPill(this)">×</span>';document.getElementById("certs-list").appendChild(s);i.value="";}
 function addPhoto(inp){if(!inp.files||!inp.files[0])return;var r=new FileReader();r.onload=function(e){var t=document.createElement("div");t.className="ptile";t.style.cssText="background-image:url("+e.target.result+");background-size:cover;background-position:center;";document.getElementById("photo-grid").appendChild(t);};r.readAsDataURL(inp.files[0]);}
+
+
+var candidates=[
+  {name:"Alex Rodriguez",av:"AR",avc:"var(--bluedim)",avt:"var(--blue)",age:18,city:"Kalamazoo, MI",avail:"Available June 2026",trade:"Electrician",bio:"Shop and electrical fundamentals all four years. Reliable and ready to learn from day one.",tags:["Electrician","OSHA-10","Entry-level"]},
+  {name:"Marcus Lee",av:"ML",avc:"var(--greendim)",avt:"var(--green)",age:17,city:"Portage, MI",avail:"Available May 2026",trade:"Electrician",bio:"CTE electrical fundamentals. Strong academic record and hands-on project work.",tags:["Electrician","CTE grad","Entry-level"]},
+  {name:"Jordan Ellis",av:"JE",avc:"var(--purpledim)",avt:"var(--purple)",age:19,city:"Kalamazoo, MI",avail:"Available immediately",trade:"Electrician",bio:"Career switcher. Fully committed. Own transportation, available any shift.",tags:["Electrician","Available now","Career switcher"]},
+  {name:"Tyler Brooks",av:"TB",avc:"#1a1008",avt:"var(--amber)",age:18,city:"Portage, MI",avail:"Available June 2026",trade:"Welder",bio:"Two years of welding in high school shop. Interested in MIG and TIG certification.",tags:["Welder","Entry-level","Shop experience"]},
+  {name:"Sam Rivera",av:"SR",avc:"#0a1020",avt:"var(--blue)",age:20,city:"Kalamazoo, MI",avail:"Available immediately",trade:"HVAC",bio:"Completed HVAC intro course. Mechanically minded, looking for paid apprenticeship.",tags:["HVAC","Entry-level","EPA 608 studying"]},
+  {name:"Devon Clark",av:"DC",avc:"var(--purpledim)",avt:"var(--purple)",age:22,city:"Grand Rapids, MI",avail:"Available immediately",trade:"Plumber",bio:"Career switcher from retail. Motivated, reliable, own tools and transportation.",tags:["Plumber","Career switcher","Available now"]},
+];
+
+var candFilter="all";
+function cfilt(trade,el){
+  candFilter=trade;
+  document.querySelectorAll("#o-candidates .ftag").forEach(function(b){b.classList.remove("on");});
+  el.classList.add("on");
+  renderCandidates();
+}
+function renderCandidates(){
+  var list=candFilter==="all"?candidates:candidates.filter(function(x){return x.trade===candFilter;});
+  var html=list.map(function(x){
+    return '<div class="ccard"><div class="ctop"><div class="cav" style="background:'+x.avc+';color:'+x.avt+'">'+x.av+'</div><div><div class="cname">'+x.name+'</div><div class="cmeta">Age '+x.age+' · '+x.city+' · '+x.avail+'</div></div></div><div class="cbio">'+x.bio+'</div><div class="ctags">'+x.tags.map(function(t){return'<span class="ctag">'+t+'</span>';}).join('')+'</div><div class="cbtns"><button class="bmsg" onclick="openMsg(this)">Message</button><button class="binv" onclick="this.style.background='var(--greendim)';this.style.color='var(--green)';this.style.border='1px solid var(--greenborder)';this.textContent='Invited ✓'">Invite</button></div></div>';
+  }).join('');
+  document.getElementById("cand-list").innerHTML=html;
+}
 
 document.getElementById("modal").addEventListener("click",function(e){if(e.target===this)closeModal();});
 document.getElementById("auth-modal").addEventListener("click",function(e){if(e.target===this)closeAuth();});
